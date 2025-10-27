@@ -15,7 +15,7 @@ HPC system overview
 About the cluster
 -----------------
 
-Zurada consists of 20 nodes that can be used for computation. These nodes are distributed in two queues
+Zurada consists of 112 nodes that can be used for computation. These nodes are distributed in two queues
 as indicated below:
 
 .. list-table:: Zurada hardware specs

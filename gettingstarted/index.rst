@@ -111,7 +111,7 @@ as indicated below:
      - 1.9 TiB
      - NVIDIA H100 NVL
      - 95830 MiB
-     - 2
+     - 8
      - 30 TB NVMe
 
 These nodes are named as follows:

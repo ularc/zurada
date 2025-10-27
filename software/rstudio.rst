@@ -9,20 +9,23 @@ Pre-launch
 1. Login to the cluster and download a singularity/apptainer image from the rocker project 
    (https://hub.docker.com/r/rocker/rstudio/tags). Pick one with the desired version of R. For example:
 
+   .. note::
+
+      Apptainer v1.4.2 comes pre-installed in the system, so you don't need
+      to use a modulefile for it.
+
    - Download image for R 4.5
    
-   .. code-block:: bash
+   .. code-block:: text
 
-    [user@larcc-login1 ~]$ module load apptainer/1.3.4-gcc-11.5.0
-    [user@larcc-login1 ~]$ apptainer pull docker://rocker/rstudio:4.5
+    apptainer pull docker://rocker/rstudio:4.5
     [user@larcc-login1 ~]$ ls
     rstudio_4.5.sif
 
    - Download image for latest R
 
-   .. code-block:: bash
+   .. code-block:: text
 
-    [user@larcc-login1 ~]$ module load apptainer/1.3.4-gcc-11.5.0
     [user@larcc-login1 ~]$ apptainer pull docker://rocker/rstudio:latest
     [user@larcc-login1 ~]$ ls
     rstudio_latest.sif
@@ -48,7 +51,7 @@ Launch RStudio Server
     
     1. SSH tunnel from your workstation using the following command:
 
-       ssh -N -L 8787:larcc-hs-cpu1:48221 user@larcc.hpc.louisville.edu
+       ssh -N -L 8787:cpusm01:48221 user@zurada.rc.louisville.edu
 
        and point your web browser to http://localhost:8787 
 

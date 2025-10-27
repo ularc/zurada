@@ -3,12 +3,9 @@
 #SBATCH --time=08:00:00
 #SBATCH --signal=USR2
 #SBATCH --nodes=1
-#SBATCH --partition=compute
-#SBATCH --mem=515002
+#SBATCH --partition=cpu384g
 #SBATCH --output=/home/%u/rstudio-server.%j.out
 #SBATCH --error=/home/%u/rstudio-server.%j.err
-
-module load apptainer/1.3.4-gcc-11.5.0
 
 ## CHANGE ME!!! #############################################
 # You can set this to a specific R version if you would like
@@ -58,7 +55,7 @@ readonly PORT=$(python3 -c 'import socket; s=socket.socket(); s.bind(("", 0)); p
 cat 1>&2 <<END
 1. SSH tunnel from your workstation using the following command:
 
-   ssh -N -L 8787:`hostname | sed 's/larcc-/larcc-hs-/'`:${PORT} ${APPTAINERENV_USER}@larcc.hpc.louisville.edu
+   ssh -N -L 8787:`hostname`:${PORT} ${APPTAINERENV_USER}@zurada.rc.louisville.edu
 
    and point your web browser to http://localhost:8787
 

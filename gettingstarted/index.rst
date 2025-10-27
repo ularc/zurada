@@ -108,8 +108,8 @@ Zurada consists of 112 nodes that can be used for computation. These nodes are d
      - 112
      - 2 TiB
      - 1.9 TiB
-     - NVIDIA H100 NVL
-     - 95830 MiB
+     - NVIDIA H200 NVL
+     - 1128 GB
      - 8
      - 30 TB NVMe
 

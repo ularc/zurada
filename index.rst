@@ -9,6 +9,7 @@ Zurada User Documentation
 .. toctree::
    :maxdepth: 3
 
+   policies/index
    accounts_and_support/index
    gettingstarted/index
    guides/index

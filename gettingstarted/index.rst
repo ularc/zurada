@@ -15,10 +15,10 @@ HPC system overview
 About the cluster
 -----------------
 
-LARCC consists of 20 nodes that can be used for computation. These nodes are distributed in two queues
+Zurada consists of 20 nodes that can be used for computation. These nodes are distributed in two queues
 as indicated below:
 
-.. list-table:: LARCC hardware specs
+.. list-table:: Zurada hardware specs
    :widths: 3 3 3 3 3 3 3 3 3 3 3 3 3
    :header-rows: 1
 
@@ -35,32 +35,84 @@ as indicated below:
      - GPU Memory
      - GPUs per node
      - Local storage per node
-   * - compute
-     - 10
-     - AMD EPYC 9554
-     - 3.1 to 3.75 GHz
+   * - cpu384g
+     - 77
+     - AMD EPYC 9174F
+     - 4.10 GHz
      - 2
-     - 64
-     - 128
-     - 512 GiB
-     - 502 GiB
+     - 16
+     - 32
+     - 384 GiB
+     - 376 GiB
      - N/A
      - N/A
      - 0
-     - 14TB NVMe
-   * - gpu
-     - 10
-     - INTEL XEON GOLD 6542Y
-     - 4.1 GHz
+     - 480 GB SATA mixed use SSD
+   * - cpu1500g
+     - 6
+     - AMD EPYC 9174F
+     - 4.10 GHz
      - 2
-     - 48
-     - 96
-     - 256 GiB
-     - 250 GiB
+     - 16
+     - 32
+     - 1.5 TiB
+     - 1.4 TiB
+     - N/A
+     - N/A
+     - 0
+     - 6.4 TB SATA mixed use SSD
+   * - cpu6000g
+     - 3
+     - AMD EPYC 9174F
+     - 4.10 GHz
+     - 2
+     - 16
+     - 32
+     - 6 TiB
+     - 5.8 TiB
+     - N/A
+     - N/A
+     - 0
+     - 6.4 TB SATA mixed use SSD
+   * - gpu1h100
+     - 15
+     - AMD EPYC 9174F
+     - 4.10 GHz
+     - 2
+     - 16
+     - 32
+     - 1.5 TiB
+     - 1.4 TiB
+     - NVIDIA H100 NVL
+     - 95830 MiB
+     - 1
+     - 6.4 TB SATA mixed use SSD
+   * - gpu2h100
+     - 10
+     - AMD EPYC 9174F
+     - 4.10 GHz
+     - 2
+     - 16
+     - 32
+     - 3 TiB
+     - 2.8 TiB
      - NVIDIA H100 NVL
      - 95830 MiB
      - 2
-     - 28TB NVMe
+     - 6.4 TB SATA mixed use SSD
+   * - hgxh200
+     - 1
+     - Intel Xeon Platinum 8480C
+     - 2.0 GHz
+     - 2
+     - 56
+     - 112
+     - 2 TiB
+     - 1.9 TiB
+     - NVIDIA H100 NVL
+     - 95830 MiB
+     - 2
+     - 30 TB NVMe
 
 These nodes are named as follows:
 

@@ -18,7 +18,7 @@ There are two main ways to use PyTorch:
 
    .. code-block:: bash
 
-       module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+       module load miniforge3/25.3.1-gcc-11.4.1
        conda env list
        conda activate pytorch
 
@@ -34,7 +34,7 @@ There are two main ways to use PyTorch:
 
            .. code-block:: bash
 
-               module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+               module load miniforge3/25.3.1-gcc-11.4.1
                conda create --name my_pytorch_cuda11.8
                conda activate my_pytorch_cuda11.8
                pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
@@ -43,7 +43,7 @@ There are two main ways to use PyTorch:
 
            .. code-block:: bash
 
-               module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+               module load miniforge3/25.3.1-gcc-11.4.1
                conda create --name my_pytorch_cuda12.6
                conda activate my_pytorch_cuda12.6
                pip install torch torchvision torchaudio
@@ -52,7 +52,7 @@ There are two main ways to use PyTorch:
 
            .. code-block:: bash
 
-               module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+               module load miniforge3/25.3.1-gcc-11.4.1
                conda create --name my_pytorch_cuda12.8
                conda activate my_pytorch_cuda12.8
                pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
@@ -94,7 +94,7 @@ to be able to ssh into a GPU node. For example:
     EOF
 
     # Execute the test program
-    module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+    module load miniforge3/25.3.1-gcc-11.4.1
     conda activate my_pytorch_env
     python pytorch_test.py
 
@@ -220,7 +220,7 @@ and all CPU cores.
     #SBATCH --time=01:00:00
     #SBATCH --partition=gpu
 
-    module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+    module load miniforge3/25.3.1-gcc-11.4.1
     conda activate pytorch
 
     # Each node has 48 CPU cores and 2 GPUs. Since we are using 1
@@ -353,7 +353,7 @@ Here is a working example of the ``train.py``
         #SBATCH --time=02:00:00
         #SBATCH --partition=gpu
 
-        module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+        module load miniforge3/25.3.1-gcc-11.4.1
         conda activate pytorch
 
         export MASTER_ADDR=`ip -j addr | jq -r '.[] | select(.ifname == "bond0") | .addr_info[] | select(.family == "inet") | .local'`

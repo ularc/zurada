@@ -15,7 +15,7 @@ There are two main ways to use TensorFlow:
 
    .. code-block:: bash
 
-       module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+       module load miniforge3/25.3.1-gcc-11.4.1
        conda env list
        conda activate tensorflow
 
@@ -37,7 +37,7 @@ There are two main ways to use TensorFlow:
 
         .. code-block:: bash
 
-            module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+            module load miniforge3/25.3.1-gcc-11.4.1
             conda create --name my_tensorflow_env tensorflow-gpu 
 
 Verifying GPU Availability
@@ -118,7 +118,7 @@ b. or by modifying TensorFlow's runtime configuration with:
     #SBATCH --time=01:00:00
     #SBATCH --partition=gpu
 
-    module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+    module load miniforge3/25.3.1-gcc-11.4.1
     conda activate my_tensorflow_env
 
     python train_tf.py
@@ -149,7 +149,7 @@ b. or by modifying TensorFlow's runtime configuration with:
         #SBATCH --time=02:00:00
         #SBATCH --partition=gpu
 
-        module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+        module load miniforge3/25.3.1-gcc-11.4.1
         conda activate my_tensorflow_env
 
         # Get node list and assign roles

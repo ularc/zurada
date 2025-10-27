@@ -6,7 +6,7 @@
 #SBATCH --output=/home/%u/jupyter.%j.out
 #SBATCH --error=/home/%u/jupyter.%j.err
 
-module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+module load miniforge3/25.3.1-gcc-11.4.1
 
 # CHANGE THIS TO THE CONDA ENVIRONMENT YOU SEE FIT
 conda activate jupyter

@@ -39,7 +39,7 @@ additional packages you need as follows:
     
         .. code-block:: bash
 
-            module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+            module load miniforge3/25.3.1-gcc-11.4.1
             conda create -n jupyter_env python numpy pandas notebook
     
     .. group-tab:: venv
@@ -113,7 +113,7 @@ additional packages you need as follows:
 
     .. code-block:: bash
 
-        module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+        module load miniforge3/25.3.1-gcc-11.4.1
         conda create -n jupyter python numpy pandas notebook
 
 2. Submit an interactive job
@@ -135,7 +135,7 @@ Then, start a jupyter server as follows:
 
 .. code-block:: bash
 
-    module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+    module load miniforge3/25.3.1-gcc-11.4.1
     # CHANGE THIS TO THE CONDA ENVIRONMENT YOU SEE FIT
     conda activate jupyter
     PORT=`comm -23 <(seq 1024 65535 | sort) <(ss -Htan | awk '{print $4}' | cut -d':' -f2 | sort -u) | shuf | head -n 1`

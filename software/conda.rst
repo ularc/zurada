@@ -72,7 +72,7 @@ After logging into LARCC, you can start using Miniforge by loading the miniforge
 
 .. code-block:: bash
 
-    module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym 
+    module load miniforge3/25.3.1-gcc-11.4.1 
 
 After executing this command, you should see your prompt change (it should now start with ``(base)``).
 
@@ -93,7 +93,7 @@ For non-installation tasks like listing environments, both tools can be used int
 
 For example, to create an environment named ``my_env``:
 
-#. Load the miniforge3 module by typing: ``module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym``.
+#. Load the miniforge3 module by typing: ``module load miniforge3/25.3.1-gcc-11.4.1``.
 #. Create the environment with ``mamba create --name my_env`` or ``conda create --name my_env``.
 
 Once you have created your environment, you can use it by executing ``conda activate environment_name_here``.
@@ -226,7 +226,7 @@ As an example, a typical workflow for python looks like this:
 
 .. code-block:: bash
 
-    module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+    module load miniforge3/25.3.1-gcc-11.4.1
     # Create a custom environment. In this case, create
     # an environment named "my_env" and install packages
     # numpy and scipy
@@ -260,7 +260,7 @@ could use it as follows:
   #SBATCH --nodes=1
   #SBATCH --mem=515002
 
-  module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym 
+  module load miniforge3/25.3.1-gcc-11.4.1 
   conda activate projectA_pytorch
 
   ## Execute the python script that calls pytorch
@@ -283,7 +283,7 @@ could use it as follows:
 .. code-block:: bash
 
   srun --partition=compute --job-name=projectA_pytorch_job --time=1:00:00 --nodes=1 --mem=515002 --pty /bin/bash -i
-  module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym 
+  module load miniforge3/25.3.1-gcc-11.4.1 
   conda activate projectA_pytorch
 
   ## Execute the python script that calls pytorch

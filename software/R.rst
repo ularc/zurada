@@ -14,17 +14,20 @@ There are three ways to use R in the cluster:
 
    .. code-block:: bash
 
-      module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
+      module load miniforge3/25.3.1-gcc-11.4.1
       conda create -n R_44 r-base=4.4
 
 #. Using an ``Apptainer`` container with R pre-installed. The
    `Rocker Project <https://rocker-project.org/>`_ has many of these, including images with packages that
    are generally difficult to install (e.g. the geospatial toolkit for R, or Rstudio).
 
+   .. note::
+
+      Apptainer v1.4.2 comes pre-installed in the system, so you don't need
+      to use a modulefile for it.
+
    .. code-block:: bash
 
-      # load the apptainer module in LARCC
-      module load apptainer/1.3.4-gcc-11.5.0-as2nnsb
       # Download the container image and store it as
       # file geo.sif
       apptainer pull geo.sif docker://rocker/geospatial:latest
@@ -36,7 +39,7 @@ There are three ways to use R in the cluster:
 If a version of R you require is not available as a module, you should use Conda (or an Apptainer container)
 to create a custom environment with the precise version you need:
 
-#. Load the Miniforge module: ``module load miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym``.
+#. Load the Miniforge module: ``module load miniforge3/25.3.1-gcc-11.4.1``.
 #. Create an environment for R: ``conda create --name R_env``.
    See :ref:`this <conda_create_env>` section of our Conda documentation for more information on
    creating environments.

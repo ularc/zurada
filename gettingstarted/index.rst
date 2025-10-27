@@ -15,8 +15,7 @@ HPC system overview
 About the cluster
 -----------------
 
-Zurada consists of 112 nodes that can be used for computation. These nodes are distributed in two queues
-as indicated below:
+Zurada consists of 112 nodes that can be used for computation. These nodes are distributed in the following queues:
 
 .. list-table:: Zurada hardware specs
    :widths: 3 3 3 3 3 3 3 3 3 3 3 3 3
@@ -114,10 +113,16 @@ as indicated below:
      - 8
      - 30 TB NVMe
 
+The cluster features 200 Gbps NDR Infiniband connectivity between compute nodes.
+
 These nodes are named as follows:
 
-- ``larcc-cpu1``, ``larcc-cpu2``, ..., ``larc-cpu10`` for nodes without any GPU.
-- ``larcc-gpu1``, ``larcc-gpu2``, ..., ``larc-gpu10`` for nodes with GPUs.
+- ``cpusm01``, ``cpusm02``, ..., ``cpusm77`` for cpu-only nodes in queue ``cpu384g``.
+- ``cpumd01``, ``cpumd02``, ..., ``cpumd06`` for cpu-only nodes in queue ``cpu1500g``.
+- ``cpulg01``, ``cpulg02``, ``cpulg03`` for cpu-only nodes in queue ``cpu6000g``.
+- ``gpusm01``, ``gpusm02``, ..., ``gpusm15`` for gpu nodes in queue ``gpu1h100``.
+- ``gpumd01``, ``gpumd02``, ..., ``gpumd10`` for gpu nodes in queue ``gpu2h100``.
+- ``gpulg01`` for the gpu node in queue ``hgxh200``.
 
 In order to execute any kind of (scientific) software, such as Ansys, OpenFOAM, GROMACS, or others,
 on these nodes, users must:
@@ -129,7 +134,7 @@ on these nodes, users must:
 
 To prevent interference between users' jobs, access to nodes is restricted
 to users with active jobs running on them. For example, if user "lk01" submits a job and
-Slurm allocates ``larcc-cpu1`` for its execution, "lk01" will have exclusive access to log into ``larcc-cpu1``.
+Slurm allocates ``cpusm01`` for its execution, "lk01" will have exclusive access to log into ``cpusm01``.
 
 About Scientific Software
 -------------------------

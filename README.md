@@ -3,8 +3,8 @@
 1. Install `sphinx` (suggestion: Use a virtual environment)
 
     ```bash
-    python -m venv larcc-docs-env
-    source larcc-docs-env/bin/activate
+    python -m venv zurada-docs-env
+    source zurada-docs-env/bin/activate
     pip install sphinx sphinx-rtd-theme sphinx-tabs
     ```
 
@@ -12,7 +12,7 @@
    the project's root folder.
 
     ```bash
-    cd larcc-docs
+    cd zurada-docs
     # Note you can use other options besides "html" here (e.g. "latex").
     # Simply run "make" to see all available options.
     make html

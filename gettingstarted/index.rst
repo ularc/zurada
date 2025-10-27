@@ -1,6 +1,14 @@
 Getting Started
 ###############
 
+.. _usage-agreemet:
+
+Usage Agreement
+===============
+
+Please ensure that you have read :ref:`Zurada's System Use Policies <zurada_system_use_policies>`
+and have agreed to it before requesting an account.
+
 HPC system overview
 ===================
 

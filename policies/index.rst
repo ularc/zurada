@@ -1,6 +1,8 @@
 Policies
 ########
 
+.. _zurada_system_use_policies:
+
 Zurada's System Use Policies
 ============================
 

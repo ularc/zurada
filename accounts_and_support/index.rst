@@ -4,8 +4,8 @@ Accounts and Support
 Request an account
 ==================
 
-Before requesting an account, please read :ref:`our usage agreement for the LARCC system <usage-agreemet>`.
-If you agree with the terms, then review the following instructions carefully. Keep in mind that
+Please ensure that you have read :ref:`Zurada's System Use Policies <zurada_system_use_policies>`
+and have agreed to it before requesting an account. Keep in mind that
 **each applicant must log in and complete their own account request using their unique ULINK account**.
 
 **To obtain an account, you must either be a faculty member or be affiliated

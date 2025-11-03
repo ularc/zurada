@@ -42,3 +42,21 @@ GPU Resources Utilization
     #. Monitoring: The Research Computing group monitors system utilization and can identify underutilized resources attached to jobs.
     #. Termination: Jobs detected to be idle or not making use of the allocated GPUs will be terminated after a grace period of 1 hour.
     #. Notification: After termination, users will receive a warning email to either adjust their job to utilize the GPUs appropriately or utilize one of the CPU only queues.
+
+Installing packages system-wide
+-------------------------------
+
+The Research Computing team reviews software installation requests on a case-by-case basis
+to determine whether an application should be installed system-wide or is better suited for local installation
+in a user's home directory. In the latter case, we are happy to provide guidance.
+
+Please note that global installations can be time-consuming due to complex dependency chains.
+If a package definition does not already exist, we must create one to automate the build process,
+including definitions for all dependencies. Since these dependencies are often maintained by different teams,
+compiling and integrating them can be challenging and time-intensive.
+
+While environment modules make it easy to load software, they are not part of the package-building
+or automation process.
+
+Due to the high volume of requests, we prioritize faster solutions like Conda and
+reserve global installations for cases where no suitable alternative exists.

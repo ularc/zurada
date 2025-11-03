@@ -417,26 +417,10 @@ Queues and jobs
   See Section :ref:`Submitting batch jobs <batch_job>` for more information
 - To **cancel jobs**, users can use the ``scancel`` command as follows: ``scancel jobid``
 
-Policies
-========
+.. _resource_restrictions:
 
-Installing packages system-wide
--------------------------------
-
-The Research Computing team reviews software installation requests on a case-by-case basis
-to determine whether an application should be installed system-wide or is better suited for local installation
-in a user's home directory. In the latter case, we are happy to provide guidance.
-
-Please note that global installations can be time-consuming due to complex dependency chains.
-If a package definition does not already exist, we must create one to automate the build process,
-including definitions for all dependencies. Since these dependencies are often maintained by different teams,
-compiling and integrating them can be challenging and time-intensive.
-
-While environment modules make it easy to load software, they are not part of the package-building
-or automation process.
-
-Due to the high volume of requests, we prioritize faster solutions like Conda and
-reserve global installations for cases where no suitable alternative exists.
+Resource Restrictions
+=====================
 
 Running applications on the login nodes
 ---------------------------------------
@@ -446,10 +430,8 @@ as this can degrade performance and hinder others from accessing the cluster or 
 To maintain a stable and fair environment, the Research Computing Team reserves the right to terminate
 any user processes on the login nodes that are found to negatively impact other users.
 
-.. _resource_restrictions:
-
-Resource restrictions
----------------------
+Job runtime restrictions
+-------------------------
 
 .. note::
 
@@ -459,57 +441,58 @@ Resource restrictions
   what is allowed by default, among others, please reach out to us by creating a ticket
   and we will be happy to evaluate your case.
 
-Job runtime restrictions
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 - If the ``--time`` option is not specified when submitting a job,
   a default runtime of 12 hours is imposed on said job.
   This applies to both interactive and batch jobs.
-- To see runtime restrictions on each queue, please run the ``sinfo`` command
+- To see runtime restrictions on each partition, please run the ``sinfo`` command
   and look at the ``TIMELIMIT`` column.
-- The number of usable nodes per user in a queue can be seen as follows:
+- The number of usable nodes per user in a partition can be seen as follows:
 
-  1. code-block
-
-    .. code-block::
-
-      scontrol show partition cpu384g
-PartitionName=cpu384g
-   AllowGroups=ALL AllowAccounts=ALL AllowQos=ALL
-   AllocNodes=ALL Default=YES QoS=compute-sm_user_limits
-   DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO ExclusiveTopo=NO GraceTime=0 Hidden=NO
-   MaxNodes=8 MaxTime=3-00:00:00 MinNodes=0 LLN=NO MaxCPUsPerNode=UNLIMITED MaxCPUsPerSocket=UNLIMITED
-   Nodes=cpusm[01-77]
-   PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=EXCLUSIVE
-   OverTimeLimit=NONE PreemptMode=OFF
-   State=UP TotalCPUs=2464 TotalNodes=77 SelectTypeParameters=NONE
-   JobDefaults=(null)
-   DefMemPerNode=UNLIMITED MaxMemPerNode=UNLIMITED
-   TRES=cpu=2464,mem=29722000M,node=77,billing=2464
-
-
-  - Consider user *jd01* submits 2 jobs named *A* and *B* such that
-    job *A* requests a node from the ``compute`` partition and *B* from the ``gpu`` partition.
-    Once both jobs start running, any subsequent job *jd01* submits will be queued
-    (i.e. placed in ``PENDING``, or ``PD``, status). Here is an example of how the
-    output of the ``squeue`` command would look like:
+  1. use the ``scontrol show partition <partition name>`` command to 
+     print information about the partition. In the output, locate the
+     ``QoS=`` line and take note of the value. For instance, in the
+     example below, partition ``cpu384g`` uses QoS ``compute-sm_user_limits``.
 
     .. code-block:: text
 
-      JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-        800   compute        A     jd01  R 1-21:32:01      1 larcc-cpu1
-        799       gpu        B     jd01  R 1-21:32:22      1 larcc-gpu1
-        821       gpu        C     jd01 PD       0:00      1 (QOSMaxNodePerUserLimit)
+      scontrol show partition cpu384g
+      PartitionName=cpu384g
+      AllowGroups=ALL AllowAccounts=ALL AllowQos=ALL
+      AllocNodes=ALL Default=YES QoS=compute-sm_user_limits
+      DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO ExclusiveTopo=NO GraceTime=0 Hidden=NO
+      MaxNodes=8 MaxTime=3-00:00:00 MinNodes=0 LLN=NO MaxCPUsPerNode=UNLIMITED MaxCPUsPerSocket=UNLIMITED
+      Nodes=cpusm[01-77]
+      PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=EXCLUSIVE
+      OverTimeLimit=NONE PreemptMode=OFF
+      State=UP TotalCPUs=2464 TotalNodes=77 SelectTypeParameters=NONE
+      JobDefaults=(null)
+      DefMemPerNode=UNLIMITED MaxMemPerNode=UNLIMITED
+      TRES=cpu=2464,mem=29722000M,node=77,billing=2464
+
+  2. use the ``sacctmgr show qos <qos name> format=MaxTRESPU`` command to print
+     the resource restrictions of a qos. For instance, the example below shows
+     that the qos ``compute-sm_user_limits``, assigned to partition ``cpu384g``,
+     restricts users to a maximum of 8 nodes at any given time.
+
+     .. code-block:: text
+
+      sacctmgr show qos compute-sm_user_limits format=MaxTRESPU
+          MaxTRESPU 
+      ------------- 
+             node=8
 
 - Users can submit a maximum of 50 jobs across all partitions.
 
-Storage restrictions
-^^^^^^^^^^^^^^^^^^^^
+- **Example:** Consider user *jd01* submits 2 jobs named *A* and *B* such that
+  each job requests 4 nodes from the ``cpu384g`` partition.
+  Once both jobs start running, any subsequent job *jd01* submits to that partition will be queued
+  (i.e. placed in ``PENDING``, or ``PD``, status). Here is an example of how the
+  output of the ``squeue`` command would look like:
 
-- ``home`` storage has a quota of 1TB per user.
-- If multiple users from a research lab require a shared space where they can all colaborate,
-  their PI (i.e. research coordinator, advisor, etc.) must reach out to us through a :ref:`ticket <user_support_tickets>`. We
-  will then evaluate the case and discuss storage capacity, allowed users, among others.
+  .. code-block:: text
 
-For more information about capacity, storage types, etc., users are encouraged to read
-:ref:`our storage guide <storage-on-compute-nodes>`.
+    JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+      800   compute        A     jd01  R 1-21:32:01      4 larcc-cpu1
+      799       gpu        B     jd01  R 1-21:32:22      4 larcc-gpu1
+      821       gpu        C     jd01 PD       0:00      1 (QOSMaxNodePerUserLimit)

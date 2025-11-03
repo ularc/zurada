@@ -109,7 +109,7 @@ Zurada consists of 119 total nodes out of which, 2 are login nodes, 3 are test n
      - 2 TiB
      - 1.9 TiB
      - NVIDIA H200 NVL
-     - 1128 GB
+     - 1128 GiB
      - 8
      - 30 TB NVMe
 
@@ -188,9 +188,9 @@ The basic login process remains consistent across all of these platforms:
 
 1. Launch the terminal on your personal computer.
 2. Enter the ssh command using the following format: ``ssh username@hostname``. 
-   In this particular scenario, the hostname is always ``larcc.hpc.louisville.edu``.
+   In this particular scenario, the hostname is always ``zurada.rc.louisville.edu``.
    For instance, if the user's name is "lk01", they would input
-   ``ssh lk01@larcc.hpc.louisville.edu``.
+   ``ssh lk01@zurada.rc.louisville.edu``.
    
   .. image:: images/login_example.png
     :width: 600
@@ -217,7 +217,7 @@ Using MobaXterm
   .. image:: images/mobaxterm_conn_setup_1.png
     :width: 800
 
-2. Setup your username and the cluster hostname ``larcc.hpc.louisville.edu``
+2. Setup your username and the cluster hostname ``zurada.rc.louisville.edu``
 
   .. image:: images/mobaxterm_conn_setup_2.png
     :width: 800
@@ -253,8 +253,8 @@ personal computer to his home directory (``/home/jd01``) in the cluster using th
 ..  code-block:: powershell
     
     # John could also use ~ instead of /home/jd01. That is, the following is also valid:
-    # scp C:\Users\johndoe\Downloads\workload.jou jd01@larcc.hpc.louisville.edu:~
-    scp C:\Users\johndoe\Downloads\workload.jou jd01@larcc.hpc.louisville.edu:/home/jd01
+    # scp C:\Users\johndoe\Downloads\workload.jou jd01@zurada.rc.louisville.edu:~
+    scp C:\Users\johndoe\Downloads\workload.jou jd01@zurada.rc.louisville.edu:/home/jd01
 
 Suppose John Doe ran a simulation and got the results stored at ``/home/jd01/results/sim_1_res.dat``
 in the cluster. If he wants to copy these retults to the folder ``C:\Users\johndoe\Documents`` 
@@ -263,8 +263,8 @@ of his Windows PC, he would execute the command below from a PowerShell session:
 ..  code-block:: powershell
     
     # The following is also valid:
-    # scp jd01@larcc.hpc.louisville.edu:~/results/sim_1_res.dat C:\Users\johndoe\Documents
-    scp jd01@larcc.hpc.louisville.edu:/home/jd01/results/sim_1_res.dat C:\Users\johndoe\Documents
+    # scp jd01@zurada.rc.louisville.edu:~/results/sim_1_res.dat C:\Users\johndoe\Documents
+    scp jd01@zurada.rc.louisville.edu:/home/jd01/results/sim_1_res.dat C:\Users\johndoe\Documents
 
 Using MobaXterm
 ^^^^^^^^^^^^^^^
@@ -299,18 +299,21 @@ Use command ``module avail`` as shown in the example below:
     
     [user@larcc-login1 ~]$ module av
 
-    ------------------------- /opt/shared/modulefiles/auto/linux-rocky9-x86_64/Core --------------------------
-       apptainer/1.3.4-gcc-11.5.0-as2nnsb                        miniforge3/24.3.0-0-gcc-11.5.0-wkw4vym
-       cuda/12.8.1-gcc-11.5.0-xfem4z6                            mvapich/3.0-gcc-11.5.0-lkmtzx7
-       hpl/2.3-oneapi-2025.0.0-intel-oneapi-mpi-e4nh4jf          nvhpc/25.3-gcc-11.5.0-mbzjfew
-       intel-oneapi-compilers/2025.0.0-gcc-11.5.0-q7zplj3        openmpi/5.0.5-gcc-11.5.0-5zz5ozl
-       intel-oneapi-mkl/2025.0.0-oneapi-2025.0.0-azdrlfn         openmpi/5.0.5-oneapi-2025.0.0-ibqgcsp  (D)
-       intel-oneapi-mpi/2021.14.0-oneapi-2025.0.0-qyvyj3p        python/3.12.10-oneapi-2025.0.0-zz5mjcp
-       matlab/r2024b-gcc-11.5.0-3dizvwe                          r/4.4.1-gcc-11.5.0-56jqenf
-       matlab/r2025a-gcc-11.5.0-cj4bjqf                   (D)
-
-    --------------------------------- /usr/share/lmod/lmod/modulefiles/Core ----------------------------------
-       lmod    settarg
+    ---------------------------------------- /mnt/apps/modulefiles/manual -----------------------------------------
+       aocc/5.0.0-gcc-11.4.1                          miniforge3/25.3.1-gcc-11.4.1
+       aocc/5.0.0-gcc-12.4.0                   (D)    mpc/1.3.1-gcc-11.4.1
+       aocl/5.1.0-aocc-5.0.0                          mpfr/4.2.1-gcc-11.4.1
+       bcftools/1.22-gcc-12.4.0                       mvapich2/2.3.7-aocc-5.0.0
+       binutils/2.45-gcc-11.4.1                       nvhpc/25.5
+       cmake/4.2.1-gcc-12.4.0                         openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+       curl/8.16.0-gcc-12.4.0                         orca/6_1_0-avx2
+       gaussian/16-A.03-nvhpc-25.5                    r/4.5.1-aocc-5.0.0-gcc-12.4.0
+       gcc/12.4.0-gcc-11.4.1                          slurm-libpmi2/24.11.5-gcc-11.4.1
+       gmp/6.3.0-gcc-11.4.1                           vasp/6.5.1-aocc-5.0.0-aocl-5.1
+       intel-oneapi/2025.2.1.44                       vasp/6.5.1-nvhpc-25.5-mkl-2025.2    (D)
+       isl/0.27-gcc-11.4.1                            xz/5.8.1-gcc-12.4.0
+       lammps/20240829.2-nvhpc-25.5-aocc-5.0.0        zstd/1.5.7-gcc-11.4.1
+       matlab/r2025b
 
       Where:
        D:  Default Module
@@ -318,25 +321,32 @@ Use command ``module avail`` as shown in the example below:
 Load software
 ^^^^^^^^^^^^^
 
-Users **must** load programs with the ``module load <modulename>`` before launching them.
+Users **must** load programs with ``module load <modulename>`` before launching them.
 Multiple programs can be loaded at the same time, but there are cases where two or more may conflict.
-For instance, programs ``openmpi/5.0.5-gcc-11.5.0-5zz5ozl`` and ``openmpi/5.0.5-oneapi-2025.0.0-ibqgcsp``
-cannot be loaded together.
-For such cases the program loaded last is used. An example of this is shown below:
+For instance, programs ``openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0`` and ``mvapich2/2.3.7-aocc-5.0.0``
+cannot be loaded together. An example of this is shown below:
 
-..  code-block:: bash
+.. code-block:: text
   :caption: Example of conflicting programs
 
-    [user@larcc-login1 ~]$ module load openmpi/5.0.5-gcc-11.5.0-5zz5ozl
-    [user@larcc-login1 ~]$ module load openmpi/5.0.5-oneapi-2025.0.0-ibqgcsp
+    [user@login01 ~]$ module load openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0 
+    [user@login01 ~]$ module load mvapich2/2.3.7-aocc-5.0.0 
+    Lmod has detected the following error: You can only have one mpi module loaded at a time.
+    You already have openmpi loaded.
+    To correct the situation, please execute the following command:
 
-    The following have been reloaded with a version change:
-      1) openmpi/5.0.5-gcc-11.5.0-5zz5ozl => openmpi/5.0.5-oneapi-2025.0.0-ibqgcsp
+      $ module swap openmpi mvapich2/2.3.7-aocc-5.0.0
 
-    [user@larcc-login1 ~]$
+
+    While processing the following module(s):
+        Module fullname            Module Filename
+        ---------------            ---------------
+        mvapich2/2.3.7-aocc-5.0.0  /mnt/apps/modulefiles/manual/mvapich2/2.3.7-aocc-5.0.0.lua
+
+    [user@login01 ~]$
 
 .. warning::
-    Programs **MUST** only be run through slurm, **NOT** on the login node (larcc-login1).
+    Programs **MUST** only be run through slurm, **NOT** on a login node.
     Users can test their scripts using an interactive job first and then submit the appropriate
     batch job (See our :ref:`Slurm Queueing System Guide <slurm_guide>` for more details).
 
@@ -345,29 +355,22 @@ List currently loaded software
 
 Use command ``module list`` as shown in the example below:
 
-..  code-block:: bash
+.. code-block:: text
   :caption: Example list of currently loaded software
 
-    [user@larcc-login1 ~]$ module load openmpi/5.0.5-gcc-11.5.0-5zz5ozl
-    [user@larcc-login1 ~]$ module list
+    [user@login01 ~]$ module load openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+    [user@login01 ~]$ module list
 
     Currently Loaded Modules:
-      1) glibc/2.34-gcc-11.5.0-4dat34u         (H)  10) openssl/3.2.2-gcc-11.5.0-czvghva    (H)
-      2) gcc-runtime/11.5.0-gcc-11.5.0-svvevyo (H)  11) libevent/2.1.12-gcc-11.5.0-cufjpkl  (H)
-      3) libpciaccess/0.17-gcc-11.5.0-jgqvvje  (H)  12) libfabric/1.22.0-gcc-11.5.0-5axk6y7 (H)
-      4) libiconv/1.17-gcc-11.5.0-vmtcdle      (H)  13) numactl/2.0.18-gcc-11.5.0-zmb5tw7   (H)
-      5) xz/5.4.6-gcc-11.5.0-7mfzihn           (H)  14) openssh/8.7p1-gcc-11.5.0-rryqbxc    (H)
-      6) zlib-ng/2.2.1-gcc-11.5.0-44cipbd      (H)  15) pmix/5.0.3-gcc-11.5.0-zdm7pmx       (H)
-      7) libxml2/2.13.4-gcc-11.5.0-olld6vt     (H)  16) slurm/24.11.4-gcc-11.5.0-tevb6bm    (H)
-      8) ncurses/6.5-gcc-11.5.0-stitjip        (H)  17) ucx/1.17.0-gcc-11.5.0-l3qrneo       (H)
-      9) hwloc/2.11.1-gcc-11.5.0-a6whu6s       (H)  18) openmpi/5.0.5-gcc-11.5.0-5zz5ozl
-
-      Where:
-       H:  Hidden Module
+      1) gmp/6.3.0-gcc-11.4.1       6) zstd/1.5.7-gcc-11.4.1
+      2) mpfr/4.2.1-gcc-11.4.1      7) gcc/12.4.0-gcc-11.4.1
+      3) mpc/1.3.1-gcc-11.4.1       8) aocc/5.0.0-gcc-12.4.0
+      4) isl/0.27-gcc-11.4.1        9) openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+      5) binutils/2.45-gcc-11.4.1
 
 .. note::
 
-   In addition to ``openmpi/5.0.5-gcc-11.5.0-5zz5ozl``, several other programs are listed.
+   In addition to ``openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0``, several other programs are listed.
    These are dependencies that the module automatically loads alongside OpenMPI.
 
    Dependencies marked with an *H* are **hidden by default**. 
@@ -384,29 +387,21 @@ unload all modules, users should use the command ``module purge``. Example:
 ..  code-block:: bash
   :caption: Example on how to unload software
 
-    [user@larcc-login1 ~]$ module load openmpi/5.0.5-gcc-11.5.0-5zz5ozl
-    [user@larcc-login1 ~]$ module list
+    [user@login01 ~]$ module load openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+    [user@login01 ~]$ module list
 
     Currently Loaded Modules:
-      1) glibc/2.34-gcc-11.5.0-4dat34u         (H)  10) openssl/3.2.2-gcc-11.5.0-czvghva    (H)
-      2) gcc-runtime/11.5.0-gcc-11.5.0-svvevyo (H)  11) libevent/2.1.12-gcc-11.5.0-cufjpkl  (H)
-      3) libpciaccess/0.17-gcc-11.5.0-jgqvvje  (H)  12) libfabric/1.22.0-gcc-11.5.0-5axk6y7 (H)
-      4) libiconv/1.17-gcc-11.5.0-vmtcdle      (H)  13) numactl/2.0.18-gcc-11.5.0-zmb5tw7   (H)
-      5) xz/5.4.6-gcc-11.5.0-7mfzihn           (H)  14) openssh/8.7p1-gcc-11.5.0-rryqbxc    (H)
-      6) zlib-ng/2.2.1-gcc-11.5.0-44cipbd      (H)  15) pmix/5.0.3-gcc-11.5.0-zdm7pmx       (H)
-      7) libxml2/2.13.4-gcc-11.5.0-olld6vt     (H)  16) slurm/24.11.4-gcc-11.5.0-tevb6bm    (H)
-      8) ncurses/6.5-gcc-11.5.0-stitjip        (H)  17) ucx/1.17.0-gcc-11.5.0-l3qrneo       (H)
-      9) hwloc/2.11.1-gcc-11.5.0-a6whu6s       (H)  18) openmpi/5.0.5-gcc-11.5.0-5zz5ozl
-
-      Where:
-       H:  Hidden Module
+      1) gmp/6.3.0-gcc-11.4.1       6) zstd/1.5.7-gcc-11.4.1
+      2) mpfr/4.2.1-gcc-11.4.1      7) gcc/12.4.0-gcc-11.4.1
+      3) mpc/1.3.1-gcc-11.4.1       8) aocc/5.0.0-gcc-12.4.0
+      4) isl/0.27-gcc-11.4.1        9) openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+      5) binutils/2.45-gcc-11.4.1
 
 
-
-    [user@larcc-login1 ~]$ module purge
-    [user@larcc-login1 ~]$ module list
+    [user@login01 ~]$ module purge
+    [user@login01 ~]$ module list
     No modules loaded
-    [user@larcc-login1 ~]$
+    [user@login01 ~]$
 
 Queues and jobs
 ---------------
@@ -470,9 +465,28 @@ Job runtime restrictions
 - If the ``--time`` option is not specified when submitting a job,
   a default runtime of 12 hours is imposed on said job.
   This applies to both interactive and batch jobs.
-- Jobs sent to the ``compute`` partition can only run for a maximum of 72 hours.
-- Jobs sent to the ``gpu`` partition can only run for a maximum of 48 hours.
-- Users can use a maximum of 2 nodes (across all partitions) at a given time. For example:
+- To see runtime restrictions on each queue, please run the ``sinfo`` command
+  and look at the ``TIMELIMIT`` column.
+- The number of usable nodes per user in a queue can be seen as follows:
+
+  1. code-block
+
+    .. code-block::
+
+      scontrol show partition cpu384g
+PartitionName=cpu384g
+   AllowGroups=ALL AllowAccounts=ALL AllowQos=ALL
+   AllocNodes=ALL Default=YES QoS=compute-sm_user_limits
+   DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO ExclusiveTopo=NO GraceTime=0 Hidden=NO
+   MaxNodes=8 MaxTime=3-00:00:00 MinNodes=0 LLN=NO MaxCPUsPerNode=UNLIMITED MaxCPUsPerSocket=UNLIMITED
+   Nodes=cpusm[01-77]
+   PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=EXCLUSIVE
+   OverTimeLimit=NONE PreemptMode=OFF
+   State=UP TotalCPUs=2464 TotalNodes=77 SelectTypeParameters=NONE
+   JobDefaults=(null)
+   DefMemPerNode=UNLIMITED MaxMemPerNode=UNLIMITED
+   TRES=cpu=2464,mem=29722000M,node=77,billing=2464
+
 
   - Consider user *jd01* submits 2 jobs named *A* and *B* such that
     job *A* requests a node from the ``compute`` partition and *B* from the ``gpu`` partition.
@@ -487,7 +501,7 @@ Job runtime restrictions
         799       gpu        B     jd01  R 1-21:32:22      1 larcc-gpu1
         821       gpu        C     jd01 PD       0:00      1 (QOSMaxNodePerUserLimit)
 
-- Users can submit a maximum of 20 jobs across all partitions.
+- Users can submit a maximum of 50 jobs across all partitions.
 
 Storage restrictions
 ^^^^^^^^^^^^^^^^^^^^

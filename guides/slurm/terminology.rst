@@ -15,16 +15,12 @@ Example output:
 .. code-block::
 
     PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
-    compute*     up 3-00:00:00      1  alloc larcc-cpu3
-    compute*     up 3-00:00:00      9   idle larcc-cpu[1-2,4-10]
-    gpu          up 2-00:00:00      3  alloc larcc-gpu[1-3]
-    gpu          up 2-00:00:00      7   idle larcc-gpu[4-10]
-
-In this example:
-
-- The compute partition has 10 nodes, 1 of which is currently in use (alloc) and 9 are idle.
-- The gpu partition has 10 nodes, with 3 allocated and 7 idle.
-- The TIMELIMIT column shows the maximum wall time allowed per job in each partition.
+    cpu384g*     up 3-00:00:00     77   idle cpusm[01-77]
+    cpu1500g     up 3-00:00:00      6   idle cpumd[01-06]
+    cpu6000g     up 3-00:00:00      3   idle cpulg[01-03]
+    gpu1h100     up 3-00:00:00     15  alloc gpusm[01-15]
+    gpu2h100     up 3-00:00:00     10  alloc gpumd[01-10]
+    hgxh200      up 3-00:00:00      1  alloc gpulg01
 
 Node
 ----
@@ -41,27 +37,27 @@ For example:
 
 .. code-block::
      
-    scontrol show node larcc-cpu1
+    scontrol show node cpusm01
 
 This will return detailed specs and current usage for the node:
 
 .. code-block:: text
 
-    NodeName=larcc-cpu1 Arch=x86_64 CoresPerSocket=64 
-       CPUAlloc=0 CPUEfctv=128 CPUTot=128 CPULoad=0.00
+    NodeName=cpusm01 Arch=x86_64 CoresPerSocket=16 
+       CPUAlloc=0 CPUEfctv=32 CPUTot=32 CPULoad=0.00
        AvailableFeatures=(null)
        ActiveFeatures=(null)
        Gres=(null)
-       NodeAddr=larcc-cpu1 NodeHostName=larcc-cpu1 Version=24.11.4
-       OS=Linux 5.14.0-503.38.1.el9_5.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Apr 16 16:38:39 UTC 2025 
-       RealMemory=515002 AllocMem=0 FreeMem=505959 Sockets=2 Boards=1
+       NodeAddr=cpusm01 NodeHostName=cpusm01 Version=24.11.5
+       OS=Linux 5.14.0-427.42.1.el9_4.x86_64 #1 SMP PREEMPT_DYNAMIC Thu Oct 31 14:01:51 UTC 2024 
+       RealMemory=386000 AllocMem=0 FreeMem=381353 Sockets=2 Boards=1
        State=IDLE ThreadsPerCore=1 TmpDisk=0 Weight=1 Owner=N/A MCS_label=N/A
-       Partitions=compute 
-       BootTime=2025-05-15T13:30:56 SlurmdStartTime=2025-07-30T13:57:36
-       LastBusyTime=2025-09-22T16:10:19 ResumeAfterTime=None
-       CfgTRES=cpu=128,mem=515002M,billing=128
+       Partitions=cpu384g 
+       BootTime=2025-10-24T14:55:46 SlurmdStartTime=2025-10-27T17:25:08
+       LastBusyTime=2025-11-03T17:39:52 ResumeAfterTime=None
+       CfgTRES=cpu=32,mem=386000M,billing=32
        AllocTRES=
-       CurrentWatts=240 AveWatts=180
+       CurrentWatts=364 AveWatts=364x
 
 Key fields to note:
 
@@ -92,13 +88,13 @@ Example output:
 .. code-block::
 
                     JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-                 3777   compute matlab_p jd01  R    4:02:04      1 larcc-cpu3
-    3852_[226-241%20]       gpu Ecthelio jd02 PD       0:00      1 (QOSMaxNodePerUserLimit)
-             3852_224       gpu Ecthelio jd02  R       2:00      1 larcc-gpu3
-             3852_225       gpu Ecthelio jd02  R       2:00      1 larcc-gpu3
-             3852_222       gpu Ecthelio jd02  R       2:01      1 larcc-gpu2
-             3852_223       gpu Ecthelio jd02  R       2:01      1 larcc-gpu2
-                 3343       gpu sno_pv80 jd03  R    4:02:05      1 larcc-gpu1
+                 3777   cpu384g matlab_p jd01  R    4:02:04      1 cpusm01
+    3852_[226-241%20]  gpu1h100 Ecthelio jd02 PD       0:00      1 (QOSMaxNodePerUserLimit)
+             3852_224  gpu1h100 Ecthelio jd02  R       2:00      1 gpusm03
+             3852_225  gpu1h100 Ecthelio jd02  R       2:00      1 gpusm03
+             3852_222  gpu1h100 Ecthelio jd02  R       2:01      1 gpusm02
+             3852_223  gpu1h100 Ecthelio jd02  R       2:01      1 gpusm02
+                 3343  gpu1h100 sno_pv80 jd03  R    4:02:05      1 gpusm01
 
 Explanation of columns:
 

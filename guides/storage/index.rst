@@ -11,7 +11,6 @@ two primary types of storage available to users: ``scratch`` storage and ``home`
 These are illustrated in the diagram below:
 
 .. image:: images/logical_storage_architecture.png
-   :width: 600
    :alt: Logical Storage Architecture
 
 Storage Types

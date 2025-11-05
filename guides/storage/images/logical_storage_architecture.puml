@@ -1,29 +1,92 @@
 @startuml
 skinparam linetype polyline
-skinparam linetype ortho
 
-storage "<b>CARDS:</b> 4PB Shared\nCeph Storage" as cards
-node "LARCC CPU Node" as cpu_node {
-  folder "/home/$USER" as cpu_home {
+storage "<b>DDN:</b> 4.4PB Shared\nLustre Storage" as ddn
+
+node "cpusm[01-77]" as cpusm {
+  folder "/home/$USER" as cpusm_home {
   }
-  folder "/mnt/scratch/local/$USER" as cpu_scratch_folder {
+  folder "/work/$USER" as cpusm_work {
   }
-  storage "14TB Local\n NVMe Storage" as cpu_scratch
+  storage "480GB Local\n NVMe Storage" as cpusm_storage
 }
 
-node "LARCC GPU Node" as gpu_node {
-  folder "/home/$USER" as gpu_home {
-  }
-  folder "/mnt/scratch/local/$USER" as gpu_scratch_folder {
-  }
-  storage "28TB Local\n NVMe Storage" as gpu_scratch
-}
-cpu_home -down-> cards
-gpu_home -down-> cards
+cpusm_storage -[hidden]right-> cpusm_home
+cpusm_home -[hidden]right-> cpusm_work
 
-gpu_scratch_folder -down-> gpu_scratch
-cpu_scratch_folder -down-> cpu_scratch
-cpu_home -[hidden]right-> cpu_scratch
-gpu_home -[hidden]left-> gpu_scratch
+node "cpumd[01-06]" as cpumd {
+  folder "/home/$USER" as cpumd_home {
+  }
+  folder "/work/$USER" as cpumd_work {
+  }
+  storage "6.4TB Local\n NVMe Storage" as cpumd_storage
+}
+
+cpumd_storage -[hidden]right-> cpumd_home
+cpumd_home -[hidden]right-> cpumd_work
+
+node "cpulg[01-03]" as cpulg {
+  folder "/home/$USER" as cpulg_home {
+  }
+  folder "/work/$USER" as cpulg_work {
+  }
+  storage "6.4TB Local\n NVMe Storage" as cpulg_storage
+}
+
+cpulg_storage -[hidden]right-> cpulg_home
+cpulg_home -[hidden]right-> cpulg_work
+
+node "gpusm[01-15]" as gpusm {
+  folder "/home/$USER" as gpusm_home {
+  }
+  folder "/work/$USER" as gpusm_work {
+  }
+  storage "6.4TB Local\n NVMe Storage" as gpusm_storage
+}
+
+gpusm_work -[hidden]right-> gpusm_home
+gpusm_home -[hidden]right-> gpusm_storage
+
+node "gpumd[01-10]" as gpumd {
+  folder "/home/$USER" as gpumd_home {
+  }
+  folder "/work/$USER" as gpumd_work {
+  }
+  storage "6.4TB Local\n NVMe Storage" as gpumd_storage
+}
+
+gpumd_work -[hidden]right-> gpumd_home
+gpumd_home -[hidden]right-> gpumd_storage
+
+node "gpulg01" as gpulg {
+  folder "/home/$USER" as gpulg_home {
+  }
+  folder "/work/$USER" as gpulg_work {
+  }
+  storage "6.4TB Local\n NVMe Storage" as gpulg_storage
+}
+
+gpulg_work -[hidden]right-> gpulg_home
+gpulg_home -[hidden]right-> gpulg_storage
+
+cpusm -[hidden]down-> cpumd
+cpumd -[hidden]down-> cpulg
+
+gpusm -[hidden]down-> gpumd
+gpumd -[hidden]down-> gpulg
+
+ddn -> cpusm_work
+ddn -> cpumd_work
+ddn -> cpulg_work
+ddn -> cpusm_home
+ddn -> cpumd_home
+ddn -> cpulg_home
+
+ddn -> gpusm_work
+ddn -> gpumd_work
+ddn -> gpulg_work
+ddn -> gpusm_home
+ddn -> gpumd_home
+ddn -> gpulg_home
 
 @enduml

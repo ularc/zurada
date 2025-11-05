@@ -6,9 +6,18 @@ Storage Guide
 Understanding Storage on Compute Nodes
 ======================================
 
+Storage Kinds
+-------------
+
 When working on any compute node within the system, there are
-two primary types of storage available to users: ``scratch`` storage and ``home`` storage.
-These are illustrated in the diagram below:
+two primary kinds of storage available to users: local storage and shared storage. The former is only accessible by
+a particular node, while the latter is accessible by all nodes.
+
+On every node, the path ``/mnt/local/scratch`` points to local storage. That means if you have two nodes *N1* and *N2*,
+anything stored at ``/mnt/local/scratch`` in *N1* won't be accessible by *N2* and vice-versa. In contrast, the
+paths ``/work/$USER`` and ``/home/$USER`` point to a location in shared storage and are thus accessible by both *N1* and *N2*.
+
+The described storage architecture is depicted in the diagram below:
 
 .. image:: images/logical_storage_architecture.png
    :alt: Logical Storage Architecture
@@ -16,29 +25,41 @@ These are illustrated in the diagram below:
 Storage Types
 -------------
 
-``scratch`` Storage
-^^^^^^^^^^^^^^^^^^^
+Local Scratch Storage
+^^^^^^^^^^^^^^^^^^^^^
 - **Local to each compute node**: This means it is **not shared** across nodes.
-- **High performance**: Offers significantly faster read/write speeds compared to ``home`` storage.
+- **High performance**: Offers significantly faster read/write speeds compared to home and shared scratch storage.
 - **Limited capacity**: Typically smaller in size, so it's best suited for temporary files and high-speed I/O operations during job execution.
 - **Data retention policy:** ALL DATA IS REMOVED after a job finishes.
+- **Location in filesystem:** ``/mnt/local/scratch``.
 
-``home`` Storage
-^^^^^^^^^^^^^^^^
+Shared Scratch Storage
+^^^^^^^^^^^^^^^^^^^^^^
 - **Shared across all nodes**: Accessible from any compute node in the system.
-- **Large capacity**: Designed to store a user's persistent data, such as source code, datasets, and results.
-- **Slower access**: Due to its shared nature, read/write operations are generally slower than ``scratch`` storage.
-- **Data retention policy:** Data is kept as this storage space is designed to hold persistent data.
+- **Large capacity**: Designed to store big files, datasets and, in general, input/output files used/produced by a job.
+- **Slower access**: Due to its shared nature, read/write operations are generally slower than local scratch storage.
+- **Parallel I/O**: Multiple parts of large files can be accessed simultaneously (e.g. MPI-IO).
+- **Data retention policy:** Files not accessed in 30 days are candidate for deletion.
+- **Location in filesystem:** ``/work/$USER``.
+
+home Storage
+^^^^^^^^^^^^
+- **Shared across all nodes**: Accessible from any compute node in the system.
+- **Limited capacity**: Hard quota limit of 25GB per user.
+- **Slower access**: Due to its shared nature, read/write operations are generally slower than local scratch storage.
+- **Data retention policy:** Data is kept and backed up.
+- **Location in filesystem:** ``/home/$USER``.
 
 Recommended Workflow
 ====================
 
 A common and efficient workflow for running jobs on the system is:
 
-1. **Prepare Input Data**: Copy necessary input files from your ``home`` storage to the node's local ``scratch`` storage at the start of your job.
-2. **Run the Application**: Configure your application to read from and write to the ``scratch`` storage during execution.
+1. **Prepare Input Data**: Copy necessary input files from your home or shared scratch storage to the node's local scratch storage at the start of your job.
+2. **Run the Application**: Configure your application to read from and write to the local scratch storage during execution.
    This takes advantage of its high-speed performance.
-3. **Save Results**: Once the job completes, copy the output files back to your ``home`` storage for long-term retention.
+3. **Save Results**: Once the job completes, copy the output files back to your shared scratch storage for longer term retention, or to home storage if
+   you want them backed up.
 
 See Section :ref:`Copying data between home and scratch <storage_copy_data>` for more information on how to implement
 this worflow.

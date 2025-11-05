@@ -75,18 +75,18 @@ cpumd -[hidden]down-> cpulg
 gpusm -[hidden]down-> gpumd
 gpumd -[hidden]down-> gpulg
 
-ddn -> cpusm_work
-ddn -> cpumd_work
-ddn -> cpulg_work
-ddn -> cpusm_home
-ddn -> cpumd_home
-ddn -> cpulg_home
+ddn <- cpusm_work
+ddn <- cpumd_work
+ddn <- cpulg_work
+ddn <- cpusm_home
+ddn <- cpumd_home
+ddn <- cpulg_home
 
-ddn -> gpusm_work
-ddn -> gpumd_work
-ddn -> gpulg_work
-ddn -> gpusm_home
-ddn -> gpumd_home
-ddn -> gpulg_home
+ddn <- gpusm_work
+ddn <- gpumd_work
+ddn <- gpulg_work
+ddn <- gpusm_home
+ddn <- gpumd_home
+ddn <- gpulg_home
 
 @enduml

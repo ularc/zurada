@@ -6,11 +6,11 @@ Storage Guide
 Understanding Storage on Compute Nodes
 ======================================
 
-Storage Kinds
--------------
+Storage types based on node accessibility
+-----------------------------------------
 
 When working on any compute node within the system, there are
-two primary kinds of storage available to users: local storage and shared storage. The former is only accessible by
+two types of storage accessible to a node: local storage and shared storage. The former is only accessible by
 a particular node, while the latter is accessible by all nodes.
 
 On every node, the path ``/mnt/local/scratch`` points to local storage. That means if you have two nodes *N1* and *N2*,
@@ -22,30 +22,31 @@ The described storage architecture is depicted in the diagram below:
 .. image:: images/logical_storage_architecture.png
    :alt: Logical Storage Architecture
 
-Storage Types
--------------
+Filesystem locations users should understand
+--------------------------------------------
 
-Local Scratch Storage
-^^^^^^^^^^^^^^^^^^^^^
+Scratch
+^^^^^^^
+- **Location in filesystem:** ``/mnt/local/scratch``.
 - **Local to each compute node**: This means it is **not shared** across nodes.
 - **High performance**: Offers significantly faster read/write speeds compared to home and shared scratch storage.
 - **Limited capacity**: Typically smaller in size, so it's best suited for temporary files and high-speed I/O operations during job execution.
 - **Data retention policy:** ALL DATA IS REMOVED after a job finishes.
-- **Location in filesystem:** ``/mnt/local/scratch``.
 
-Shared Scratch Storage
-^^^^^^^^^^^^^^^^^^^^^^
+Work
+^^^^^
+- **Location in filesystem:** ``/work/$USER``.
 - **Shared across all nodes**: Accessible from any compute node in the system.
 - **Large capacity**: Designed to store big files, datasets and, in general, input/output files used/produced by a job.
-- **Slower access**: Due to its shared nature, read/write operations are generally slower than local scratch storage.
+- **Slower access**: Due to its shared nature, read/write operations are generally slower than scratch storage.
 - **Parallel I/O**: Multiple parts of large files can be accessed simultaneously (e.g. MPI-IO).
-- **Data retention policy:** Files not accessed in 30 days are candidate for deletion.
-- **Location in filesystem:** ``/work/$USER``.
+- **Data retention policy:** Files not accessed within 30 days are candidate for deletion.
 
-home Storage
-^^^^^^^^^^^^
+home
+^^^^^
 - **Shared across all nodes**: Accessible from any compute node in the system.
-- **Limited capacity**: Hard quota limit of 25GB per user.
+- **Limited capacity**: Hard quota limit of 25GB per user. If you try to write more than 25G, an error will be displayed
+  and any subsequent write operations will be denied.
 - **Slower access**: Due to its shared nature, read/write operations are generally slower than local scratch storage.
 - **Data retention policy:** Data is kept and backed up.
 - **Location in filesystem:** ``/home/$USER``.

@@ -8,10 +8,10 @@ you can submit a single job that launches multiple parallel job steps within the
 
 **Example Setup:**
 
-- Each node in the compute queue has 128 cores.
-- Request 2 nodes. So, 256 cores total.
-- Divide 256 cores across 50 tasks. That is ~5 cores per task (``floor(256/50)``).
-- Each node has ~515 GB of memory. That is ~4023 MB per core (``floor(515GB/128)``).
+- Each node in the cpu384g queue has 32 cores.
+- Request 8 nodes. So, 260 cores total.
+- Divide 260 cores across 50 tasks. That is ~5 cores per task (``floor(260/50)``).
+- Each node has ~384 GB of memory. That is ~12 GB per core (``floor(384GB/32)``).
 
 Assuming each individual task takes up to 6 hours and all tasks run in parallel, the overall runtime should also be around 6 hours.
 However, in practice, delays or unexpected hang-ups can occur. To account for this, it's a good idea to request additional time as a buffer.
@@ -23,11 +23,11 @@ which helps ensure the job completes successfully even if a few tasks take longe
 
 .. code-block:: bash
 
-    #SBATCH --partition=compute
-    #SBATCH --nodes=2
-    #SBATCH --ntasks=256
+    #SBATCH --partition=cpu384g
+    #SBATCH --nodes=8
+    #SBATCH --ntasks=260
     #SBATCH --time=08:00:00
-    #SBATCH --mem-per-cpu=4023M
+    #SBATCH --mem-per-cpu=12288M
     #SBATCH --error=job.err
     #SBATCH --output=job.out
     #SBATCH --name=my_simulations
@@ -47,7 +47,7 @@ which helps ensure the job completes successfully even if a few tasks take longe
 **This approach:**
 
 - Submits only one job, staying within the 20-job limit.
-- Maximizes utilization of your allowed 2 nodes.
+- Maximizes utilization of your allowed 8 nodes.
 
 .. _slurm_job_array_submission:
 
@@ -60,16 +60,16 @@ Each array index counts as a job, so you must limit concurrent jobs to 20.
 **Example Setup:**
 
 - 50 tasks total, so ``--array=0-49%20`` (only 20 run at a time).
-- 2 nodes have 256 cores. So, with 20 array jobs running at a time you can maximize utilization with 12 cores per array job (``floor(256/20)``).
-- Memory per task: 12 cores * 4023 MB = 48276 MB.
+- 2 nodes have 64 cores. So, with 20 array jobs running at a time you can maximize utilization with ~3 cores per array job (``floor(64/20)``).
+- Memory per task: 3 cores * 4023 MB = 12069 MB.
 
 **Sample Slurm Script:**
 
 .. code-block:: bash
 
     #SBATCH --partition=compute
-    #SBATCH --ntasks=12
-    #SBATCH --mem=48276M
+    #SBATCH --ntasks=3
+    #SBATCH --mem=12069M
     #SBATCH --array=0-49%20
     #SBATCH --time=08:00:00
     #SBATCH --error=array_%A_%a.err
@@ -105,7 +105,7 @@ This is perhaps the most straightforward scenario and is ideal when you're runni
 
 .. code-block:: text
 
-    salloc --partition=compute --nodes=<nodes> --ntasks-per-node=<processes> --cpus-per-task=<threads> --time=<walltime>
+    salloc --partition=cpu384g --nodes=<nodes> --ntasks-per-node=<processes> --cpus-per-task=<threads> --time=<walltime>
 
 Now, let's break down how to choose values for ``<nodes>``, ``<processes>``, and ``<threads>`` depending on how your application behaves:
 
@@ -116,7 +116,7 @@ If your application internally distributes work across threads (e.g., using Open
 
 - nodes = 1
 - processes = 1
-- threads = 128 (assuming you're using a full node with 128 cores)
+- threads = 32 (assuming you're using a full node with 32 cores)
 
 This setup gives your application full access to all cores on a single node for threading.
 
@@ -126,10 +126,10 @@ Case 2: Multi-Process Applications (Single Node)
 If your application spawns multiple processes that should run within the same node (and does not benefit from distribution across multiple nodes), then:
 
 - nodes = 1
-- processes = 128
+- processes = 32
 - threads = 1
 
-This configuration runs 128 independent processes, each using one core.
+This configuration runs 32 independent processes, each using one core.
 
 Case 3: Hybrid Parallelism (Multiple Processes, Each with Threads)
 ------------------------------------------------------------------
@@ -172,10 +172,10 @@ This setup is ideal for applications that leverage GPU acceleration and can run 
 
 **Hardware Overview (Per GPU Node)**
 
-- There are 2 GPUs per node in the ``gpu`` partition, so 2 tasks total.
-- There are 48 CPU cores per node in the ``gpu`` partition, so 24 cpus per task (``48 cpus / 2 tasks``)
-- Slurm recognizes 256926MB of RAM on each GPU node, so
-  CPU memory per task (i.e. RAM) = CPU memory per gpu (since we have 1 task per GPU) = 256926MB/2 = 128463MB.
+- There are 2 GPUs per node in the ``gpu2h100`` partition, so 1 tasks total.
+- There are 32 CPU cores per node in the ``gpu2h100`` partition, so 16 cpus per task (``32 cpus / 2 tasks``)
+- Slurm recognizes 3000000MB of RAM on each GPU node, so
+  CPU memory per task (i.e. RAM) = CPU memory per gpu (since we have 1 task per GPU) = 3000000MB/2 = 1500000MB.
 
 With these numbers in mind, here are the basic templates:
 
@@ -184,19 +184,19 @@ With these numbers in mind, here are the basic templates:
 .. code-block:: bash
 
     #!/bin/bash
-    #SBATCH --partition=gpu
+    #SBATCH --partition=gpu2h100
     #SBATCH --nodes=<nodes>
     #SBATCH --ntasks-per-node=2
     #SBATCH --gpus-per-task=1
-    #SBATCH --cpus-per-task=24
-    #SBATCH --mem-per-gpu=128463M
+    #SBATCH --cpus-per-task=16
+    #SBATCH --mem-per-gpu=1500000M
     #SBATCH --time=<walltime>
 
 **Interactive Job Template**
 
 .. code-block:: text
 
-    salloc --partition=gpu --nodes=1 --ntasks-per-node=2 --gpus-per-task=1 --cpus-per-task=24 --mem-per-gpu=128463M --time=<walltime>
+    salloc --partition=gpu2h100 --nodes=1 --ntasks-per-node=2 --gpus-per-task=1 --cpus-per-task=16 --mem-per-gpu=1500000M --time=<walltime>
 
 This configuration ensures that each task gets exclusive access to one GPU and a fair share of CPU and memory resources. It's particularly useful for GPU-enabled applications that:
 
@@ -204,7 +204,7 @@ This configuration ensures that each task gets exclusive access to one GPU and a
 - Benefit from dedicated CPU cores for preprocessing, I/O, or hybrid CPU-GPU workloads.
 - Require large memory allocations, such as deep learning models or molecular simulations.
 
-If your application only uses one GPU per node, you can adjust ``--ntasks-per-node=1`` and scale up the CPU and memory accordingly.
+If your application only uses one GPU per node, you should change from the ``gpu2h100`` queue to the ``gpu1h100`` queue for your job and scale the cpu and mem accordingly
 
 When arrays keep in mind that each task is bound to
 a GPU, so you can either:

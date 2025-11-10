@@ -109,7 +109,7 @@ the command below would submit the batch job to slurm:
 
 ..  code-block:: bash
     
-    sbatch /home/user/example_batch_job.sh
+    sbatch /work/user/example_batch_job.sh
 
 .. _job_arrays:
 

@@ -200,7 +200,7 @@ Example Job Array Script
     #SBATCH --partition=cpu384g
     #SBATCH --array=1-10
     #SBATCH --ntasks=1
-    #SBATCH --cpus-per-task=4
+    #SBATCH --cpus-per-task=2
     #SBATCH --mem=8G
     #SBATCH --time=01:00:00
     #SBATCH --output=job_%A_%a.out

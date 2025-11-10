@@ -95,7 +95,7 @@ This is perhaps the most straightforward scenario and is ideal when you're runni
 .. code-block:: bash
 
     #!/bin/bash
-    #SBATCH --partition=compute
+    #SBATCH --partition=cpu384g
     #SBATCH --nodes=<nodes>
     #SBATCH --ntasks-per-node=<processes>
     #SBATCH --cpus-per-task=<threads>

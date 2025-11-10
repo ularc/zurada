@@ -53,29 +53,29 @@ To connect, use this command:
 
 .. code-block:: bash
 
-   ssh your_username@cluster_name.hpc.louisville.edu
+   ssh your_username@cluster_name.rc.louisville.edu
 
 Replace:
 
 - ``your_username`` with your actual HPC username.
-- ``cluster_name`` with the name of the cluster (e.g., ``larcc``).
+- ``cluster_name`` with the name of the cluster (e.g., ``zurada``).
 
 Example:
 
 .. code-block:: bash
 
-   ssh jd01@larcc.hpc.louisville.edu
+   ssh jd01@zurada.rc.louisville.edu
 
 Once connected, you'll see a prompt like this:
 
 .. code-block:: text
 
-   [jd01@larcc-login1 ~]$
+   [jd01@login01 ~]$
 
 Here's what it means:
 
 - ``jd01`` - Your username.
-- ``larcc-login1`` - The login node you're connected to.
+- ``login01`` - The login node you're connected to.
 - ``~`` - Your home directory (similar to ``C:\Users\yourname`` on Windows).
 
 We'll explain more about the Linux file system in the next section.

@@ -79,32 +79,32 @@ Consider the following bash script:
 
      #!/bin/bash
      #SBATCH --job-name=example_batch_job
-     #SBATCH --error=/home/user/%x.%j.err
-     #SBATCH --output=/home/user/%x.%j.out
+     #SBATCH --error=/work/user/%x.%j.err
+     #SBATCH --output=/work/user/%x.%j.out
      #SBATCH --time=05:30:00
-     #SBATCH --ntasks-per-node=128
+     #SBATCH --ntasks-per-node=32
      #SBATCH --nodes=2
-     #SBATCH --partition=compute
+     #SBATCH --partition=cpu384g
      
      # print list of nodes assigned to the job.
      # Example output:
-     # larcc-cpu1
-     # larcc-cpu2
+     # cpusm01
+     # cpusm02
      scontrol show hostnames $SLURM_JOB_NODELIST
 
 
 In this script, the job is assigned the name *example_batch_job* using the ``#SBATCH --job-name``
 directive. The maximum allowed running time is set to 5 hours and 30 minutes through the 
 ``#SBATCH --time`` directive. The job is configured to utilize 2 nodes (``#SBATCH --nodes``)
-and 128 processors per node (``#SBATCH --ntasks-per-node``). It is intended to run in the *compute* queue
+and 32 processors per node (``#SBATCH --ntasks-per-node``). It is intended to run in the *cpu384g* queue
 (``#SBATCH --partition``). Any encountered error messages are to be stored in the file 
-``/home/user/%x.%j.out``, where ``%x`` is replaced with the job name specified with the
+``/work/user/%x.%j.out``, where ``%x`` is replaced with the job name specified with the
 ``#SBATCH --job-name`` directive and ``%j`` is replaced with the job ID assigned by Slurm.
-Similarly, non-error messages are directed to the file ``/home/user/%x.%j.err``
+Similarly, non-error messages are directed to the file ``/work/user/%x.%j.err``
 for logging purposes. The environmental variable ``SLURM_JOB_NODELIST`` is passed
 to the script by slurm (see section :ref:`Slurm environmental variables <slurm_env_vars>`).
 
-Suppose this script is located at path: ``/home/user/example_batch_job.sh``. Then,
+Suppose this script is located at path: ``/work/user/example_batch_job.sh``. Then,
 the command below would submit the batch job to slurm:
 
 ..  code-block:: bash
@@ -197,7 +197,7 @@ Example Job Array Script
 .. code-block:: bash
 
     #!/bin/bash
-    #SBATCH --partition=compute
+    #SBATCH --partition=cpu384g
     #SBATCH --array=1-10
     #SBATCH --ntasks=1
     #SBATCH --cpus-per-task=4
@@ -219,7 +219,7 @@ Example Job Array Script
 
 - ``#SBATCH --array=1-10``: Submits 10 jobs, each with a unique array index from 1 to 10.
 - ``#SBATCH --ntasks=1``: Each job runs a single task (i.e., spawns one process).
-- ``#SBATCH --cpus-per-task=4``: Each job requests 4 CPU cores. Since --ntasks=1, this likely means the process will use 4 threads.
+- ``#SBATCH --cpus-per-task=2``: Each job requests 2 CPU cores. Since --ntasks=1, this likely means the process will use 2 threads.
 - ``#SBATCH --mem=8G``: Each job requests 8 GB of RAM.
 - ``#SBATCH --time=01:00:00``: Each job can run for up to 1 hour.
 - ``#SBATCH --output=job_%A_%a.out`` and ``#SBATCH --error=job_%A_%a.err``
@@ -231,8 +231,8 @@ Example Job Array Script
 
 Since these jobs are submitted to the compute partition, we can estimate how they will be scheduled:
 
-- **CPU usage:** 10 jobs * 1 task * 4 cores = 40 cores total. Each node in the compute queue has 128 cores, so all jobs can likely run on a single node.
+- **CPU usage:** 10 jobs * 1 task * 2 cores = 20 cores total. Each node in the cpu384g queue has 32 cores, so all jobs can likely run on a single node.
 
-- **Memory usage:** 10 jobs * 8 GB = 80 GB total. Each node in the compute queue has ~515 GB of RAM, so memory is not a limiting factor.
+- **Memory usage:** 10 jobs * 8 GB = 80 GB total. Each node in the cpu384g queue has ~384 GB of RAM, so memory is not a limiting factor.
 
 This means the scheduler may place all 10 jobs on the same node, depending on availability and other jobs in the queue.

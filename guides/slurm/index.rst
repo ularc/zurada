@@ -34,12 +34,12 @@ Job Environment
 Strategies When Submitting Slurm Jobs
 ======================================
 
-Due to LARCC's resource policies (see :ref:`Resource restrictions <resource_restrictions>`), users are limited to:
+Due to Zurada's resource policies (see :ref:`Resource restrictions <resource_restrictions>`), users are limited to:
 
-- 20 concurrent job submissions.
-- 2 nodes maximum per user.
+- 50 concurrent job submissions.
+- 8 nodes maximum per user.
 
-Depending on your resource requests, multiple jobs may run on the same node, but the 20-job submission limit must always be respected. To
+Depending on your resource requests, multiple jobs may run on the same node, but the 50-job submission limit must always be respected. To
 maximize resource utilization while complying with these restrictions, there are multiple strategies you can follow. This section explains
 the most common ones.
 

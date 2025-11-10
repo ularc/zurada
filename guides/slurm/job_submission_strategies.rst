@@ -67,7 +67,7 @@ Each array index counts as a job, so you must limit concurrent jobs to 20.
 
 .. code-block:: bash
 
-    #SBATCH --partition=compute
+    #SBATCH --partition=cpu384g
     #SBATCH --ntasks=3
     #SBATCH --mem=12069M
     #SBATCH --array=0-49%20

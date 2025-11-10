@@ -21,19 +21,19 @@ will still be on the login node. The change signifies you have been granted an a
 
 .. code-block:: text
 
-    [jd01@larcc-login1 ~]$ salloc --partition=gpu --job-name=tensorflow --time=5:00:00 --nodes=1 --ntasks=2 --gpus-per-task=1 --cpus-per-task=24
+    [jd01@login01 ~]$ salloc --partition=gpu1h100 --job-name=tensorflow --time=5:00:00 --nodes=1 --ntasks=2 --gpus-per-task=1 --cpus-per-task=24
     salloc: Granted job allocation 3844
-    salloc: Nodes larcc-gpu4 are ready for job
+    salloc: Nodes gpusm04 are ready for job
     bash-5.1$
 
-You can see in the output above how the prompt changes from ``[jd01@larcc-login1 ~]$`` to ``bash-5.1$`` and messages
+You can see in the output above how the prompt changes from ``[jd01@login01 ~]$`` to ``bash-5.1$`` and messages
 are displayed informing you of the job id and node assigned to your allocation.
 
 Here is an example submission line:
 
 .. code-block:: bash
 
-    salloc --job-name=tensorflow --partition=gpu --nodes=1 --ntasks-per-node=2 --gpus-per-task=1 --cpus-per-task=24 --mem-per-gpu=128463M --time=5:00:00
+    salloc --job-name=tensorflow --partition=gpu1h100 --nodes=1 --ntasks-per-node=2 --gpus-per-task=1 --cpus-per-task=24 --mem-per-gpu=128463M --time=5:00:00
 
 When you submit an interactive job using ``salloc``, it follows a specific lifecycle:
 
@@ -81,7 +81,7 @@ Interactive Job Example
 .. code-block:: bash
 
     # 1. log into the cluster
-    ssh user@larcc.hpc.louisville.edu
+    ssh user@zurada.rc.louisville.edu
     # 2. start a job in the compute queue with the following specifications:
     #    a) The maximum time allowed for the job to run is 5h (--time=5:00:00)
     #    b) The maximum memory that can be used by the job is 10G (--mem=10G)
@@ -89,7 +89,7 @@ Interactive Job Example
     #    d) Allocate 4 cores for this job on the node (--ntasks-per-node=4)
     #    e) Instead of hanging and waiting for resources to be available, exit immediately (-i)
     #    f) Specify the task (a shell in this case) to execute (--pty /bin/bash)
-    srun --partition=compute --time=5:00:00 --mem=10G --ntasks-per-node=4 --nodes=1 --pty /bin/bash -i
+    srun --partition=cpu384g --time=5:00:00 --mem=10G --ntasks-per-node=4 --nodes=1 --pty /bin/bash -i
 
 .. note::
     The ``-i`` option for ``srun`` is optional. It prevents your terminal from hanging

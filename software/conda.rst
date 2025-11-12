@@ -17,7 +17,7 @@ Python, R, and other languages. It comes in 3 flavors:
 - **Miniforge:** The community (conda-forge) driven minimalistic Conda installer
   using the ``conda-forge`` channel by default.
 
-LARCC only offers support for **Miniforge** as it works just like Anaconda
+Zurada only offers support for **Miniforge** as it works just like Anaconda
 or Miniconda but is lightweight and specifically built to support
 open-source and customizable environments. Compared to the other 2, it:
 
@@ -68,7 +68,7 @@ Using Conda
 Loading the miniforge3 module and the base environment
 ------------------------------------------------------
 
-After logging into LARCC, you can start using Miniforge by loading the miniforge3 module with the command:
+After logging into Zurada, you can start using Miniforge by loading the miniforge3 module with the command:
 
 .. code-block:: bash
 

@@ -1,15 +1,13 @@
 #!/bin/sh
 #SBATCH --job-name="rstudio"
-#SBATCH --time=08:00:00
+#SBATCH --time=06:00:00
 #SBATCH --signal=USR2
 #SBATCH --nodes=1
-#SBATCH --partition=compute
-#SBATCH --mem=515002
+#SBATCH --partition=cpu348g
+#SBATCH --mem=12069M
 #SBATCH --output=/home/%u/rstudio/rstudio-server.%j.out
 #SBATCH --error=/home/%u/rstudio/rstudio-server.%j.err
 # customize --output path as appropriate (to a directory readable only by the user!)
-
-module load apptainer
 
 # Create temporary directory to be populated with directories to bind-mount in the container
 # where writable file systems are necessary. Adjust path as appropriate for your computing environment.

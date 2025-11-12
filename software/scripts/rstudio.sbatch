@@ -4,6 +4,7 @@
 #SBATCH --signal=USR2
 #SBATCH --nodes=1
 #SBATCH --partition=cpu384g
+#SBATCH --mem=12069M
 #SBATCH --output=/home/%u/rstudio-server.%j.out
 #SBATCH --error=/home/%u/rstudio-server.%j.err
 

@@ -2,7 +2,8 @@
 #SBATCH --job-name="jupyter"
 #SBATCH --time=08:00:00
 #SBATCH --nodes=1
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu1h100
+#SBATCH --gpus-per-node=1
 #SBATCH --output=/home/%u/jupyter.%j.out
 #SBATCH --error=/home/%u/jupyter.%j.err
 
@@ -19,7 +20,7 @@ HASHED_PASS=`python -c "from jupyter_server.auth import passwd; print(passwd('$P
 cat 1>&2 <<END
 1. SSH tunnel from your workstation using the following command:
 
-   ssh -N -L ${PORT}:`hostname | sed 's/larcc-/larcc-hs-/'`:${PORT} ${SLURM_JOB_USER}@larcc.hpc.louisville.edu
+   ssh -N -L ${PORT}:`hostname`:${PORT} ${SLURM_JOB_USER}@zurada.rc.louisville.edu
 
    and point your web browser to http://localhost:${PORT}
 

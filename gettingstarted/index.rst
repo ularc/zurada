@@ -297,7 +297,7 @@ Use command ``module avail`` as shown in the example below:
 ..  code-block:: bash
   :caption: Example list of available software
     
-    [user@larcc-login1 ~]$ module av
+    [user@login01 ~]$ module av
 
     ---------------------------------------- /mnt/apps/modulefiles/manual -----------------------------------------
        aocc/5.0.0-gcc-11.4.1                          miniforge3/25.3.1-gcc-11.4.1
@@ -493,6 +493,6 @@ Job runtime restrictions
   .. code-block:: text
 
     JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-      800   compute        A     jd01  R 1-21:32:01      4 larcc-cpu1
-      799       gpu        B     jd01  R 1-21:32:22      4 larcc-gpu1
-      821       gpu        C     jd01 PD       0:00      1 (QOSMaxNodePerUserLimit)
+      799   cpu384g        A     jd01  R 1-21:32:01      4 cpusm[01-04]
+      800   cpu384g        B     jd01  R 1-21:32:22      4 cpusm[05-08]
+      821   cpu384g        C     jd01 PD       0:00      4 (QOSMaxNodePerUserLimit)

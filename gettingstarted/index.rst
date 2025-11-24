@@ -406,7 +406,8 @@ unload all modules, users should use the command ``module purge``. Example:
 Queues and jobs
 ---------------
 
-- The cluster has two queues named *compute* and *gpu*.
+- The cluster has six main queues named *cpu384g*, *cpu1500g*, *cpu6000g*, *gpu1h100*, *gpu2h100*, *hgxh200*,
+  and two development queues named *cpudev* and *gpudev*.
 - To **see information about queues**, users can use the ``sinfo`` command.
 - When users send jobs, they can monitor their job status using the ``squeue`` command.
 - To **launch an interactive job**, users can user the

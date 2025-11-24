@@ -1,27 +1,27 @@
 @startuml
 
 rectangle "Copy input from home to scratch" {
-caption \lpdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /home/$USER/input /mnt/scratch/local/$USER/"
+caption \lpdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /home/$USER/input /mnt/local/scratch/$USER/"
 
-rectangle "<b>larcc-cpu1\nExecutes the pdsh command" as job_executor
+rectangle "<b>cpusm01\nExecutes the pdsh command" as job_executor
 note left
   This is where slurm executes
   your submission script
 end note
-rectangle "<b>CARDS 4PB Storage" as Shared
+rectangle "<b>DDN 5PB Storage" as Shared
 
-rectangle "<b>larcc-cpu1\nExecutes cp command" as Node1 {
+rectangle "<b>cpusm01\nExecutes cp command" as Node1 {
   folder "/home/$USER" as Node1Home
-  folder "/mnt/scratch/local/$USER" as Node1Scratch
+  folder "/mnt/local/scratch/$USER" as Node1Scratch
 }
 
-rectangle "<b>larcc-cpu2\nExecutes cp command" as Node2 {
+rectangle "<b>cpusm02\nExecutes cp command" as Node2 {
   folder "/home/$USER" as Node2Home
-  folder "/mnt/scratch/local/$USER" as Node2Scratch
+  folder "/mnt/local/scratch/$USER" as Node2Scratch
 }
-rectangle "<b>larcc-cpu3\nExecutes cp command" as Node3 {
+rectangle "<b>cpusm03\nExecutes cp command" as Node3 {
   folder "/home/$USER" as Node3Home
-  folder "/mnt/scratch/local/$USER" as Node3Scratch
+  folder "/mnt/local/scratch/$USER" as Node3Scratch
 }
 
 job_executor -down-> Node1 : ssh

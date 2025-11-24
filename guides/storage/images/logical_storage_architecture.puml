@@ -8,7 +8,7 @@ node "cpusm[01-77]" as cpusm {
   }
   folder "/work/$USER" as cpusm_work {
   }
-  storage "480GB Local\n NVMe Storage" as cpusm_storage
+  storage "480GB Local\n SATA SSD Storage" as cpusm_storage
 }
 
 cpusm_storage -[hidden]right-> cpusm_home

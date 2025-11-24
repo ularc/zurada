@@ -21,7 +21,7 @@ will still be on the login node. The change signifies you have been granted an a
 
 .. code-block:: text
 
-    [jd01@login01 ~]$ salloc --partition=gpu1h100 --job-name=tensorflow --time=5:00:00 --nodes=1 --ntasks=2 --gpus-per-task=1 --cpus-per-task=24
+    [jd01@login01 ~]$ salloc --partition=gpu1h100 --job-name=tensorflow --time=5:00:00 --nodes=1 --ntasks=1 --gpus-per-task=1 --cpus-per-task=24
     salloc: Granted job allocation 3844
     salloc: Nodes gpusm04 are ready for job
     bash-5.1$
@@ -33,7 +33,7 @@ Here is an example submission line:
 
 .. code-block:: bash
 
-    salloc --job-name=tensorflow --partition=gpu1h100 --nodes=1 --ntasks-per-node=2 --gpus-per-task=1 --cpus-per-task=24 --mem-per-gpu=128463M --time=5:00:00
+    salloc --job-name=tensorflow --partition=gpu2h100 --nodes=1 --ntasks-per-node=2 --gpus-per-task=1 --cpus-per-task=12 --time=5:00:00
 
 When you submit an interactive job using ``salloc``, it follows a specific lifecycle:
 

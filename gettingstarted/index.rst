@@ -59,7 +59,7 @@ Zurada consists of 119 total nodes out of which, 2 are login nodes, 3 are test n
      - N/A
      - N/A
      - 0
-     - 6.4 TB SATA mixed use SSD
+     - 6.4 TB NVMe mixed use SSD
    * - cpu6000g
      - 3
      - AMD EPYC 9174F
@@ -72,7 +72,7 @@ Zurada consists of 119 total nodes out of which, 2 are login nodes, 3 are test n
      - N/A
      - N/A
      - 0
-     - 6.4 TB SATA mixed use SSD
+     - 6.4 TB NVMe mixed use SSD
    * - gpu1h100
      - 15
      - AMD EPYC 9174F
@@ -85,7 +85,7 @@ Zurada consists of 119 total nodes out of which, 2 are login nodes, 3 are test n
      - NVIDIA H100 NVL
      - 95830 MiB
      - 1
-     - 6.4 TB SATA mixed use SSD
+     - 6.4 TB NVMe mixed use SSD
    * - gpu2h100
      - 10
      - AMD EPYC 9174F
@@ -98,7 +98,7 @@ Zurada consists of 119 total nodes out of which, 2 are login nodes, 3 are test n
      - NVIDIA H100 NVL
      - 95830 MiB
      - 2
-     - 6.4 TB SATA mixed use SSD
+     - 6.4 TB NVMe mixed use SSD
    * - hgxh200
      - 1
      - Intel Xeon Platinum 8480C

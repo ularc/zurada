@@ -128,11 +128,11 @@ commands above would:
    
    .. code-block:: bash
 
-      # larcc-cpu1 executes:
+      # cpusm01 executes:
       cp -r /mnt/local/scratch/$USER/results /home/$USER/results_cpusm01
-      # larcc-cpu2 executes:
+      # cpusm02 executes:
       cp -r /mnt/local/scratch/$USER/results /home/$USER/results_cpusm02
-      # larcc-cpu3 executes:
+      # cpusm03 executes:
       cp -r /mnt/local/scratch/$USER/results /home/$USER/results_cpusm03
 
 .. image:: images/pdsh_scratch_to_home.png

@@ -7,7 +7,7 @@ note left
   This is where slurm executes
   your submission script
 end note
-rectangle "<b>Lustre 5PB Storage" as Shared
+rectangle "<b>Lustre 4.5PB Storage" as Shared
 
 rectangle "<b>cpusm01\nExecutes cp command" as Node1 {
   folder "/home/$USER" as Node1Home

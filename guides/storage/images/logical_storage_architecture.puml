@@ -1,7 +1,7 @@
 @startuml
 skinparam linetype polyline
 
-storage "<b>DDN:</b> 4.4PB Shared\nLustre Storage" as ddn
+storage "<b>DDN:</b> 4.5PB Shared\nLustre Storage" as ddn
 
 node "cpusm[01-77]" as cpusm {
   folder "/home/$USER" as cpusm_home {

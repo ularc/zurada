@@ -161,11 +161,11 @@ Our HPC systems use a **Linux-based hierarchical filesystem**, where everything 
 
 Key directories you'll interact with:
 
-- ``/home/<username>`` - Your personal persistent space for scripts, logs, files, etc.
-- ``/mnt/scratch/local/<username>`` - Temporary storage for files and job outputs. Only available in compute nodes
-  and automatically purged after a set period. This is explained in more detail in section :ref:`Understanding Storage on Compute Nodes <storage-on-compute-nodes>`,
+- ``/home/<username>`` - Your personal persistent space for scripts, logs, files, etc. **Storage is limited to 25G**.
+- ``/work/<username>`` - Temporary storage for big files, job inputs and outputs, etc. **Files older than 30 days are purged**. 
+- ``/mnt/local/scratch/<username>`` - Temporary storage for files and job outputs. Only available in compute nodes
+  and automatically **purged after a job's completion**. This is explained in more detail in section :ref:`Understanding Storage on Compute Nodes <storage-on-compute-nodes>`,
   but we recommend you finish reading this guide before jumping there.
-- ``/mnt/lab/<project>`` - Persistent shared space for project teams.
 
 The working directory
 ~~~~~~~~~~~~~~~~~~~~~

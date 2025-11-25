@@ -254,11 +254,11 @@ could use it as follows:
   #!/bin/bash
 
   #SBATCH --job-name=projectA_pytorch_job
-  #SBATCH --partition=compute
+  #SBATCH --partition=cpu384g
   #SBATCH --output=/home/user/slurm-%x-%j.out 
   #SBATCH --time=1:00:00
   #SBATCH --nodes=1
-  #SBATCH --mem=515002
+  #SBATCH --mem=12069M
 
   module load miniforge3/25.3.1-gcc-11.4.1 
   conda activate projectA_pytorch
@@ -282,7 +282,7 @@ could use it as follows:
 
 .. code-block:: bash
 
-  srun --partition=compute --job-name=projectA_pytorch_job --time=1:00:00 --nodes=1 --mem=515002 --pty /bin/bash -i
+  srun --partition=cpusm01 --job-name=projectA_pytorch_job --time=1:00:00 --nodes=1 --mem=12069M --pty /bin/bash -i
   module load miniforge3/25.3.1-gcc-11.4.1 
   conda activate projectA_pytorch
 

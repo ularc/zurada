@@ -3,7 +3,7 @@
 #SBATCH --time=06:00:00
 #SBATCH --signal=USR2
 #SBATCH --nodes=1
-#SBATCH --partition=cpu348g
+#SBATCH --partition=cpu384g
 #SBATCH --mem=12069M
 #SBATCH --output=/home/%u/rstudio/rstudio-server.%j.out
 #SBATCH --error=/home/%u/rstudio/rstudio-server.%j.err

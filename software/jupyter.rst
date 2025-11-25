@@ -80,7 +80,7 @@ the instructions on how to connect to the jupyer web instance. Example output:
 
     1. SSH tunnel from your workstation using the following command:
 
-        ssh -N -L 10178:larcc-hs-gpu1:10178 user@larcc.hpc.louisville.edu
+        ssh -N -L 10178:gpusm01-ib:10178 user@zurada.rc.louisville.edu
 
         and point your web browser to http://localhost:10178
 
@@ -152,10 +152,10 @@ Then, start a jupyter server as follows:
 
 .. code-block:: bash
     
-    ssh -N -L ${PORT}:${HOSTNAME}:${PORT} ${SLURM_JOB_USER}@larcc.hpc.louisville.edu
+    ssh -N -L ${PORT}:${HOSTNAME}:${PORT} ${SLURM_JOB_USER}@zurada.rc.louisville.edu
 
-For example, assume you landed on the server ``larcc-gpu1`` on step 2 and jupyter is using port 7070,
-then you would run: ``ssh -N -L 7070:larcc-hs-gpu1:7070 username@larcc.hpc.louisville.edu``.
+For example, assume you landed on the server ``gpusm02`` on step 2 and jupyter is using port 7070,
+then you would run: ``ssh -N -L 7070:gpusm02:7070 username@zurada.rc.louisville.edu``.
 
 Access jupyter through **your (personal) workstation's web browser** by entering in the navigation bar:
 ``localhost:<port>``. Following the example from step 4, you would use ``localhost:7070``. Then, enter

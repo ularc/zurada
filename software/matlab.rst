@@ -110,8 +110,8 @@ Submit jobs through a batch script
         #SBATCH -J test_matlab
         #SBATCH -o /home/user/test_matlab-%j.out
         #SBATCH -e /home/user/tmp/test_matlab-%j.err
-        #SBATCH -p longjobs
-        #SBATCH -n 20
+        #SBATCH -p cpu384g
+        #SBATCH -n 4
         #SBATCH -t 20:00
 
         module load matlab/r2025a

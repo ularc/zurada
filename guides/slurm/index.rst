@@ -48,3 +48,10 @@ the most common ones.
 
    job_submission_strategies
 
+Preemption
+===========
+
+.. toctree::
+   :maxdepth: 3
+
+   preemption

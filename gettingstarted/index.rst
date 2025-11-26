@@ -190,7 +190,7 @@ The basic login process remains consistent across all of these platforms:
 2. Enter the ssh command using the following format: ``ssh username@hostname``. 
    In this particular scenario, the hostname is always ``zurada.rc.louisville.edu``.
    For instance, if the user's name is "lk01", they would input
-   ``ssh lk01@zurada.rc.louisville.edu``.
+   ``ssh lk01@zurada.rc.louisville.edu``. Here is an example:
    
   .. image:: images/login_example.png
     :width: 600

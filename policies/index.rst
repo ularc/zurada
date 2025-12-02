@@ -32,7 +32,7 @@ Data Storage (Disk Usage)
 Large-Memory Node Utilization
 -----------------------------
 
-As we have a limited number of large-memory nodes, access to these nodes should be requested through a :ref:`Service Request ticket <https://service.louisville.edu/TDClient/277/Portal/Requests/ServiceDet?ID=10707>`. Users should include the description of their use cases in the ticket to get access to these nodes.
+As we have a limited number of large-memory nodes, access to these nodes should be requested through a `Service Request ticket <https://service.louisville.edu/TDClient/277/Portal/Requests/ServiceDet?ID=10707>`_. Users should include the description of their use cases in the ticket to get access to these nodes.
 
 GPU Resources Utilization
 -------------------------

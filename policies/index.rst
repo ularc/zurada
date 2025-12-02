@@ -32,7 +32,7 @@ Data Storage (Disk Usage)
 Large-Memory Node Utilization
 -----------------------------
 
-As we have a limited number of large-memory nodes, access to these nodes should be requested through a ticket. Users should include the description of their use cases in the ticket to get access to these nodes.
+As we have a limited number of large-memory nodes, access to these nodes should be requested through a :ref:`Service Request ticket <accounts_and_support>`. Users should include the description of their use cases in the ticket to get access to these nodes.
 
 GPU Resources Utilization
 -------------------------

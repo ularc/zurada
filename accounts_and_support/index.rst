@@ -132,50 +132,14 @@ Request Support (Tickets)
 =========================
 
 **When filling out Support Request forms, it is important to specify which cluster you are requesting support for**
-
-.. tabs::
-
-  .. tab:: Software
     
-    This category includes installation of software, assistance with software purchases,
-    bug reporting/debugging, troubleshooting and upgrading software. To issue a hardware request:
-
-    #. Navigate to the `University's Service Desk portal <https://service.louisville.edu/TDClient/277/Portal/Home/>`_ and
-       log into the portal using your ULINK credentials.
-
-    #. Click on **ITS Service Catalog** > **Enterprise Services** tab at the top of the page.
-
-    #. Click **Request for Research Software Support**.
-
-    #. Fill out the form.
-
-  .. tab:: Hardware
-
-    This category includes reporting hardware failures, access to the datacenter,
-    placement of hardware (e.g. servers) in the datacenter, and assistance in purchasing equipment. 
-
-    #. Navigate to the `University's Service Desk portal <https://service.louisville.edu/TDClient/277/Portal/Home/>`_ and
-       log into the portal using your ULINK credentials.
-  
-    #. Click on the **ITS Service Catalog** > **Enterprise Services** tab at the top of the page.
-
-    #. Click **Request for Research Hardware Support**
-
-    #. Fill out the form.
-
-  .. tab:: General/Other
-    
-    This category is for anything else research computing related, but not encompassed in the other
-    two categories (e.g., custom grant text, letters of support, or example citations and acknowledgements).
-
-    #. Navigate to the `University's Service Desk portal <https://service.louisville.edu/TDClient/277/Portal/Home/>`_ and
-       log into the portal using your ULINK credentials.
-  
-    #. Click on the **Helpdesk** tab at the top of the page.
-    
-    #. Click **Request for Research Support**.
-    
-    #. Fill out the form.
+#. Navigate to the `University's Service Desk portal <https://service.louisville.edu/TDClient/277/Portal/Home/>`_ and
+   log into the portal using your ULINK credentials.
+#. Click on **Request a Service**
+#. Click **Research Computing**
+#. Select the links that best describe you needs, you might have to click through multiple pages in order to proceed to the next step
+#. Click on **Request Service**
+#. Fill out the form.
 
 Once you fill out the form, a confirmation will be sent to your UofL email. Likewise, any follow-ups from the
 Research Computing team will be delivered to your email.

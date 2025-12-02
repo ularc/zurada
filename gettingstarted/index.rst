@@ -35,7 +35,7 @@ Zurada consists of 119 total nodes out of which, 2 are login nodes, 3 are test n
      - GPUs per node
      - Local storage per node
    * - cpu384g
-     - 77
+     - 74
      - AMD EPYC 9174F
      - 4.10 GHz
      - 2
@@ -74,7 +74,7 @@ Zurada consists of 119 total nodes out of which, 2 are login nodes, 3 are test n
      - 0
      - 6.4 TB NVMe mixed use SSD
    * - gpu1h100
-     - 15
+     - 13
      - AMD EPYC 9174F
      - 4.10 GHz
      - 2
@@ -112,17 +112,50 @@ Zurada consists of 119 total nodes out of which, 2 are login nodes, 3 are test n
      - 1128 GiB
      - 8
      - 30 TB NVMe
+   * - cpudev
+     - 3
+     - AMD EPYC 9174F
+     - 4.10 GHz
+     - 2
+     - 16
+     - 32
+     - 384 GiB
+     - 376 GiB
+     - N/A
+     - N/A
+     - 0
+     - 480 GB SATA mixed use SSD
+   * - gpudev
+     - 2
+     - AMD EPYC 9174F
+     - 4.10 GHz
+     - 2
+     - 16
+     - 32
+     - 1.5 TiB
+     - 1.4 TiB
+     - NVIDIA H100 NVL
+     - 95830 MiB
+     - 1
+     - 6.4 TB NVMe mixed use SSD
 
 The cluster features 200 Gbps NDR Infiniband connectivity between compute nodes.
 
 These nodes are named as follows:
 
-- ``cpusm01``, ``cpusm02``, ..., ``cpusm77`` for cpu-only nodes in queue ``cpu384g``.
+- ``cpusm01``, ``cpusm02``, ..., ``cpusm74`` for cpu-only nodes in queue ``cpu384g``.
 - ``cpumd01``, ``cpumd02``, ..., ``cpumd06`` for cpu-only nodes in queue ``cpu1500g``.
 - ``cpulg01``, ``cpulg02``, ``cpulg03`` for cpu-only nodes in queue ``cpu6000g``.
-- ``gpusm01``, ``gpusm02``, ..., ``gpusm15`` for gpu nodes in queue ``gpu1h100``.
+- ``gpusm01``, ``gpusm02``, ..., ``gpusm13`` for gpu nodes in queue ``gpu1h100``.
 - ``gpumd01``, ``gpumd02``, ..., ``gpumd10`` for gpu nodes in queue ``gpu2h100``.
 - ``gpulg01`` for the gpu node in queue ``hgxh200``.
+
+There are also 2 development queues:
+
+- ``cpudev`` with ``cpusm75`` ... ``cpusm77``
+- ``gpudev`` with ``gpusm14`` ... ``gpusm15``
+
+These development queues have slightly different restrictions, and are available so that users are not waiting for a long job to complete just to run a couple of quick tests.
 
 In order to execute any kind of (scientific) software, such as Ansys, OpenFOAM, GROMACS, or others,
 on these nodes, users must:

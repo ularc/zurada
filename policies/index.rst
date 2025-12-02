@@ -26,7 +26,7 @@ Running Jobs
 Data Storage (Disk Usage)
 -------------------------
 
-#. **Scratch Directory** (``/work/username``) on Zurada - this directory is where you should place all input/output files used with a job. This directory is NOT backed up and is not intended for long-term storage. All files in this directory that have not been accessed in the last 30 days will be likely candidates for deletion.
+#. **Work Directory** (``/work/username``) on Zurada - this directory is where you should place all input/output files used with a job. This directory is NOT backed up and is not intended for long-term storage. All files in this directory that have not been accessed in the last 30 days will be likely candidates for deletion.
 #. **Home Directory** (``/home/username``) - this directory is backed up but should only be used for installing and compiling code. Storage of datasets is permitted here, but there will be a hard quota limit of 25GB in place.
 
 Large-Memory Node Utilization

@@ -128,7 +128,7 @@ Submit jobs through MATLAB's command prompt
 #. Copy the Matlab project to the cluster. That is, all ``.m`` source code files that are to be passed to matlab for execution. For example, assume the file ``/home/user/parallelExample.m`` has the following content:
 
     .. code-block:: matlab
-    k
+
         function t = parallelExample(n)
             t0 = tic;
             A = 500;

@@ -48,7 +48,7 @@ Home
 - **Limited capacity**: Hard quota limit of 25GB per user. If you try to write more than 25G, an error will be displayed
   and any subsequent write operations will be denied.
 - **Slower access**: Due to its shared nature, read/write operations are generally slower than local scratch storage.
-- **Data retention policy:** Data is kept and backed up.
+- **Data retention policy:** Data is kept and backed up for 7 days.
 - **Location in filesystem:** ``/home/$USER``.
 
 Recommended Workflow

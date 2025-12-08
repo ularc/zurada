@@ -10,7 +10,6 @@ Software
    jupyter
    matlab
    lammps
-   liggghts
    pytorch
    R
    rstudio

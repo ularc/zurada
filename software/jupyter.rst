@@ -80,7 +80,7 @@ the instructions on how to connect to the jupyer web instance. Example output:
 
     1. SSH tunnel from your workstation using the following command:
 
-        ssh -N -L 10178:gpusm01-ib:10178 user@zurada.rc.louisville.edu
+        ssh -N -L 10178:gpusm01:10178 user@zurada.rc.louisville.edu
 
         and point your web browser to http://localhost:10178
 
@@ -123,14 +123,14 @@ Here is an example, but users should change the parameters as they see fit
 
     .. code-block:: bash
 
-        srun --partition=gpu --job-name jupyter --time=5:00:00 --nodes=1 --pty /bin/bash -i
+        srun --partition=gpu1h100 --job-name jupyter --time=5:00:00 --nodes=1 --pty /bin/bash -i
     
 3. Manually launch Jupyter
 --------------------------
 
 When you land on the assigned compute node, take note of the hostname of the server assigned 
 to your job as you will need it for the following steps 
-(you can use the ``hostname | sed 's/larcc-/larcc-hs-/'`` command).
+(you can use the ``hostname`` command).
 Then, start a jupyter server as follows:
 
 .. code-block:: bash

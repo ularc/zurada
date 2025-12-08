@@ -21,7 +21,7 @@ The cluster provides the following versions of LAMMPS:
      - yes
      - yes (**preferred**)
      - ``lmp_mpi_gpu``
-     - ``lammps/20240829.2-nvhpc-25.5``
+     - ``lammps/20240829.2-nvhpc-25.5-aocc-5.0.0``
      - GPU, KOKKOS, KSPACE, MANYBODY, MOLECULE, REAXFF, RIGID, OPENMP, EXTRA-MOLECULE, EXTRA-COMPUTE, EXTRA-DUMP, EXTRA-FIX
 
 Running LAMMPS
@@ -42,18 +42,18 @@ Example Slurm Job Script
 
     #!/bin/bash
     #SBATCH --job-name=lammps_gpu
-    #SBATCH --partition=gpu
+    #SBATCH --partition=gpu1h100
     #SBATCH --nodes=1
-    #SBATCH --gpus-per-node=2
+    #SBATCH --gpus-per-node=1
     #SBATCH --ntasks-per-node=2
-    #SBATCH --cpus-per-task=24
+    #SBATCH --cpus-per-task=4
     #SBATCH --gpus-per-task=1
     #SBATCH --time=02:00:00
     #SBATCH --output=lammps_%j.out
     #SBATCH --error=lammps_%j.err
 
     # All requirements will be automatically loaded
-    module load lammps/20240829.2-nvhpc-25.5
+    module load lammps/20240829.2-nvhpc-25.5-aocc-5.0.0
     
     # Activate any environment variables or paths if needed
     export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK

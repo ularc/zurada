@@ -12,7 +12,7 @@ Workers and pools
 In MATLAB's terminology, a *worker* is a CPU-core and a *pool* is a
 set of workers (i.e. a group of CPU-cores in a machine).  By default, a parallel pool starts
 automatically when needed by parallel language features such as ``parfor`` (parallel for-loop),
-``parfeval`` (paralle function evaluation), ``mapreduce``, among others.
+``parfeval`` (parallel function evaluation), ``mapreduce``, among others.
 
 Users are strongly encouraged to read the `"Run Code on Parallel Pools" section <https://www.mathworks.com/help/parallel-computing/run-code-on-parallel-pools.html>`_
 of MathWorks documentation before attempting to parallelize their code.
@@ -48,7 +48,7 @@ scheduler related plugin.
     >> cluster = parallel.cluster.Generic( ...
     >> 'JobStorageLocation', 'C:\MatlabJobs', ...
     >> 'NumWorkers', 20, ...
-    >> 'ClusterMatlabRoot', '/usr/local/MATLAB/R2025a', ...
+    >> 'ClusterMatlabRoot', '/usr/local/MATLAB/R2025b', ...
     >> 'OperatingSystem', 'unix', ...
     >> 'HasSharedFilesystem', false, ...
     >> 'PluginScriptsLocation', 'C:\MatlabSlurmPlugin\shared');
@@ -56,7 +56,7 @@ scheduler related plugin.
 Some of the functions that support the use of cluster profiles are:
 ``batch``, ``parpool``, ``parcluster``. Uses of some of these functions alongside a cluster profile
 for LARCC's login node are shown later in Sections :ref:`Submitting a batch job <matlab-batch-job>` and
-and :ref:`Creating a cluster profile for LARCC <create-matlab-larcc-cluster-profile>` respectively.
+and :ref:`Creating a cluster profile for Zurada <create-matlab-zurada-cluster-profile>` respectively.
 
 Users are encouraged to read more about cluster profiles in the
 `"Use Cluster Profiles" section <https://www.mathworks.com/help/parallel-computing/discover-clusters-and-use-cluster-profiles.html>`_
@@ -114,11 +114,11 @@ Submit jobs through a batch script
         #SBATCH -n 4
         #SBATCH -t 20:00
 
-        module load matlab/r2025a
+        module load matlab/r2025b
         matlab -nosplash -nodesktop < /home/user/test.m
 
 #. Use the ``sbatch`` command to schedule the job. Following the example from previous steps:
-   ``sbatch /home/user/matlab_test.sh``.
+   ``sbatch /work/user/matlab_test.sh``.
 
 .. _matlab-batch-job-matlab-prompt:
 
@@ -128,7 +128,7 @@ Submit jobs through MATLAB's command prompt
 #. Copy the Matlab project to the cluster. That is, all ``.m`` source code files that are to be passed to matlab for execution. For example, assume the file ``/home/user/parallelExample.m`` has the following content:
 
     .. code-block:: matlab
-    
+    k
         function t = parallelExample(n)
             t0 = tic;
             A = 500;
@@ -143,13 +143,13 @@ Submit jobs through MATLAB's command prompt
 
     .. code-block:: bash
 
-        user@larcc-login1:~$ module load matlab/r2023b
-        user@larcc-login1:~$ matlab -nodisplay  -nosplash -nodesktop
-        
+        user@login01:~$ module load matlab/r2025b
+        user@login01:~$ matlab -nodisplay  -nosplash -nodesktop
+
                                                         < M A T L A B (R) >
-                                              Copyright 1984-2024 The MathWorks, Inc.
-                                         R2025a (25.1.0.2943329) 64-bit (glnxa64)
-                                                          April 16, 2025
+                                              Copyright 1984-2025 The MathWorks, Inc.
+                                         R2025b (25.2.0.2998904) 64-bit (glnxa64)
+                                                         August 21, 2025
 
 
         To get started, type doc.
@@ -161,12 +161,12 @@ Submit jobs through MATLAB's command prompt
 
     .. code-block:: matlabsession
 
-        >> % The following line loads the larcc-local profile
-        >> cluster = parcluster('larcc-local');
+        >> % The following line loads the zurada-local profile
+        >> cluster = parcluster('zurada-local');
         >> % The following line sets the job's time limit
         >> cluster.AdditionalProperties.WallTime = '1:00:00';
         >> % The following line sets the queue to where the job will be submitted to
-        >> cluster.AdditionalProperties.Partition = 'longjobs';
+        >> cluster.AdditionalProperties.Partition = 'cpu384g';
         >> % The following line submits the job. Here is a breakdown of the line:
         >> % - @parallelExample refers to the function in /home/user/parallelExample.m
         >> % - 1 is the number of outputs returned by the function
@@ -204,12 +204,12 @@ Submit jobs through a batch script and a MATLAB submission script
         % Get the number of workers from the slurm scheduler. The SLURM_NTASKS
         % environmental variable is set automatically by slurm.
         workers = str2num(getenv('SLURM_NTASKS'));
-        % Load the larcc-local cluster profile
-        cluster = parcluster('larcc-local');
+        % Load the zurada-local cluster profile
+        cluster = parcluster('zurada-local');
         % Set the job's time limit
         cluster.AdditionalProperties.TimeLimit = '1:00:00';
         % Set the queue to where the job will be submitted to
-        cluster.AdditionalProperties.Partition = 'longjobs';
+        cluster.AdditionalProperties.Partition = 'cpu384g';
         % Submit the job. Here is a breakdown of the line:
         % - @parallelExample refers to the function in /home/user/parallelExample.m
         % - 1 is the number of outputs returned by the function
@@ -228,18 +228,18 @@ Submit jobs through a batch script and a MATLAB submission script
         #SBATCH -J test_matlab
         #SBATCH -o /home/user/test_matlab-%j.out
         #SBATCH -e /home/user/tmp/test_matlab-%j.err
-        #SBATCH -p longjobs
+        #SBATCH -p cpu384g
         #SBATCH -n 20
         #SBATCH -t 20:00
 
-        module load matlab/r2025a
+        module load matlab/r2025b
         matlab -nodisplay -nosplash -nodesktop -r "matlabSubmissionScript"
 
 #. Use the ``sbatch`` command to schedule the job. Following the example from previous steps: ``sbatch /home/user/matlab_test.sh``
 
-.. _create-matlab-larcc-cluster-profile:
+.. _create-matlab-zurada-cluster-profile:
 
-Creating a cluster profile for LARCC
+Creating a cluster profile for Zurada
 ==============================================
 
 The login node acts as a Matlab client in this case. This means that instead of creating a cluster profile
@@ -254,18 +254,18 @@ in their personal or university workstation, an user creates a cluster profile i
 
         (
         cat << EOF
-        profileName = 'larcc-cluster';
+        profileName = 'zurada-cluster';
         numWorkers = 60;
-        jobStorageLocation = '~/.matlab/local_cluster_jobs/r2025a';
+        jobStorageLocation = 'work/$USER/.matlab/local_cluster_jobs/r2025b';
         profiles = parallel.listProfiles;
         if ~any(strcmp(profileName, profiles))
             c = parallel.cluster.Generic( ...
                   'JobStorageLocation', jobStorageLocation, ...
                   'NumWorkers', numWorkers, ...
-                  'ClusterMatlabRoot', '/opt/shared/apps/manual/matlab/r2025a', ...
+                  'ClusterMatlabRoot', '/opt/shared/apps/manual/matlab/r2025b', ...
                   'OperatingSystem', 'unix', ...
                   'HasSharedFilesystem', true, ...
-                  'PluginScriptsLocation', '/opt/shared/apps/manual/matlab/r2025a/toolbox/matlab-parallel-slurm-plugin-2.3.0');
+                  'PluginScriptsLocation', '/opt/shared/apps/manual/matlab/r2025b/toolbox/matlab-parallel-slurm-plugin-2.3.0');
             saveAsProfile(c, profileName);
         end
         EOF

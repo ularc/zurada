@@ -88,7 +88,7 @@ There are three options to submit MATLAB batch jobs:
 Submit jobs through a batch script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Copy the Matlab project to the cluster. That is, all ``.m`` source code files that are to be passed to matlab for execution. For example, assume the file ``/home/user/test.m`` has the following content:
+#. Copy the Matlab project to the cluster. That is, all ``.m`` source code files that are to be passed to matlab for execution. For example, assume the file ``$WORK/test.m`` has the following content:
 
     .. code-block:: matlab
 
@@ -102,14 +102,14 @@ Submit jobs through a batch script
         t = toc(t0)
         exit
 
-#. Create a :ref:`batch script <batch_job>`. For example, assume the file ``/home/user/matlab_test.sh`` has the following content:
+#. Create a :ref:`batch script <batch_job>`. For example, assume the file ``$WORK/matlab_test.sh`` has the following content:
 
     .. code-block:: bash
 
         #!/bin/bash
         #SBATCH -J test_matlab
-        #SBATCH -o /home/user/test_matlab-%j.out
-        #SBATCH -e /home/user/tmp/test_matlab-%j.err
+        #SBATCH -o /work/user/test_matlab-%j.out
+        #SBATCH -e /work/user/tmp/test_matlab-%j.err
         #SBATCH -p cpu384g
         #SBATCH -n 4
         #SBATCH -t 20:00
@@ -118,14 +118,14 @@ Submit jobs through a batch script
         matlab -nosplash -nodesktop < /home/user/test.m
 
 #. Use the ``sbatch`` command to schedule the job. Following the example from previous steps:
-   ``sbatch /work/user/matlab_test.sh``.
+   ``sbatch $WORK/matlab_test.sh``.
 
 .. _matlab-batch-job-matlab-prompt:
 
 Submit jobs through MATLAB's command prompt
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Copy the Matlab project to the cluster. That is, all ``.m`` source code files that are to be passed to matlab for execution. For example, assume the file ``/home/user/parallelExample.m`` has the following content:
+#. Copy the Matlab project to the cluster. That is, all ``.m`` source code files that are to be passed to matlab for execution. For example, assume the file ``$WORK/parallelExample.m`` has the following content:
 
     .. code-block:: matlab
 
@@ -168,7 +168,7 @@ Submit jobs through MATLAB's command prompt
         >> % The following line sets the queue to where the job will be submitted to
         >> cluster.AdditionalProperties.Partition = 'cpu384g';
         >> % The following line submits the job. Here is a breakdown of the line:
-        >> % - @parallelExample refers to the function in /home/user/parallelExample.m
+        >> % - @parallelExample refers to the function in $WORK/parallelExample.m
         >> % - 1 is the number of outputs returned by the function
         >> % - {1000} are the arguments to be passed to the function
         >> % - 'Pool' indicates matlab to create a pool of workers for parallel
@@ -181,7 +181,7 @@ Submit jobs through MATLAB's command prompt
 Submit jobs through a batch script and a MATLAB submission script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Copy the Matlab project to the cluster. That is, all ``.m`` source code files that are to be passed to matlab for execution. For example, assume the file ``/home/user/parallelExample.m`` has the following content:
+#. Copy the Matlab project to the cluster. That is, all ``.m`` source code files that are to be passed to matlab for execution. For example, assume the file ``$WORK/parallelExample.m`` has the following content:
 
     .. code-block:: matlab
     
@@ -197,7 +197,7 @@ Submit jobs through a batch script and a MATLAB submission script
             save(fileToSaveResultTo)
         end
 
-#. Create a MATLAB submission script that invokes project's code. For example, assume the file ``/home/user/matlabSubmissionScript.m`` has the following content:
+#. Create a MATLAB submission script that invokes project's code. For example, assume the file ``$WORK/matlabSubmissionScript.m`` has the following content:
 
     .. code-block:: matlab
 
@@ -211,7 +211,7 @@ Submit jobs through a batch script and a MATLAB submission script
         % Set the queue to where the job will be submitted to
         cluster.AdditionalProperties.Partition = 'cpu384g';
         % Submit the job. Here is a breakdown of the line:
-        % - @parallelExample refers to the function in /home/user/parallelExample.m
+        % - @parallelExample refers to the function in $WORK/parallelExample.m
         % - 1 is the number of outputs returned by the function
         % - {1000} are the arguments to be passed to the function
         % - 'Pool' indicates matlab to create a pool of workers for parallel
@@ -219,15 +219,15 @@ Submit jobs through a batch script and a MATLAB submission script
         % - 8 indicates the number of workers to use in the pool
         job = cluster.batch(@parallelExample, 1, {1000}, 'pool', workers);
 
-#. Create a sbatch script that invokes the matlab submission script from the previous step.  For example, assume the file ``/home/user/matlab_test.sh`` has the following content:
+#. Create a sbatch script that invokes the matlab submission script from the previous step.  For example, assume the file ``$WORK/matlab_test.sh`` has the following content:
 
     .. code-block:: bash
 
         #!/bin/bash
 
         #SBATCH -J test_matlab
-        #SBATCH -o /home/user/test_matlab-%j.out
-        #SBATCH -e /home/user/tmp/test_matlab-%j.err
+        #SBATCH -o /work/user/test_matlab-%j.out
+        #SBATCH -e /work/user/tmp/test_matlab-%j.err
         #SBATCH -p cpu384g
         #SBATCH -n 20
         #SBATCH -t 20:00
@@ -235,7 +235,7 @@ Submit jobs through a batch script and a MATLAB submission script
         module load matlab/r2025b
         matlab -nodisplay -nosplash -nodesktop -r "matlabSubmissionScript"
 
-#. Use the ``sbatch`` command to schedule the job. Following the example from previous steps: ``sbatch /home/user/matlab_test.sh``
+#. Use the ``sbatch`` command to schedule the job. Following the example from previous steps: ``sbatch $WORK/matlab_test.sh``
 
 .. _create-matlab-zurada-cluster-profile:
 
@@ -246,7 +246,7 @@ The login node acts as a Matlab client in this case. This means that instead of 
 in their personal or university workstation, an user creates a cluster profile in the login node. The steps are as follows:
 
 #. Log into the cluster.
-#. Load the matlab module you would like to use. For example, ``module load matlab/r2025a-gcc-11.5.0-cj4bjqf``.
+#. Load the matlab module you would like to use. For example, ``module load matlab/r2025b``.
 #. Create a cluster profile by running the command below. Make sure to modify the value of variables:
    ``profileName``, ``numWorkers``, and ``jobStorageLocation`` as you see fit.
     
@@ -256,16 +256,16 @@ in their personal or university workstation, an user creates a cluster profile i
         cat << EOF
         profileName = 'zurada-cluster';
         numWorkers = 60;
-        jobStorageLocation = 'work/$USER/.matlab/local_cluster_jobs/r2025b';
+        jobStorageLocation = '$WORK/.matlab/local_cluster_jobs/r2025b';
         profiles = parallel.listProfiles;
         if ~any(strcmp(profileName, profiles))
             c = parallel.cluster.Generic( ...
                   'JobStorageLocation', jobStorageLocation, ...
                   'NumWorkers', numWorkers, ...
-                  'ClusterMatlabRoot', '/opt/shared/apps/manual/matlab/r2025b', ...
+                  'ClusterMatlabRoot', '/mnt/apps/manual/matlab/r2025b', ...
                   'OperatingSystem', 'unix', ...
                   'HasSharedFilesystem', true, ...
-                  'PluginScriptsLocation', '/opt/shared/apps/manual/matlab/r2025b/toolbox/matlab-parallel-slurm-plugin-2.3.0');
+                  'PluginScriptsLocation', '/mnt/apps/manual/matlab/r2025b/toolbox/matlab-parallel-slurm-plugin-2.3.0');
             saveAsProfile(c, profileName);
         end
         EOF

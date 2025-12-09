@@ -116,7 +116,7 @@ b. or by modifying TensorFlow's runtime configuration with:
     #SBATCH --ntasks-per-node=2
     #SBATCH --cpus-per-task=24
     #SBATCH --time=01:00:00
-    #SBATCH --partition=gpu
+    #SBATCH --partition=gpu2h100
 
     module load miniforge3/25.3.1-gcc-11.4.1
     conda activate my_tensorflow_env
@@ -144,10 +144,10 @@ b. or by modifying TensorFlow's runtime configuration with:
         #SBATCH --job-name=tf_multi_node
         #SBATCH --nodes=2
         #SBATCH --ntasks-per-node=1
-        #SBATCH --gpus-per-node=4
+        #SBATCH --gpus-per-node=2
         #SBATCH --cpus-per-task=8
         #SBATCH --time=02:00:00
-        #SBATCH --partition=gpu
+        #SBATCH --partition=gpu2h100
 
         module load miniforge3/25.3.1-gcc-11.4.1
         conda activate my_tensorflow_env

@@ -79,7 +79,7 @@ to be able to ssh into a GPU node. For example:
 .. code-block:: bash
 
     # Submit interactive job
-    srun --partition=gpu --job-name test_my_pytorch_env \
+    srun --partition=gpu1h100 --job-name test_my_pytorch_env \
         --time=05:00 --nodes=1 --gpus=1 --ntasks-per-node=1 \
         --pty /bin/bash -i
     
@@ -216,18 +216,18 @@ and all CPU cores.
     #SBATCH --nodes=1
     #SBATCH --ntasks-per-node=2
     #SBATCH --gpus-per-node=2
-    #SBATCH --cpus-per-task=23
+    #SBATCH --cpus-per-task=16
     #SBATCH --time=01:00:00
-    #SBATCH --partition=gpu
+    #SBATCH --partition=gpu2h100
 
     module load miniforge3/25.3.1-gcc-11.4.1
     conda activate pytorch
 
-    # Each node has 48 CPU cores and 2 GPUs. Since we are using 1
-    # process per GPU, we are left with 46 cores. We want each
-    # process to spawn multiple OpenMP threads, so we
-    # do 46 (CPU cores) / 2 (GPU processes) = 23 (threads per GPU process)
-    export OMP_NUM_THREADS=23
+    # Each node in the gpu2h100 queue has 32 CPU cores and 2 GPUs. Since we 
+    # are using 1 process per GPU, we are left with 32 cores. 
+    # We want each process to spawn multiple OpenMP threads, so we
+    # do 32 (CPU cores) / 2 (GPU processes) = 16 (threads per GPU process)
+    export OMP_NUM_THREADS=16
     # These are other OpenMP options used to control placement of threads
     # in CPU cores
     export OMP_PLACES=cores
@@ -341,17 +341,17 @@ Here is a working example of the ``train.py``
     Multi-Node, Multi-GPU with Slurm
     --------------------------------
 
-    To scale across multiple nodes, Slurm and PyTorch DDP can be combined. Here's an example for 2 nodes with 4 GPUs each:
+    To scale across multiple nodes, Slurm and PyTorch DDP can be combined. Here's an example for 2 nodes with 2 GPUs each:
 
 ..
     .. code-block:: bash
         #SBATCH --job-name=ddp_multi_node
         #SBATCH --nodes=2
         #SBATCH --ntasks-per-node=4
-        #SBATCH --gpus-per-node=4
+        #SBATCH --gpus-per-node=2
         #SBATCH --cpus-per-task=4
         #SBATCH --time=02:00:00
-        #SBATCH --partition=gpu
+        #SBATCH --partition=gpu2h100
 
         module load miniforge3/25.3.1-gcc-11.4.1
         conda activate pytorch

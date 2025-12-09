@@ -17,7 +17,7 @@ If you're not a member and attempt to load a VASP module, you'll see an error li
     While processing the following module(s):
         Module fullname                   Module Filename
         ---------------                   ---------------
-        vasp/6.5.1-nvhpc-25.5-mkl-2025.1  /opt/shared/modulefiles/manual/vasp/6.5.1-nvhpc-25.5-mkl-2025.1.lua
+        vasp/6.5.1-nvhpc-25.5-mkl-2025.2  /mnt/apps/modulefiles/manual/vasp/6.5.1-nvhpc-25.5-mkl-2025.2.lua
 
 Running VASP
 ============
@@ -39,37 +39,23 @@ Running VASP
      - yes (**preferred**)
      - ``nvhpc``, ``intel-mkl``
      - ``vasp_gam``, ``vasp_ncl``, and ``vasp_std``
-     - ``vasp/6.5.1-nvhpc-25.5-mkl-2025.1``
+     - ``vasp/6.5.1-nvhpc-25.5-mkl-2025.2``
    * - 6.5.1
      - yes (openmpi)
      - yes
      - no
      - ``amd-aocc``, ``amd-aocl``
      - ``vasp_gam``, ``vasp_ncl``, and ``vasp_std``
-     - ``vasp/6.5.1-aocc-5.0.0-openmpi-5.0.5-aocl-5.0``
-   * - 6.4.3
-     - yes (openmpi)
-     - yes
-     - yes (**preferred**)
-     - ``nvhpc``, ``intel-mkl``
-     - ``vasp_gam``, ``vasp_ncl``, and ``vasp_std``
-     - ``vasp/6.4.3-nvhpc-25.5-mkl-2025.1``
-   * - 6.4.3
-     - yes (intel-mpi)
-     - yes
-     - no
-     - ``intel-oneapi``, ``intel-mkl``
-     - ``vasp_gam``, ``vasp_ncl``, and ``vasp_std``
-     - ``vasp/6.4.3-oneapi-2025.0.0-mkl-2025.1``
+     - ``vasp/6.5.1-aocc-5.0.0-aocl-5.1``
 
 VASP on GPU nodes
 -----------------
 
 VASP is designed to run with one MPI process per GPU. Each process spawns multiple OpenMP threads,
-ideally bound to separate CPU cores. For example, on a node with 2 GPUs and 48 CPU cores, use:
+ideally bound to separate CPU cores. For example, on a node with 2 GPUs and 32 CPU cores, use:
 
 - **2 MPI processes** (1 per GPU)
-- **24 OpenMP threads per process** (48 cores / 2 processes)
+- **16 OpenMP threads per process** (32 cores / 2 processes)
 
 This ensures optimal utilization of both CPU and GPU resources.
 
@@ -80,18 +66,18 @@ MPI Ranks per Socket
 ~~~~~~~~~~~~~~~~~~~~
 
 A common recommendation is to launch 2 MPI ranks per socket, especially when each socket has a large number of cores
-(e.g., 48 or 96). This setup helps balance communication overhead and computational efficiency,
+(e.g., 32 or 64). This setup helps balance communication overhead and computational efficiency,
 particularly for Gamma-point-only calculations.
 
-Our CPU-only nodes have 2 sockets with 64 cores each, so this setting is appropriate.
+Our CPU-only nodes have 2 sockets with 16 cores each, so this setting is appropriate.
 
 Use of NCORE
 ~~~~~~~~~~~~
 
 NCORE defines the number of cores used per MPI rank for FFT parallelization.
 A good heuristic is to set NCORE to match the number of cores per socket or divide the total cores per node by the number of MPI ranks.
-For example, on our dual-socket nodes with 64 cores per socket (128 total),
-using 2 MPI ranks per socket (4 total) would suggest NCORE = 32.
+For example, on our hgxh200 nodes with 56 cores per socket (112 total),
+using 2 MPI ranks per socket (4 total) would suggest NCORE = 28.
 
 Avoid Over-Parallelization
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -144,11 +130,11 @@ Example VASP on GPU with Openmpi
 
     #!/bin/bash
     #SBATCH --job-name=vasp_gpu
-    #SBATCH --partition=gpu
+    #SBATCH --partition=gpu2h100
     #SBATCH --nodes=1
     #SBATCH --gpus-per-node=2
     #SBATCH --ntasks-per-node=2
-    #SBATCH --cpus-per-task=24
+    #SBATCH --cpus-per-task=16
     #SBATCH --gpus-per-task=1
     #SBATCH --time=02:00:00
     #SBATCH --output=vasp_%j.out
@@ -156,7 +142,7 @@ Example VASP on GPU with Openmpi
 
     ulimit -l unlimited
 
-    module load vasp/6.4.3-nvhpc-25.5-mkl-2025.1
+    module load vasp/6.5.1-nvhpc-25.5-mkl-2025.2
 
     # Path to your VASP executable. You can use either of:
     # vasp_gam, vasp_ncl, or vasp_std
@@ -177,18 +163,18 @@ Example VASP on CPU-only with Openmpi and AMD libraries
 
     #!/bin/bash
     #SBATCH --job-name=vasp_cpu_amd
-    #SBATCH --partition=compute
+    #SBATCH --partition=cpu384g
     #SBATCH --nodes=1
     #SBATCH --ntasks-per-socket=2
     #SBATCH --ntasks=4                # 2 MPI ranks per socket × 2 sockets
-    #SBATCH --cpus-per-task=32        # 32 cores per MPI rank
+    #SBATCH --cpus-per-task=16        # 16 cores per MPI rank
     #SBATCH --time=24:00:00
     #SBATCH --output=vasp_output.log
     #SBATCH --error=vasp_error.log
 
     ulimit -l unlimited
 
-    module load vasp/6.5.1-aocc-5.0.0-openmpi-5.0.5-aocl-5.0
+    module load vasp/6.5.1-aocc-5.0.0-aocl-5.1
 
     # Path to your VASP executable. You can use either of:
     # vasp_gam, vasp_ncl, or vasp_std
@@ -211,10 +197,10 @@ Example VASP on CPU-only with Intel MPI and Intel libraries
 
     #!/bin/bash
     #SBATCH --job-name=vasp_cpu_intelmpi
-    #SBATCH --partition=compute
+    #SBATCH --partition=cpu384g
     #SBATCH --nodes=1
     #SBATCH --ntasks=4                # 2 MPI ranks per socket × 2 sockets
-    #SBATCH --cpus-per-task=32        # 32 cores per MPI rank
+    #SBATCH --cpus-per-task=16        # 32 cores per MPI rank
     #SBATCH --time=24:00:00
     #SBATCH --output=vasp_output.log
     #SBATCH --error=vasp_error.log

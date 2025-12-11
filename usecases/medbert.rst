@@ -32,7 +32,7 @@ Here is an example for the pre-training phase:
 
     .. code-block:: bash
 
-        cd ~
+        cd $WORK
         git clone https://github.com/ZhiGroup/Med-BERT.git
         find Med-BERT -type d -name '*[[:space:]]*' | xargs -I '{}' sh -c "mv '{}' \`echo '{}' | sed 's/ /_/g'\`"
 

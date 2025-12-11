@@ -62,30 +62,6 @@ Here is an example for the pre-training phase:
 
 #. Create a submission script for the pretraining phase. Assume the script below is written to ``$WORK/med-bert.sbatch``.
 
-    .. note::
-
-        You may want to perform some preliminary runs with smaller values for The
-        ``--num_train_steps`` and ``--num_warmup_steps`` options where you tweak the number of cores
-        on each run. The idea is to find the optimal number of cores to use as too many cores does not
-        always guarantee better performance. For example, using the provided example data file from
-        the Med-BERT repo:
-        
-        .. list-table:: Pretraining of Med-BERT example data with ``--num_train_steps=4500`` and ``--num_warmup_steps=1000``
-           :widths: 10 10
-           :align: center
-           :header-rows: 1
-
-           * - Cores
-             - Time
-           * - 128
-             - 15m36.219s
-           * - 64
-             - 12m36.336s
-           * - 32
-             - 18m28.998s
-           * - 12
-             - 19m52.057s
-
     .. literalinclude:: scripts/med-bert.sbatch
      :language: bash
      :linenos:

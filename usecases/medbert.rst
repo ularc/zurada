@@ -41,15 +41,15 @@ Here is an example for the pre-training phase:
 
     .. code-block:: bash
 
-        cd ~/Med-BERT/Pretraining_Code/Data_Pre-processing_Code
+        cd $WORK/Med-BERT/Pretraining_Code/Data_Pre-processing_Code
         # NOTE: You can do the following on a batch job instead.
-        srun --partition=compute --job-name med-bert --time=01:00:00 --ntasks-per-node=128 --cpu-bind=cores --pty /bin/bash -i
-        cd ~/Med-BERT/Pretraining_Code/Data_Pre-processing_Code
+        srun --partition=cpu384g --job-name med-bert --time=01:00:00 --ntasks-per-node=32 --cpu-bind=cores --pty /bin/bash -i
+        cd $WORK/Med-BERT/Pretraining_Code/Data_Pre-processing_Code
         module load miniforge3
         conda activate my_tf1
         # NOTE: This assumes your input file is stored in the path below. Change it to something
         # else if you store your data somewhere else
-        INPUT=~/Med-BERT/Pretraining_Code/Data_Pre-processing_Code/data_file.tsv
+        INPUT=$WORK/Med-BERT/Pretraining_Code/Data_Pre-processing_Code/data_file.tsv
         OUT_PREFIX=preprocessed
         python3 preprocess_pretrain_data.py "$INPUT" NA "$OUT_PREFIX"
         python3 create_BERTpretrain_EHRfeatures.py \
@@ -60,7 +60,7 @@ Here is an example for the pre-training phase:
             --max_seq_length=64
         exit
 
-#. Create a submission script for the pretraining phase. Assume the script below is written to ``~/med-bert.sbatch``.
+#. Create a submission script for the pretraining phase. Assume the script below is written to ``$WORK/med-bert.sbatch``.
 
     .. note::
 

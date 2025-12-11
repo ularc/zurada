@@ -203,7 +203,7 @@ This split can be implemented as follows:
 Let's take a closer look at how ``tf.keras.utils.image_dataset_from_directory`` works when loading the training dataset:
 
 - ``labels='inferred'``: Automatically assigns labels based on subfolder names. 
-  For example, images in ``/home/jd01/chest_xray/train/PNEUMONIA`` and ``/home/jd01/chest_xray/train/NORMAL``
+  For example, images in ``/work/jd01/chest_xray/train/PNEUMONIA`` and ``/work/jd01/chest_xray/train/NORMAL``
   will be labeled accordingly.
 - ``batch_size=BATCH`` (e.g., ``BATCH=32``): Divides the dataset into batches of up to 32 samples.  
   - For ``ds_val`` (1,046 images): 33 batches (32 full, 1 with 22 images)

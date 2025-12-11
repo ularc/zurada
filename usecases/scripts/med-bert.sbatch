@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --partition=compute
+#SBATCH --partition=cpu384g
 #SBATCH --time=3-00:00:00
-#SBATCH --ntasks=128
+#SBATCH --ntasks=32
 #SBATCH --ntasks-per-core=1
 
 PROJECT_NAME="Med-BERT"
-PROJECT_DIR="/home/$USER/$PROJECT_NAME"
-SCRATCH_DIR="/mnt/scratch/local/$USER"
+PROJECT_DIR="/work/$USER/$PROJECT_NAME"
+SCRATCH_DIR="/mnt/local/scratch/$USER"
 WDIR="$SCRATCH_DIR/$SLURM_JOB_ID"
 PRETRAIN_DIR="$WDIR/$PROJECT_NAME/Pretraining_Code"
 OUTDIR="$WDIR/out"

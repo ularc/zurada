@@ -1,4 +1,4 @@
-@startuml
+@startuml logical_storage_architecture
 skinparam linetype polyline
 
 storage "<b>DDN:</b> 4.5PB Shared\nLustre Storage" as ddn
@@ -63,7 +63,7 @@ node "gpulg01" as gpulg {
   }
   folder "/work/$USER" as gpulg_work {
   }
-  storage "6.4TB Local\n NVMe Storage" as gpulg_storage
+  storage "30TB Local\n NVMe Storage" as gpulg_storage
 }
 
 gpulg_work -[hidden]right-> gpulg_home

@@ -27,10 +27,12 @@ Filesystem locations users should understand
 
 Scratch
 ^^^^^^^
-- **Location in filesystem:** ``/mnt/local/scratch/$USER``.
-- **Local to each compute node**: This means it is **not shared** across nodes.
-- **High performance**: Offers significantly faster read/write speeds compared to home and shared scratch storage.
-- **Limited capacity**: Typically smaller in size, so it's best suited for temporary files and high-speed I/O operations during job execution.
+- **Location on compute nodes:** ``/mnt/local/scratch/$USER``.
+- **Local to each compute node**: This storage is **temporary**, and local to a compute node. It is available to a user only 
+  when a node is assigned for running jobs
+- **High performance**: Offers significantly faster read/write speeds compared to home and work storage.
+- **Limited capacity**: the capacity varies as per the node type and can be anywhere between 480 GB to 30 TB. Please refer
+  to the table on the `Zurada hardware specs <https://ularc.github.io/zurada/gettingstarted/index.html#about-the-cluster>`_ for details
 - **Data retention policy:** ALL DATA IS REMOVED after a job finishes.
 
 Work
@@ -44,23 +46,22 @@ Work
 
 Home
 ^^^^^
+- **Location in filesystem:** ``/home/$USER``.
 - **Shared across all nodes**: Accessible from any compute node in the system.
 - **Limited capacity**: Hard quota limit of 25GB per user. If you try to write more than 25G, an error will be displayed
   and any subsequent write operations will be denied.
 - **Slower access**: Due to its shared nature, read/write operations are generally slower than local scratch storage.
 - **Data retention policy:** Data is kept and backed up for 7 days.
-- **Location in filesystem:** ``/home/$USER``.
 
 Recommended Workflow
 ====================
 
 A common and efficient workflow for running jobs on the system is:
 
-1. **Prepare Input Data**: Copy necessary input files from your home or shared scratch storage to the node's local scratch storage at the start of your job.
+1. **Prepare Input Data**: Copy necessary input files from your home or work storage to the node's local scratch storage at the start of your job.
 2. **Run the Application**: Configure your application to read from and write to the local scratch storage during execution.
    This takes advantage of its high-speed performance.
-3. **Save Results**: Once the job completes, copy the output files back to your shared scratch storage for longer term retention, or to home storage if
-   you want them backed up.
+3. **Save Results**: Once the job completes, copy the output files back to your work directory for longer term retention, or to home directory if you want them backed up.
 
 See Section :ref:`Copying data between home and scratch <storage_copy_data>` for more information on how to implement
 this worflow.
@@ -82,6 +83,8 @@ The general template for the ``pdsh`` command includes three key components:
 - ``-R ssh``: Specifies SSH as the remote shell method (always use ``ssh``).
 - ``-w $SLURM_JOB_NODELIST``: Targets all nodes allocated to your job.
 - **Remote command**: Executes on each node, leveraging the fact that ``home`` is shared while ``scratch`` is local.
+
+Please note that while we talk about copying ``home`` in this section, there is no reason to not use the ``work`` directory to copy to node-local ``scratch`` as well.
 
 Below are common usage patterns:
 

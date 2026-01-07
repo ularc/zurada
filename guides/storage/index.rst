@@ -28,7 +28,7 @@ Filesystem locations users should understand
 Scratch
 ^^^^^^^
 - **Location on compute nodes:** ``/mnt/local/scratch/$USER``.
-- **Local to each compute node**: This storage is **temporary**, and local to a compute node. It is available to a user only 
+- **Local to each compute node**: This storage is temporary, and local to a compute node. It is available to a user only 
   when a node is assigned for running jobs
 - **High performance**: Offers significantly faster read/write speeds compared to home and work storage.
 - **Limited capacity**: the capacity varies as per the node type and can be anywhere between 480 GB to 30 TB. Please refer

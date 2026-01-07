@@ -76,6 +76,10 @@ After logging into Zurada, you can start using Miniforge by loading the miniforg
 
 After executing this command, you should see your prompt change (it should now start with ``(base)``).
 
+.. note::
+
+  Sometimes the ``(base)`` environment does not activate automatically, to fix this simply use the command ``source activate base``
+
 .. _conda_create_env:
 
 Creating and activating an environment
@@ -203,8 +207,8 @@ Here are some useful conda commands users are encouraged to get familiar with:
 
    * - Command
      - Meaning
-   * - ``conda create --name my_env PCKAGE1 PACKAGE2``
-     - Create a new environment named ``my_env``, install packages ``PCKAGE1`` and ``PACKAGE2``
+   * - ``conda create --name my_env PACKAGE1 PACKAGE2``
+     - Create a new environment named ``my_env``, install packages ``PACKAGE1`` and ``PACKAGE2``
    * - ``conda activate my_env``
      - Activate environment ``my_env`` to use packages installed in it
    * - ``conda deactivate``
@@ -221,6 +225,9 @@ Here are some useful conda commands users are encouraged to get familiar with:
      - Update a package
    * - ``conda search PACKAGE``
      - Search for package
+   * - ``conda config --add channels CHANNEL``
+     - Add a channel to your environment. This is especially helpful for those using bioconda 
+       (``conda config --add channels bioconda``)
 
 As an example, a typical workflow for python looks like this:
 

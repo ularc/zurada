@@ -1,0 +1,909 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; Zurada User Documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3ad828ca" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Guides" href="../guides/index.html" />
+    <link rel="prev" title="Accounts and Support" href="../accounts_and_support/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Zurada User Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../policies/index.html">Policies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../policies/index.html#zurada-s-system-use-policies">Zurada’s System Use Policies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../policies/index.html#user-account">User Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../policies/index.html#running-jobs">Running Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../policies/index.html#data-storage-disk-usage">Data Storage (Disk Usage)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../policies/index.html#large-memory-node-utilization">Large-Memory Node Utilization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../policies/index.html#gpu-resources-utilization">GPU Resources Utilization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../policies/index.html#installing-packages-system-wide">Installing packages system-wide</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../accounts_and_support/index.html">Accounts and Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../accounts_and_support/index.html#request-an-account">Request an account</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../accounts_and_support/index.html#accounts-for-uofl-individuals">Accounts for UofL individuals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../accounts_and_support/index.html#uofl-vpn-connection">UofL VPN Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../accounts_and_support/index.html#request-support-tickets">Request Support (Tickets)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage-agreement">Usage Agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hpc-system-overview">HPC system overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#about-the-cluster">About the cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#about-scientific-software">About Scientific Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#about-jobs">About Jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quickstart">Quickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#logging-into-the-cluster">Logging into the cluster</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-command-line">Using the command line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-mobaxterm">Using MobaXterm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#copying-files-to-from-the-cluster">Copying files to/from the cluster</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Using the command line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Using MobaXterm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#using-software-installed-in-the-cluster">Using software installed in the cluster</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-available-software">List available software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#load-software">Load software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-currently-loaded-software">List currently loaded software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unloading-software">Unloading software</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#queues-and-jobs">Queues and jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-restrictions">Resource Restrictions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-applications-on-the-login-nodes">Running applications on the login nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#job-runtime-restrictions">Job runtime restrictions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/system_guide/index.html">HPC System Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guides/system_guide/index.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guides/system_guide/index.html#what-is-a-shell">What is a Shell?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/system_guide/index.html#what-is-case-sensitivity">What is case-sensitivity?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guides/system_guide/index.html#connecting-to-the-cluster">Connecting to the Cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guides/system_guide/index.html#understanding-filesystems">Understanding Filesystems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guides/system_guide/index.html#what-is-a-filesystem">What is a Filesystem?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/system_guide/index.html#filesystem-hierarchies">Filesystem Hierarchies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/system_guide/index.html#navigating-the-filesystem">Navigating the filesystem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/system_guide/index.html#using-modules">Using Modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/slurm/index.html">Slurm Queueing System Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guides/slurm/index.html#basic-slurm-terminology">Basic Slurm Terminology</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/terminology.html">Basic Slurm Terminology</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guides/slurm/index.html#job-types-and-job-submission">Job Types and Job Submission</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/interactive_jobs.html">Interactive Jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/batch_jobs.html">Batch Jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/batch_jobs.html#job-arrays">Job Arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/job_dependencies.html">Job Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guides/slurm/index.html#job-environment">Job Environment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/job_environment.html">Slurm environmental variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guides/slurm/index.html#strategies-when-submitting-slurm-jobs">Strategies When Submitting Slurm Jobs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/job_submission_strategies.html">Single Job with Multiple Job Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/job_submission_strategies.html#job-arrays">Job Arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/job_submission_strategies.html#requesting-cpu-nodes-with-multiple-parallel-tasks">Requesting CPU Nodes with Multiple Parallel Tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/job_submission_strategies.html#single-gpu-node-with-one-task-per-gpu-and-cpu-cores-evenly-distributed-across-tasks">Single GPU node with one task per GPU and CPU cores evenly distributed across tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guides/slurm/index.html#preemption">Preemption</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guides/slurm/preemption.html">Preemptable Jobs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/storage/index.html">Storage Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guides/storage/index.html#understanding-storage-on-compute-nodes">Understanding Storage on Compute Nodes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guides/storage/index.html#storage-types-based-on-node-accessibility">Storage types based on node accessibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guides/storage/index.html#filesystem-locations-users-should-understand">Filesystem locations users should understand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guides/storage/index.html#recommended-workflow">Recommended Workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guides/storage/index.html#copying-data-between-home-and-scratch">Copying Data Between Home and Scratch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../software/index.html">Software</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../software/conda.html">Conda (Anaconda/Miniconda/Miniforge)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/conda.html#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/conda.html#about-anaconda-miniconda-and-miniforge">About Anaconda, Miniconda and Miniforge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/conda.html#what-is-a-conda-environment">What is a Conda environment?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/conda.html#why-use-multiple-conda-environments">Why use multiple Conda environments?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../software/conda.html#using-conda">Using Conda</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/conda.html#loading-the-miniforge3-module-and-the-base-environment">Loading the miniforge3 module and the base environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/conda.html#creating-and-activating-an-environment">Creating and activating an environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/conda.html#installing-packages-with-conda-and-mamba">Installing packages with conda and mamba</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/conda.html#installing-packages-with-pip">Installing packages with pip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/conda.html#cloning-an-environment">Cloning an environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/conda.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../software/conda.html#conda-in-a-batch-job">Conda in a batch job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/conda.html#conda-in-an-interactive-job">Conda in an interactive job</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/gaussian.html">Gaussian</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/gaussian.html#running-gaussian">Running Gaussian</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/gaussian.html#example-slurm-job-script">Example Slurm Job Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/jupyter.html">Jupyter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/jupyter.html#launching-jupyter-through-a-batch-job">Launching Jupyter through a batch job</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#optional-create-a-jupyter-environment">1. (Optional) Create a jupyter environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#create-the-submission-script">2. Create the submission script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#connect-to-jupyter-from-your-web-browser">3. Connect to jupyter from your web browser</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../software/jupyter.html#launching-jupyter-through-an-interactive-job">Launching Jupyter through an interactive job</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#id2">1. (Optional) Create a jupyter environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#submit-an-interactive-job">2. Submit an interactive job</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#manually-launch-jupyter">3. Manually launch Jupyter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#access-jupyter-from-your-workstation">4. Access Jupyter from your workstation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../software/jupyter.html#transitioning-from-jupyter-to-python-script">Transitioning from Jupyter to Python Script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#export-the-notebook">1. Export the Notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#clean-up-the-script">2. Clean Up the Script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#replace-notebook-specific-features">3. Replace Notebook-Specific Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#handle-file-paths-and-inputs">4. Handle File Paths and Inputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/jupyter.html#test-the-script">5. Test the Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/matlab.html">MATLAB</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/matlab.html#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/matlab.html#workers-and-pools">Workers and pools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/matlab.html#parallel-and-distributed-execution">Parallel and distributed execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/matlab.html#cluster-profiles">Cluster profiles</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../software/matlab.html#submitting-a-batch-job">Submitting a batch job</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/matlab.html#submit-jobs-through-a-batch-script">Submit jobs through a batch script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/matlab.html#submit-jobs-through-matlab-s-command-prompt">Submit jobs through MATLAB’s command prompt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/matlab.html#submit-jobs-through-a-batch-script-and-a-matlab-submission-script">Submit jobs through a batch script and a MATLAB submission script</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../software/matlab.html#creating-a-cluster-profile-for-zurada">Creating a cluster profile for Zurada</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/lammps.html">LAMMPS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/lammps.html#running-lammps">Running LAMMPS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/lammps.html#example-slurm-job-script">Example Slurm Job Script</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../software/lammps.html#building-lammps">Building LAMMPS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/pytorch.html">PyTorch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/pytorch.html#verifying-gpu-availability">Verifying GPU Availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/pytorch.html#using-gpus-in-pytorch">Using GPUs in PyTorch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/pytorch.html#moving-tensors-to-gpu">Moving Tensors to GPU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/pytorch.html#model-training-on-gpu">Model Training on GPU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/pytorch.html#monitoring-gpu-usage">Monitoring GPU Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../software/pytorch.html#multi-gpu-usage-in-pytorch">Multi-GPU Usage in PyTorch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/pytorch.html#single-node-multi-gpu-dataparallel-or-ddp">Single Node, Multi-GPU (DataParallel or DDP)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/R.html">R</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/R.html#using-r">Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/R.html#installing-r-packages">Installing R Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/R.html#installing-r-packages-in-custom-locations">Installing R packages in custom locations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/R.html#installing-r-packages-with-external-library-dependencies">Installing R Packages with External Library Dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/R.html#example-installing-the-units-package">Example: Installing the <code class="docutils literal notranslate"><span class="pre">units</span></code> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/R.html#example-installing-the-sf-package">Example: Installing the <code class="docutils literal notranslate"><span class="pre">sf</span></code> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/R.html#simplifying-with-conda">Simplifying with Conda</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../software/R.html#using-the-pak-package-manager">Using the <code class="docutils literal notranslate"><span class="pre">pak</span></code> Package Manager</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/rstudio.html">RStudio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/rstudio.html#pre-launch">Pre-launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/rstudio.html#launch-rstudio-server">Launch RStudio Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/tensorflow.html">Tensorflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/tensorflow.html#verifying-gpu-availability">Verifying GPU Availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tensorflow.html#single-node-multi-gpu-training">Single Node, Multi-GPU Training</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/vasp.html">VASP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/vasp.html#license-restrictions">License Restrictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/vasp.html#running-vasp">Running VASP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/vasp.html#vasp-on-gpu-nodes">VASP on GPU nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/vasp.html#vasp-on-cpu-only-nodes">VASP on CPU-only nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/vasp.html#example-slurm-job-script">Example Slurm Job Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/index.html">AI Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../usecases/chest_xray.html">Pneumonia detection based on Chest X-Ray</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usecases/chest_xray.html#ingesting-the-data">1. Ingesting the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usecases/chest_xray.html#training-the-models">2. Training the models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../usecases/chest_xray.html#cnn-training-and-validation">CNN Training and Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usecases/chest_xray.html#transfer-learning-training-and-validation">Transfer Learning Training and Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usecases/chest_xray.html#fine-tuning-training-and-validation">Fine Tuning Training and Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../usecases/chest_xray.html#visualize-metrics">3. Visualize Metrics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usecases/chest_xray.html#save-your-results-for-further-analyses">4. Save your results for further analyses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usecases/medbert.html">Med-BERT</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Zurada User Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/gettingstarted/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<section id="usage-agreement">
+<span id="usage-agreemet"></span><h2>Usage Agreement<a class="headerlink" href="#usage-agreement" title="Link to this heading"></a></h2>
+<p>Please ensure that you have read <a class="reference internal" href="../policies/index.html#zurada-system-use-policies"><span class="std std-ref">Zurada’s System Use Policies</span></a>
+and have agreed to it before requesting an account.</p>
+</section>
+<section id="hpc-system-overview">
+<h2>HPC system overview<a class="headerlink" href="#hpc-system-overview" title="Link to this heading"></a></h2>
+<section id="about-the-cluster">
+<h3>About the cluster<a class="headerlink" href="#about-the-cluster" title="Link to this heading"></a></h3>
+<p>Zurada consists of 119 total nodes out of which, 2 are login nodes, 3 are test nodes used by system administrators, and 112 nodes that can be used for computation. These nodes are distributed in the following queues:</p>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Zurada hardware specs</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+<col style="width: 7.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Queue Name</p></th>
+<th class="head"><p>Number of servers</p></th>
+<th class="head"><p>Processor</p></th>
+<th class="head"><p>CPU core frequency</p></th>
+<th class="head"><p>CPU sockets per node</p></th>
+<th class="head"><p>CPU cores per socket</p></th>
+<th class="head"><p>Total CPU cores per node</p></th>
+<th class="head"><p>Raw memory</p></th>
+<th class="head"><p>Usable memory</p></th>
+<th class="head"><p>GPU</p></th>
+<th class="head"><p>GPU Memory</p></th>
+<th class="head"><p>GPUs per node</p></th>
+<th class="head"><p>Local storage per node</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>cpu384g</p></td>
+<td><p>74</p></td>
+<td><p>AMD EPYC 9174F</p></td>
+<td><p>4.10 GHz</p></td>
+<td><p>2</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>384 GiB</p></td>
+<td><p>376 GiB</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>0</p></td>
+<td><p>480 GB SATA mixed use SSD</p></td>
+</tr>
+<tr class="row-odd"><td><p>cpu1500g</p></td>
+<td><p>6</p></td>
+<td><p>AMD EPYC 9174F</p></td>
+<td><p>4.10 GHz</p></td>
+<td><p>2</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>1.5 TiB</p></td>
+<td><p>1.4 TiB</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>0</p></td>
+<td><p>6.4 TB NVMe mixed use SSD</p></td>
+</tr>
+<tr class="row-even"><td><p>cpu6000g</p></td>
+<td><p>3</p></td>
+<td><p>AMD EPYC 9174F</p></td>
+<td><p>4.10 GHz</p></td>
+<td><p>2</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>6 TiB</p></td>
+<td><p>5.8 TiB</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>0</p></td>
+<td><p>6.4 TB NVMe mixed use SSD</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpu1h100</p></td>
+<td><p>13</p></td>
+<td><p>AMD EPYC 9174F</p></td>
+<td><p>4.10 GHz</p></td>
+<td><p>2</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>1.5 TiB</p></td>
+<td><p>1.4 TiB</p></td>
+<td><p>NVIDIA H100 NVL</p></td>
+<td><p>95830 MiB</p></td>
+<td><p>1</p></td>
+<td><p>6.4 TB NVMe mixed use SSD</p></td>
+</tr>
+<tr class="row-even"><td><p>gpu2h100</p></td>
+<td><p>10</p></td>
+<td><p>AMD EPYC 9174F</p></td>
+<td><p>4.10 GHz</p></td>
+<td><p>2</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>3 TiB</p></td>
+<td><p>2.8 TiB</p></td>
+<td><p>NVIDIA H100 NVL</p></td>
+<td><p>95830 MiB</p></td>
+<td><p>2</p></td>
+<td><p>6.4 TB NVMe mixed use SSD</p></td>
+</tr>
+<tr class="row-odd"><td><p>hgxh200</p></td>
+<td><p>1</p></td>
+<td><p>Intel Xeon Platinum 8480C</p></td>
+<td><p>2.0 GHz</p></td>
+<td><p>2</p></td>
+<td><p>56</p></td>
+<td><p>112</p></td>
+<td><p>2 TiB</p></td>
+<td><p>1.9 TiB</p></td>
+<td><p>NVIDIA H200 NVL</p></td>
+<td><p>1128 GiB</p></td>
+<td><p>8</p></td>
+<td><p>30 TB NVMe</p></td>
+</tr>
+<tr class="row-even"><td><p>cpudev</p></td>
+<td><p>3</p></td>
+<td><p>AMD EPYC 9174F</p></td>
+<td><p>4.10 GHz</p></td>
+<td><p>2</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>384 GiB</p></td>
+<td><p>376 GiB</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>0</p></td>
+<td><p>480 GB SATA mixed use SSD</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpudev</p></td>
+<td><p>2</p></td>
+<td><p>AMD EPYC 9174F</p></td>
+<td><p>4.10 GHz</p></td>
+<td><p>2</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>1.5 TiB</p></td>
+<td><p>1.4 TiB</p></td>
+<td><p>NVIDIA H100 NVL</p></td>
+<td><p>95830 MiB</p></td>
+<td><p>1</p></td>
+<td><p>6.4 TB NVMe mixed use SSD</p></td>
+</tr>
+</tbody>
+</table>
+<p>The cluster features 200 Gbps NDR Infiniband connectivity between compute nodes.</p>
+<p>These nodes are named as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cpusm01</span></code>, <code class="docutils literal notranslate"><span class="pre">cpusm02</span></code>, …, <code class="docutils literal notranslate"><span class="pre">cpusm74</span></code> for cpu-only nodes in queue <code class="docutils literal notranslate"><span class="pre">cpu384g</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cpumd01</span></code>, <code class="docutils literal notranslate"><span class="pre">cpumd02</span></code>, …, <code class="docutils literal notranslate"><span class="pre">cpumd06</span></code> for cpu-only nodes in queue <code class="docutils literal notranslate"><span class="pre">cpu1500g</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cpulg01</span></code>, <code class="docutils literal notranslate"><span class="pre">cpulg02</span></code>, <code class="docutils literal notranslate"><span class="pre">cpulg03</span></code> for cpu-only nodes in queue <code class="docutils literal notranslate"><span class="pre">cpu6000g</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpusm01</span></code>, <code class="docutils literal notranslate"><span class="pre">gpusm02</span></code>, …, <code class="docutils literal notranslate"><span class="pre">gpusm13</span></code> for gpu nodes in queue <code class="docutils literal notranslate"><span class="pre">gpu1h100</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpumd01</span></code>, <code class="docutils literal notranslate"><span class="pre">gpumd02</span></code>, …, <code class="docutils literal notranslate"><span class="pre">gpumd10</span></code> for gpu nodes in queue <code class="docutils literal notranslate"><span class="pre">gpu2h100</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpulg01</span></code> for the gpu node in queue <code class="docutils literal notranslate"><span class="pre">hgxh200</span></code>.</p></li>
+</ul>
+<p>There are also 2 development queues:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cpudev</span></code> with <code class="docutils literal notranslate"><span class="pre">cpusm75</span></code> … <code class="docutils literal notranslate"><span class="pre">cpusm77</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpudev</span></code> with <code class="docutils literal notranslate"><span class="pre">gpusm14</span></code> … <code class="docutils literal notranslate"><span class="pre">gpusm15</span></code></p></li>
+</ul>
+<p>These development queues have slightly different restrictions, and are available so that users are not waiting for a long job to complete just to run a couple of quick tests.</p>
+<p>In order to execute any kind of (scientific) software, such as Ansys, OpenFOAM, GROMACS, or others,
+on these nodes, users must:</p>
+<ol class="arabic simple">
+<li><p>Log into a special node referred to hereinafter as the “login node” (see Section <a class="reference internal" href="#logging-into-cluster"><span class="std std-ref">Logging into the cluster</span></a> for more information).</p></li>
+<li><p>Submit a <em>job declaration</em> to the scheduling system, <a class="reference external" href="https://slurm.schedmd.com/quickstart.html">Slurm</a>.
+Slurm ensures fair resource distribution among users by managing node allocation,
+CPU distribution, memory utilization, and other essential resources based on job requirements.</p></li>
+</ol>
+<p>To prevent interference between users’ jobs, access to nodes is restricted
+to users with active jobs running on them. For example, if user “lk01” submits a job and
+Slurm allocates <code class="docutils literal notranslate"><span class="pre">cpusm01</span></code> for its execution, “lk01” will have exclusive access to log into <code class="docutils literal notranslate"><span class="pre">cpusm01</span></code>.</p>
+</section>
+<section id="about-scientific-software">
+<h3>About Scientific Software<a class="headerlink" href="#about-scientific-software" title="Link to this heading"></a></h3>
+<p>In Linux, program behavior is influenced by dynamic values called “environmental variables”.
+These variables can be created, modified, and removed as needed, shaping the functionality
+of programs and services. For example, the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable lists directories where binaries are stored.
+When a command is executed, the system searches these directories for the corresponding binary.
+If not found, it returns a “command not found” error.</p>
+<p>Scientific software like GROMACS or OpenFOAM often define their own environmental variables,
+which can be complex to manage. To simplify this, the cluster uses <em>Environmental Modules</em>
+to dynamically adjust users’ environments with modulefiles.</p>
+<p>Users can explore available modules with the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">available</span></code> command and load
+them using <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">modulename</span></code>.</p>
+</section>
+<section id="about-jobs">
+<h3>About Jobs<a class="headerlink" href="#about-jobs" title="Link to this heading"></a></h3>
+<p>Users can submit two types of jobs: interactive and batch.
+Interactive jobs give direct access to the assigned node, allowing users to execute programs manually.
+Batch jobs run autonomously via shell scripts without user intervention.</p>
+<p>Batch jobs remain unaffected by disconnections, while interactive jobs may terminate.
+To maintain continuity, users can use a terminal multiplexer like <code class="docutils literal notranslate"><span class="pre">tmux</span></code>.
+Running <code class="docutils literal notranslate"><span class="pre">tmux</span></code> before starting an interactive job creates
+a persistent session that continues even if the connection is lost.</p>
+</section>
+</section>
+<section id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h2>
+<section id="logging-into-the-cluster">
+<span id="logging-into-cluster"></span><h3>Logging into the cluster<a class="headerlink" href="#logging-into-the-cluster" title="Link to this heading"></a></h3>
+<p>Upon creating an account, users are provided with a username and password,
+which they can utilize to access the cluster via SSH (Secure Shell Protocol).
+The procedure entails employing an SSH client from their personal computers
+to establish a connection with the login node.</p>
+<section id="using-the-command-line">
+<h4>Using the command line<a class="headerlink" href="#using-the-command-line" title="Link to this heading"></a></h4>
+<p>Windows (versions 10 and 11)
+inherently supports an SSH command-line client within PowerShell. Similarly,
+Mac and Linux based operating systems come equipped with a built-in SSH client
+accessible via their respective terminals.
+The basic login process remains consistent across all of these platforms:</p>
+<ol class="arabic simple">
+<li><p>Launch the terminal on your personal computer.</p></li>
+<li><p>Enter the ssh command using the following format: <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;hostname</span></code>.
+In this particular scenario, the hostname is always <code class="docutils literal notranslate"><span class="pre">zurada.rc.louisville.edu</span></code>.
+For instance, if the user’s name is “lk01”, they would input
+<code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">lk01&#64;zurada.rc.louisville.edu</span></code>. Here is an example:</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/login_example.png"><img alt="Example: cluster login" src="../_images/login_example.png" style="width: 600px;" />
+</a>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Provide your password and press Enter.</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/login_example_2.png"><img alt="Example: logged into the cluster" src="../_images/login_example_2.png" style="width: 600px;" />
+</a>
+</div></blockquote>
+<p>Alternatively, users can opt for other popular SSH clients installed on their personal computers,
+such as <a class="reference external" href="https://mobaxterm.mobatek.net/">MobaXterm</a> and <a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a>.
+PuTTY boasts a straightforward and user-friendly interface, while MobaXterm offers a
+tabbed interface with enhanced functionality, including a dedicated file manager
+that simplifies file management on the cluster and facilitates seamless information
+transfer between the personal computer and the cluster.</p>
+</section>
+<section id="using-mobaxterm">
+<h4>Using MobaXterm<a class="headerlink" href="#using-mobaxterm" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Click on “Session” at the top-left of the window</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/mobaxterm_conn_setup_1.png"><img alt="../_images/mobaxterm_conn_setup_1.png" src="../_images/mobaxterm_conn_setup_1.png" style="width: 800px;" />
+</a>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Setup your username and the cluster hostname <code class="docutils literal notranslate"><span class="pre">zurada.rc.louisville.edu</span></code></p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/mobaxterm_conn_setup_2.png"><img alt="../_images/mobaxterm_conn_setup_2.png" src="../_images/mobaxterm_conn_setup_2.png" style="width: 800px;" />
+</a>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>A notice like the one below will appear the first time you connect to the cluster.
+Click “Accept”.</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/mobaxterm_conn_setup_3.png"><img alt="../_images/mobaxterm_conn_setup_3.png" src="../_images/mobaxterm_conn_setup_3.png" style="width: 800px;" />
+</a>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Write your password (it will not be displayed as you type it) and hit Enter</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/mobaxterm_conn_setup_4.png"><img alt="../_images/mobaxterm_conn_setup_4.png" src="../_images/mobaxterm_conn_setup_4.png" style="width: 800px;" />
+</a>
+</div></blockquote>
+</section>
+</section>
+<section id="copying-files-to-from-the-cluster">
+<h3>Copying files to/from the cluster<a class="headerlink" href="#copying-files-to-from-the-cluster" title="Link to this heading"></a></h3>
+<section id="id1">
+<h4>Using the command line<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<p>The command <code class="docutils literal notranslate"><span class="pre">scp</span></code> (available on Windows, Mac and Linux based OSs) is the preferred way
+to copy files to and from the cluster. See a comprehensive list of options at the
+<a class="reference external" href="https://man.openbsd.org/scp">scp guide</a>. Since a user’s
+home directory (<code class="docutils literal notranslate"><span class="pre">/home/&lt;username&gt;</span></code>, or simply <code class="docutils literal notranslate"><span class="pre">~</span></code>) is shared across all nodes, users are encouraged
+to use their home directories as a staging area for file transfers.</p>
+<p><strong>Example:</strong> Assume user “John Doe” is assigned cluster account <code class="docutils literal notranslate"><span class="pre">jd01</span></code>. The code below
+shows how John would copy the file <code class="docutils literal notranslate"><span class="pre">C:\Users\johndoe\Downloads\workload.jou</span></code> from his
+personal computer to his home directory (<code class="docutils literal notranslate"><span class="pre">/home/jd01</span></code>) in the cluster using the
+<code class="docutils literal notranslate"><span class="pre">scp</span></code> command in Windows PowerShell.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># John could also use ~ instead of /home/jd01. That is, the following is also valid:</span>
+<span class="c"># scp C:\Users\johndoe\Downloads\workload.jou jd01@zurada.rc.louisville.edu:~</span>
+<span class="n">scp</span> <span class="n">C</span><span class="p">:\</span><span class="n">Users</span><span class="p">\</span><span class="n">johndoe</span><span class="p">\</span><span class="n">Downloads</span><span class="p">\</span><span class="n">workload</span><span class="p">.</span><span class="n">jou</span> <span class="n">jd01</span><span class="nv">@zurada</span><span class="p">.</span><span class="n">rc</span><span class="p">.</span><span class="n">louisville</span><span class="p">.</span><span class="n">edu</span><span class="p">:/</span><span class="n">home</span><span class="p">/</span><span class="n">jd01</span>
+</pre></div>
+</div>
+<p>Suppose John Doe ran a simulation and got the results stored at <code class="docutils literal notranslate"><span class="pre">/home/jd01/results/sim_1_res.dat</span></code>
+in the cluster. If he wants to copy these retults to the folder <code class="docutils literal notranslate"><span class="pre">C:\Users\johndoe\Documents</span></code>
+of his Windows PC, he would execute the command below from a PowerShell session:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># The following is also valid:</span>
+<span class="c"># scp jd01@zurada.rc.louisville.edu:~/results/sim_1_res.dat C:\Users\johndoe\Documents</span>
+<span class="n">scp</span> <span class="n">jd01</span><span class="nv">@zurada</span><span class="p">.</span><span class="n">rc</span><span class="p">.</span><span class="n">louisville</span><span class="p">.</span><span class="n">edu</span><span class="p">:/</span><span class="n">home</span><span class="p">/</span><span class="n">jd01</span><span class="p">/</span><span class="n">results</span><span class="p">/</span><span class="n">sim_1_res</span><span class="p">.</span><span class="n">dat</span> <span class="n">C</span><span class="p">:\</span><span class="n">Users</span><span class="p">\</span><span class="n">johndoe</span><span class="p">\</span><span class="n">Documents</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>Using MobaXterm<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<section id="downloading-files-or-folders-from-the-cluster">
+<h5>Downloading files or folders from the cluster<a class="headerlink" href="#downloading-files-or-folders-from-the-cluster" title="Link to this heading"></a></h5>
+<ol class="arabic simple">
+<li><p>Locate the “File Explorer” from MobaXterm and navigate towards the location where the file
+or folder you want to download resides in.</p></li>
+<li><p>Right click on the file or folder you want to download from the cluster and click on “Download”.</p></li>
+</ol>
+</section>
+<section id="uploading-files-or-folders-to-the-cluster">
+<h5>Uploading files or folders to the cluster<a class="headerlink" href="#uploading-files-or-folders-to-the-cluster" title="Link to this heading"></a></h5>
+<ol class="arabic simple">
+<li><p>Locate the “File Explorer” from MobaXterm and navigate towards the location where
+you want to upload your files to.</p></li>
+<li><p>Click on the upload icon within the “File Explorer” and select the file or folder you want to
+upload.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="using-software-installed-in-the-cluster">
+<h3>Using software installed in the cluster<a class="headerlink" href="#using-software-installed-in-the-cluster" title="Link to this heading"></a></h3>
+<section id="list-available-software">
+<h4>List available software<a class="headerlink" href="#list-available-software" title="Link to this heading"></a></h4>
+<p>Use command <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code> as shown in the example below:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Example list of available software</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="o">[</span>user@login01<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>av
+
+<span class="w">  </span>----------------------------------------<span class="w"> </span>/mnt/apps/modulefiles/manual<span class="w"> </span>-----------------------------------------
+<span class="w">     </span>aocc/5.0.0-gcc-11.4.1<span class="w">                          </span>miniforge3/25.3.1-gcc-11.4.1
+<span class="w">     </span>aocc/5.0.0-gcc-12.4.0<span class="w">                   </span><span class="o">(</span>D<span class="o">)</span><span class="w">    </span>mpc/1.3.1-gcc-11.4.1
+<span class="w">     </span>aocl/5.1.0-aocc-5.0.0<span class="w">                          </span>mpfr/4.2.1-gcc-11.4.1
+<span class="w">     </span>bcftools/1.22-gcc-12.4.0<span class="w">                       </span>mvapich2/2.3.7-aocc-5.0.0
+<span class="w">     </span>binutils/2.45-gcc-11.4.1<span class="w">                       </span>nvhpc/25.5
+<span class="w">     </span>cmake/4.2.1-gcc-12.4.0<span class="w">                         </span>openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+<span class="w">     </span>curl/8.16.0-gcc-12.4.0<span class="w">                         </span>orca/6_1_0-avx2
+<span class="w">     </span>gaussian/16-A.03-nvhpc-25.5<span class="w">                    </span>r/4.5.1-aocc-5.0.0-gcc-12.4.0
+<span class="w">     </span>gcc/12.4.0-gcc-11.4.1<span class="w">                          </span>slurm-libpmi2/24.11.5-gcc-11.4.1
+<span class="w">     </span>gmp/6.3.0-gcc-11.4.1<span class="w">                           </span>vasp/6.5.1-aocc-5.0.0-aocl-5.1
+<span class="w">     </span>intel-oneapi/2025.2.1.44<span class="w">                       </span>vasp/6.5.1-nvhpc-25.5-mkl-2025.2<span class="w">    </span><span class="o">(</span>D<span class="o">)</span>
+<span class="w">     </span>isl/0.27-gcc-11.4.1<span class="w">                            </span>xz/5.8.1-gcc-12.4.0
+<span class="w">     </span>lammps/20240829.2-nvhpc-25.5-aocc-5.0.0<span class="w">        </span>zstd/1.5.7-gcc-11.4.1
+<span class="w">     </span>matlab/r2025b
+
+<span class="w">    </span>Where:
+<span class="w">     </span>D:<span class="w">  </span>Default<span class="w"> </span>Module
+</pre></div>
+</div>
+</div>
+</section>
+<section id="load-software">
+<h4>Load software<a class="headerlink" href="#load-software" title="Link to this heading"></a></h4>
+<p>Users <strong>must</strong> load programs with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">&lt;modulename&gt;</span></code> before launching them.
+Multiple programs can be loaded at the same time, but there are cases where two or more may conflict.
+For instance, programs <code class="docutils literal notranslate"><span class="pre">openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0</span></code> and <code class="docutils literal notranslate"><span class="pre">mvapich2/2.3.7-aocc-5.0.0</span></code>
+cannot be loaded together. An example of this is shown below:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Example of conflicting programs</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  [user@login01 ~]$ module load openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+  [user@login01 ~]$ module load mvapich2/2.3.7-aocc-5.0.0
+  Lmod has detected the following error: You can only have one mpi module loaded at a time.
+  You already have openmpi loaded.
+  To correct the situation, please execute the following command:
+
+    $ module swap openmpi mvapich2/2.3.7-aocc-5.0.0
+
+
+  While processing the following module(s):
+      Module fullname            Module Filename
+      ---------------            ---------------
+      mvapich2/2.3.7-aocc-5.0.0  /mnt/apps/modulefiles/manual/mvapich2/2.3.7-aocc-5.0.0.lua
+
+  [user@login01 ~]$
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Programs <strong>MUST</strong> only be run through slurm, <strong>NOT</strong> on a login node.
+Users can test their scripts using an interactive job first and then submit the appropriate
+batch job (See our <a class="reference internal" href="../guides/slurm/index.html#slurm-guide"><span class="std std-ref">Slurm Queueing System Guide</span></a> for more details).</p>
+</div>
+</section>
+<section id="list-currently-loaded-software">
+<h4>List currently loaded software<a class="headerlink" href="#list-currently-loaded-software" title="Link to this heading"></a></h4>
+<p>Use command <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">list</span></code> as shown in the example below:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Example list of currently loaded software</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  [user@login01 ~]$ module load openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+  [user@login01 ~]$ module list
+
+  Currently Loaded Modules:
+    1) gmp/6.3.0-gcc-11.4.1       6) zstd/1.5.7-gcc-11.4.1
+    2) mpfr/4.2.1-gcc-11.4.1      7) gcc/12.4.0-gcc-11.4.1
+    3) mpc/1.3.1-gcc-11.4.1       8) aocc/5.0.0-gcc-12.4.0
+    4) isl/0.27-gcc-11.4.1        9) openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+    5) binutils/2.45-gcc-11.4.1
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0</span></code>, several other programs are listed.
+These are dependencies that the module automatically loads alongside OpenMPI.</p>
+<p>Dependencies marked with an <em>H</em> are <strong>hidden by default</strong>.
+This means they will not appear when you run the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">available</span></code> command,
+even though they are still loaded and available for use.</p>
+</div>
+</section>
+<section id="unloading-software">
+<h4>Unloading software<a class="headerlink" href="#unloading-software" title="Link to this heading"></a></h4>
+<p>Use command <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">unload</span> <span class="pre">&lt;modulefile&gt;</span></code>. This command only unloads the
+indicated program, but not its dependencies. To clean the environment and
+unload all modules, users should use the command <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code>. Example:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Example on how to unload software</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="o">[</span>user@login01<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+<span class="w">  </span><span class="o">[</span>user@login01<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+
+<span class="w">  </span>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+<span class="w">    </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>gmp/6.3.0-gcc-11.4.1<span class="w">       </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>zstd/1.5.7-gcc-11.4.1
+<span class="w">    </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>mpfr/4.2.1-gcc-11.4.1<span class="w">      </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>gcc/12.4.0-gcc-11.4.1
+<span class="w">    </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>mpc/1.3.1-gcc-11.4.1<span class="w">       </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>aocc/5.0.0-gcc-12.4.0
+<span class="w">    </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>isl/0.27-gcc-11.4.1<span class="w">        </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>openmpi/5.0.5-aocc-5.0.0-gcc-12.4.0
+<span class="w">    </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.45-gcc-11.4.1
+
+
+<span class="w">  </span><span class="o">[</span>user@login01<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>purge
+<span class="w">  </span><span class="o">[</span>user@login01<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+<span class="w">  </span>No<span class="w"> </span>modules<span class="w"> </span>loaded
+<span class="w">  </span><span class="o">[</span>user@login01<span class="w"> </span>~<span class="o">]</span>$
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="queues-and-jobs">
+<h3>Queues and jobs<a class="headerlink" href="#queues-and-jobs" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The cluster has six main queues named <em>cpu384g</em>, <em>cpu1500g</em>, <em>cpu6000g</em>, <em>gpu1h100</em>, <em>gpu2h100</em>, <em>hgxh200</em>,
+and two development queues named <em>cpudev</em> and <em>gpudev</em>.</p></li>
+<li><p>To <strong>see information about queues</strong>, users can use the <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> command.</p></li>
+<li><p>When users send jobs, they can monitor their job status using the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command.</p></li>
+<li><p>To <strong>launch an interactive job</strong>, users can user the
+<code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">--time=&lt;walltime&gt;</span> <span class="pre">--pty</span> <span class="pre">/bin/bash</span> <span class="pre">-i</span></code> command.
+See Section <a class="reference internal" href="../guides/slurm/interactive_jobs.html#interactive-job"><span class="std std-ref">Starting an interactive job</span></a> for more information.</p></li>
+<li><p>To <strong>submit an unattended job</strong>, users can use the command <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> as follows:
+<code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">/path/to/sbatch/script</span></code>.
+See Section <a class="reference internal" href="../guides/slurm/batch_jobs.html#batch-job"><span class="std std-ref">Submitting batch jobs</span></a> for more information</p></li>
+<li><p>To <strong>cancel jobs</strong>, users can use the <code class="docutils literal notranslate"><span class="pre">scancel</span></code> command as follows: <code class="docutils literal notranslate"><span class="pre">scancel</span> <span class="pre">jobid</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="resource-restrictions">
+<span id="id3"></span><h2>Resource Restrictions<a class="headerlink" href="#resource-restrictions" title="Link to this heading"></a></h2>
+<section id="running-applications-on-the-login-nodes">
+<h3>Running applications on the login nodes<a class="headerlink" href="#running-applications-on-the-login-nodes" title="Link to this heading"></a></h3>
+<p>Users should avoid running resource-intensive workloads on the login nodes,
+as this can degrade performance and hinder others from accessing the cluster or submitting jobs.
+To maintain a stable and fair environment, the Research Computing Team reserves the right to terminate
+any user processes on the login nodes that are found to negatively impact other users.</p>
+</section>
+<section id="job-runtime-restrictions">
+<h3>Job runtime restrictions<a class="headerlink" href="#job-runtime-restrictions" title="Link to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that exceptions to the restrictions described below <strong>CAN</strong> be made.</p>
+<p>If your workload needs to be given more time to run, you need to use more nodes than
+what is allowed by default, among others, please reach out to us by creating a ticket
+and we will be happy to evaluate your case.</p>
+</div>
+<ul>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">--time</span></code> option is not specified when submitting a job,
+a default runtime of 12 hours is imposed on said job.
+This applies to both interactive and batch jobs.</p></li>
+<li><p>To see runtime restrictions on each partition, please run the <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> command
+and look at the <code class="docutils literal notranslate"><span class="pre">TIMELIMIT</span></code> column.</p></li>
+<li><p>The number of usable nodes per user in a partition can be seen as follows:</p>
+<ol class="arabic simple">
+<li><p>use the <code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">partition</span> <span class="pre">&lt;partition</span> <span class="pre">name&gt;</span></code> command to
+print information about the partition. In the output, locate the
+<code class="docutils literal notranslate"><span class="pre">QoS=</span></code> line and take note of the value. For instance, in the
+example below, partition <code class="docutils literal notranslate"><span class="pre">cpu384g</span></code> uses QoS <code class="docutils literal notranslate"><span class="pre">compute-sm_user_limits</span></code>.</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>scontrol show partition cpu384g
+PartitionName=cpu384g
+AllowGroups=ALL AllowAccounts=ALL AllowQos=ALL
+AllocNodes=ALL Default=YES QoS=compute-sm_user_limits
+DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO ExclusiveTopo=NO GraceTime=0 Hidden=NO
+MaxNodes=8 MaxTime=3-00:00:00 MinNodes=0 LLN=NO MaxCPUsPerNode=UNLIMITED MaxCPUsPerSocket=UNLIMITED
+Nodes=cpusm[01-77]
+PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=EXCLUSIVE
+OverTimeLimit=NONE PreemptMode=OFF
+State=UP TotalCPUs=2464 TotalNodes=77 SelectTypeParameters=NONE
+JobDefaults=(null)
+DefMemPerNode=UNLIMITED MaxMemPerNode=UNLIMITED
+TRES=cpu=2464,mem=29722000M,node=77,billing=2464
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p>use the <code class="docutils literal notranslate"><span class="pre">sacctmgr</span> <span class="pre">show</span> <span class="pre">qos</span> <span class="pre">&lt;qos</span> <span class="pre">name&gt;</span> <span class="pre">format=MaxTRESPU</span></code> command to print
+the resource restrictions of a qos. For instance, the example below shows
+that the qos <code class="docutils literal notranslate"><span class="pre">compute-sm_user_limits</span></code>, assigned to partition <code class="docutils literal notranslate"><span class="pre">cpu384g</span></code>,
+restricts users to a maximum of 8 nodes at any given time.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>sacctmgr show qos compute-sm_user_limits format=MaxTRESPU
+    MaxTRESPU
+-------------
+       node=8
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>Users can submit a maximum of 50 jobs across all partitions.</p></li>
+<li><p><strong>Example:</strong> Consider user <em>jd01</em> submits 2 jobs named <em>A</em> and <em>B</em> such that
+each job requests 4 nodes from the <code class="docutils literal notranslate"><span class="pre">cpu384g</span></code> partition.
+Once both jobs start running, any subsequent job <em>jd01</em> submits to that partition will be queued
+(i.e. placed in <code class="docutils literal notranslate"><span class="pre">PENDING</span></code>, or <code class="docutils literal notranslate"><span class="pre">PD</span></code>, status). Here is an example of how the
+output of the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command would look like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+  799   cpu384g        A     jd01  R 1-21:32:01      4 cpusm[01-04]
+  800   cpu384g        B     jd01  R 1-21:32:22      4 cpusm[05-08]
+  821   cpu384g        C     jd01 PD       0:00      4 (QOSMaxNodePerUserLimit)
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../accounts_and_support/index.html" class="btn btn-neutral float-left" title="Accounts and Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../guides/index.html" class="btn btn-neutral float-right" title="Guides" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ITS - Research Computing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

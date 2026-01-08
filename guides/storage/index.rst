@@ -84,7 +84,9 @@ The general template for the ``pdsh`` command includes three key components:
 - ``-w $SLURM_JOB_NODELIST``: Targets all nodes allocated to your job.
 - **Remote command**: Executes on each node, leveraging the fact that ``home`` is shared while ``scratch`` is local.
 
-Please note that while we talk about copying ``home`` in this section, there is no reason to not use the ``work`` directory to copy to node-local ``scratch`` as well.
+.. note::
+
+   Please note that while we talk about copying from ``home`` in this section, you may utilize your ``work`` directory to copy to node-local ``scratch`` as well.
 
 Below are common usage patterns:
 

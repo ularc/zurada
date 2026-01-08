@@ -58,7 +58,7 @@ Home
 
 .. note::
 
-   Shortcut variables in bash are set upon entry to a Zurada node, so you may utilize them while inside the system (scripts, navigation, etc). If you are using a command (ex. ``scp``, or ``rsync``) from your laptop/desktop/etc. utilization of the shortcut variables will not work.
+   Shortcut variables in bash are set upon entry to a Zurada node, so you may utilize them while inside the system (scripts, navigation, etc). If you are using a command (ex. ``scp``, or ``rsync``) from your laptop/desktop utilization of the shortcut variables will not work.
 
 Recommended Workflow
 ====================

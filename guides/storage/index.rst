@@ -86,7 +86,9 @@ The general template for the ``pdsh`` command includes three key components:
 
 .. note::
 
-   Please note that while we talk about copying from ``home`` in this section, you may utilize your ``work`` directory to copy to node-local ``scratch`` as well.
+   Please note that while we talk about copying from ``home`` in this section, you may utilize your ``work``
+   directory to copy to node-local ``scratch`` as well. Using your ``work`` directory might even be prefered given
+   the size limitations of ``home``.
 
 Below are common usage patterns:
 

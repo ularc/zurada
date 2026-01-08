@@ -28,6 +28,7 @@ Filesystem locations users should understand
 Scratch
 ^^^^^^^
 - **Location on compute nodes:** ``/mnt/local/scratch/$USER``.
+- **Shortcut Variable**: ``$SCRATCH``
 - **Local to each compute node**: This storage is temporary, and local to a compute node. It is available to a user only 
   when a node is assigned for running jobs
 - **High performance**: Offers significantly faster read/write speeds compared to home and work storage.
@@ -38,6 +39,7 @@ Scratch
 Work
 ^^^^^
 - **Location in filesystem:** ``/work/$USER``.
+- **Shortcut Variable**: ``$WORK``
 - **Shared across all nodes**: Accessible from any compute node in the system.
 - **Large capacity**: Designed to store big files, datasets and, in general, input/output files used/produced by a job.
 - **Slower access**: Due to its shared nature, read/write operations are generally slower than scratch storage.
@@ -47,11 +49,16 @@ Work
 Home
 ^^^^^
 - **Location in filesystem:** ``/home/$USER``.
+- **Shortcut Variable**: ``$HOME`` or ``~``
 - **Shared across all nodes**: Accessible from any compute node in the system.
 - **Limited capacity**: Hard quota limit of 25GB per user. If you try to write more than 25G, an error will be displayed
   and any subsequent write operations will be denied.
 - **Slower access**: Due to its shared nature, read/write operations are generally slower than local scratch storage.
 - **Data retention policy:** Data is kept and backed up for 7 days.
+
+.. note::
+
+   Shortcut variables in bash are set upon entry to a Zurada node, so you may utilize them while inside the system (scripts, navigation, etc). If you are using a command (ex. ``scp``, or ``rsync``) from your laptop/desktop/etc. utilization of the shortcut variables will not work.
 
 Recommended Workflow
 ====================

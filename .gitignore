@@ -3,3 +3,6 @@ _build/*
 
 # Ignore the vscode directory 
 .vscode
+
+# Ignore personal gitconfig
+.gitconfig

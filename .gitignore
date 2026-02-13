@@ -5,4 +5,4 @@ _build/*
 .vscode
 
 # Ignore personal gitconfig
-.gitconfig
+.git/config

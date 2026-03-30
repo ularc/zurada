@@ -1,18 +1,19 @@
 Rosalind
 ########
 
-The Rosalind Storage System (Rosalind) is a slower tier of storage totaling 1PB of storage. In order to get access to the system you must create either a new `Access Ticket <https://ularc.github.io/zurada/accounts_and_support/index.html#request-an-account>`_ or select Rosalind at the same time you are requesting access to Zurada
+Rosalind is a shared storage system with 1PB capacity and is accessible both independently and through the Zurada aystem. In order to get access to the system you must create an `Access Ticket <https://ularc.github.io/zurada/accounts_and_support/index.html#request-an-account>`_. You could also select Rosalind at the same time you are requesting access to Zurada.
+ 
 
 Policies
 --------
 
-#. By Default users will recieve a private directory with a quota of ``500g``, this quota can be changed on a per user basis upon communication with the Research Computing team (Rosalind access is not given at the same time as Zurada access)
+#. By Default users will recieve a private directory with a quota of ``500g``
 
-#. Upon recieving access to Rosalind, users have access via ``SFTP`` (over Port 22) from the University of Louisville Campus network or over the UofL Global Protect VPN. Users that have access to Zurada can also access their files on Rosalind over NFS on the Cluster itself for easy computational access.
+#. Upon recieving access to Rosalind, users have access via ``SFTP`` (over Port 22) from the University of Louisville Campus network or over the UofL Global Protect VPN. Users that have access to Zurada can also access their files on Rosalind over ``NFS`` on the Zurada Head node.
 
-#. If a User should have use for a Shared Data Directory on Rosalind, They may open a `ticket <https://ularc.github.io/zurada/accounts_and_support/index.html#request-support-tickets>`_ with Research Computing to get that set up with discussion on the Quota needed for the group.
+#. Shared directories for projects can be requested on Rosalind. Users can open a `ticket <https://ularc.github.io/zurada/accounts_and_support/index.html#request-support-tickets>`_ with Research Computing to get that set up with discussion on the Quota needed for the group.
 
-#. The User ``/home/{USER}`` directory on the Rosalind Server should only be used for bash or SSH configurations and **should not** be used as a primary storage location. Use of the directory is not supported and any files saved there may not be safe from purging.
+#. The user ``/home/{USER}`` directory on the Rosalind Server should only be used for bash or SSH configurations and **should not** be used as a primary storage location. Use of the directory is not supported and any files saved there may not be safe from purging.
 
 Directories
 -----------
@@ -36,7 +37,7 @@ Directories
 
 .. note::
 
-    Upon the Login of Rosalind the variable ``$ROSALIND`` is created that 
+    Upon the Login of Rosalind the variable ``$ROSALIND`` is created that points users to their Private Directory
 
 Use of Rosalind
 ---------------
@@ -140,4 +141,4 @@ Use of Rosalind with Zurada
 
 If you have access to **BOTH** Rosalind and Zurada, you will have access to both your private and any shared directories utilizing the same paths as mentioned above (see Directories Table).
 
-When a user logs into either system the ``$ROSALIND`` variable is set to create a shortcut to their Private Rosalind directory. Users can utilize this variable the same as they would ``$WORK``, ``$HOME`` or ``$SCRATCH`` in their job scripts.
+When a user logs into either system the ``$ROSALIND`` variable is set to create a shortcut to their Private Rosalind directory. User's should stage data from Rosalind to the Zurada ``$WORK`` directory for computation and running jobs directly using the data on Rosalind is not supported. After their jobs are done, users are welcome to copy their data to their storage in Rosalind."

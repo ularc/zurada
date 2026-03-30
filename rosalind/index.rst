@@ -141,4 +141,4 @@ Use of Rosalind with Zurada
 
 If you have access to **BOTH** Rosalind and Zurada, you will have access to both your private and any shared directories utilizing the same paths as mentioned above (see Directories Table).
 
-When a user logs into either system the ``$ROSALIND`` variable is set to create a shortcut to their Private Rosalind directory. User's should stage data from Rosalind to the Zurada ``$WORK`` directory for computation and running jobs directly using the data on Rosalind is not supported. After their jobs are done, users are welcome to copy their data to their storage in Rosalind."
+When a user logs into either system the ``$ROSALIND`` variable is set to create a shortcut to their Private Rosalind directory. User's should stage data from Rosalind to the Zurada ``$WORK`` directory for computation and running jobs directly, using the data directly from Rosalind is not supported. After their jobs are done, users are welcome to copy their data to their storage in Rosalind."

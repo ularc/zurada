@@ -9,7 +9,7 @@ Policies
 
 #. By default, users will recieve a private directory with a quota of ``500g``
 
-#. Upon recieving access to Rosalind, users have access via ``SFTP`` (over Port 22) from the University of Louisville Campus network or over the UofL Global Protect VPN. Users that have access to Zurada can also access their files on Rosalind over ``NFS`` on the Zurada Head node.
+#. Upon recieving access to Rosalind, users have access via ``SFTP`` (over Port 22) from the University of Louisville Campus network or over the UofL Global Protect VPN. Users that have access to Zurada can also access their files on Rosalind over ``NFS`` on the Zurada Login node.
 
 #. Shared directories for projects can be requested on Rosalind. Users can open a `ticket <https://ularc.github.io/zurada/accounts_and_support/index.html#request-support-tickets>`_ with Research Computing to get that set up with discussion on the Quota needed for the group.
 

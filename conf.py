@@ -9,7 +9,7 @@ import sphinx_rtd_theme
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Zurada User Documentation'
-copyright = '2025, ITS - Research Computing'
+copyright = '2026, ITS - Research Computing'
 author = 'ITS - Research Computing'
 
 # -- General configuration ---------------------------------------------------

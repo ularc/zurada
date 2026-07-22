@@ -7,3 +7,4 @@ Guides
    system_guide/index.rst
    slurm/index.rst
    storage/index.rst
+   datatransfer/index.rst

@@ -3,3 +3,5 @@ _build/*
 
 # Ignore the vscode directory 
 .vscode
+
+venv

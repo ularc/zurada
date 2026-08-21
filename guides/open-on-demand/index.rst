@@ -10,6 +10,7 @@ This section documents how to use Open On Demand (OOD) to run interactive applic
    jupyter
    codeserver
    matlab
+   zurada_desktop
 
 Notes
 -----

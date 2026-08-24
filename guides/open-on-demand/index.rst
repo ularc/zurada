@@ -39,7 +39,7 @@ Once logged in, the top navigation bar grants access to all cluster management m
 +---------------------------+---------------------------------------------------------------------------------------------------------+
 | **Interactive Apps**      | Launch GUI environments (**VS Code**, **Jupyter Notebook**, **RStudio**, **MATLAB**).                   |
 +---------------------------+---------------------------------------------------------------------------------------------------------+
-| **My Interactive Sessions**| View runtime status, manage connections, or terminate active app sessions.                             |
+| **My Interactive Sessions** | View runtime status, manage connections, or terminate active app sessions.                             |
 +---------------------------+---------------------------------------------------------------------------------------------------------+
  
 3. Interactive Applications Guide

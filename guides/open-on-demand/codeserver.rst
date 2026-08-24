@@ -1,7 +1,7 @@
-Code Server / VS Code (Open On Demand)
+Code Server / VS Code (Open OnDemand)
 ======================================
 
-Launching Code Server via OpenOnDemand
+Launching Code Server via Open OnDemand
 -------------------------------------
 
 This guide explains how to launch Code Server (VS Code in the browser) through the Open OnDemand portal.

@@ -1,4 +1,4 @@
-Zurada Desktop (Open On Demand)
+Zurada Desktop (Open OnDemand)
 ================================
 
 Overview

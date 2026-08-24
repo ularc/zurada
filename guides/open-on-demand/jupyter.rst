@@ -1,7 +1,7 @@
-Jupyter (Open On Demand)
+Jupyter (Open OnDemand)
 =========================
 
-Launching Jupyter Notebooks via OpenOnDemand
+Launching Jupyter Notebooks via Open OnDemand
 ---------------------------------------------
 
 This guide provides step-by-step instructions for launching interactive **Jupyter Notebook / JupyterLab** sessions on the High-Performance Computing (HPC) cluster using the Open OnDemand web portal.
@@ -28,7 +28,7 @@ Step 1: Access Open OnDemand
    :alt: Open OnDemand Login Screen
    :align: left
 
-   Figure 1: OpenOnDemand authentication screen.
+   Figure 1: Open OnDemand authentication screen.
 
 .. raw:: html
 

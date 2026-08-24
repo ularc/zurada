@@ -1,7 +1,7 @@
-Open On Demand
+Open OnDemand
 =================
 
-This section documents how to use Open On Demand (OOD) to run interactive applications on Zurada.
+This section documents how to use Open OnDemand (OOD) to run interactive applications on Zurada.
 
 .. toctree::
    :maxdepth: 2

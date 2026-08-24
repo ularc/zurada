@@ -153,7 +153,7 @@ In-Browser SSH Terminal
   * *Fix:* Delete the failed session under **My Interactive Sessions**, refresh your browser, and launch a fresh session.
 
 
-.. node::
+.. note::
    
    - These guides assume you have a valid account and have requested access to Zurada.
    - Replace any example hostnames or project names with values provided by Research Computing.

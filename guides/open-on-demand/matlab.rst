@@ -9,9 +9,8 @@ Use MATLAB through the OOD Interactive Apps interface when licensed nodes are av
 Prerequisites
 -------------
 
-* An active HPC Zurada cluster account.
-* Access to the campus network or VPN.
-* A supported web browser (Chrome, Firefox, or Edge).
+* An active HPC Zurada account.
+* A connection to the UofL network or the *UofL Cisco AnyConnect VPN (if off-campus).
 
 Step 1: Access Open OnDemand
 ----------------------------

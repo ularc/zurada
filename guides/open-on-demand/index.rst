@@ -28,19 +28,22 @@ Login Steps
  
 Once logged in, the top navigation bar grants access to all cluster management modules:
  
-+---------------------------+---------------------------------------------------------------------------------------------------------+
-| Navigation Menu           | Primary Functions                                                                                       |
-+===========================+=========================================================================================================+
-| **Files**                 | Browse, view, edit, upload, download, and manage files in ``/home`` and ``/scratch``.                   |
-+---------------------------+---------------------------------------------------------------------------------------------------------+
-| **Jobs**                  | Access **Job Composer** (create scripts) and **Active Jobs** (monitor Slurm queue status).              |
-+---------------------------+---------------------------------------------------------------------------------------------------------+
-| **Clusters**              | Launch a web-based SSH terminal session (``>_ Zurada Shell Access``).                                   |
-+---------------------------+---------------------------------------------------------------------------------------------------------+
-| **Interactive Apps**      | Launch GUI environments (**VS Code**, **Jupyter Notebook**, **RStudio**, **MATLAB**).                   |
-+---------------------------+---------------------------------------------------------------------------------------------------------+
-| **My Interactive Sessions** | View runtime status, manage connections, or terminate active app sessions.                             |
-+---------------------------+---------------------------------------------------------------------------------------------------------+
+.. list-table:: Navigation menu
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Navigation Menu
+     - Primary Functions
+   * - **Files**
+     - Browse, view, edit, upload, download, and manage files in ``/home`` and ``/work``.
+   * - **Jobs**
+     - Access **Job Composer** (create scripts) and **Active Jobs** (monitor Slurm queue status).
+   * - **Clusters**
+     - Launch a web-based SSH terminal session (``>_ Zurada Shell Access``).
+   * - **Interactive Apps**
+     - Launch GUI environments (**VS Code**, **Jupyter**, **RStudio**, **MATLAB**).
+   * - **My Interactive Sessions**
+     - View runtime status, manage connections, or terminate active app sessions.
  
 3. Interactive Applications Guide
 =================================

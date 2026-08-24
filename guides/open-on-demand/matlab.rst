@@ -1,4 +1,4 @@
-MATLAB (Open On Demand)
+MATLAB (Open OnDemand)
 =======================
 
 Overview

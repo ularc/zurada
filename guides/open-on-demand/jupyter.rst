@@ -1,4 +1,4 @@
-Jupyter (Open On Demand)
+Jupyter (Open OnDemand)
 =========================
 
 Launching Jupyter Notebooks via OpenOnDemand

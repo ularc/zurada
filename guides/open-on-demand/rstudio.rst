@@ -1,4 +1,4 @@
-RStudio (Open On Demand)
+RStudio (Open OnDemand)
 =========================
 
 Launching RStudio via OpenOnDemand

@@ -1,4 +1,4 @@
-Code Server / VS Code (Open On Demand)
+Code Server / VS Code (Open OnDemand)
 ======================================
 
 Launching Code Server via OpenOnDemand

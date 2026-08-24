@@ -28,7 +28,7 @@ Login Steps
  
 Once logged in, the top navigation bar grants access to all cluster management modules:
  
-.. list-table:: Navigation menu
+.. list-table::
    :header-rows: 1
    :widths: 25 75
 

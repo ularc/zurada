@@ -6,30 +6,8 @@ Overview
 
 Use Zurada Desktop through the OOD Interactive Apps interface when desktop sessions are available. Interactive desktop sessions are useful for graphical applications and desktop-style workflows.
 
-Prerequisites
--------------
 
-* An active HPC Zurada account.
-* A connection to the UofL network or the *UofL Cisco AnyConnect VPN (if off-campus).
-
-Step 1: Access Open OnDemand
-----------------------------
-
-1. Open your browser and navigate to the Open OnDemand portal at `https://web.rc.louisville.edu <https://web.rc.louisville.edu>`_
-
-
-.. figure:: images/OOD_mainpage.png
-    :width: 50%
-    :alt: Open OnDemand Login Screen
-    :align: left
-
-    Figure 1: OpenOnDemand authentication screen.
-
-.. raw:: html
-
-    <div style="clear: both;"></div>
-
-Step 2: Navigate to Zurada Desktop
+Step 1: Navigate to Zurada Desktop
 ----------------------------------
 
 1. On the top navigation bar, click on **Interactive Apps**.
@@ -40,13 +18,13 @@ Step 2: Navigate to Zurada Desktop
     :alt: Interactive Apps Dropdown Menu
     :align: left
 
-    Figure 2: Selecting Zurada Desktop from the Interactive Apps menu.
+    Figure 1: Selecting Zurada Desktop from the Interactive Apps menu.
 
 .. raw:: html
 
     <div style="clear: both;"></div>
 
-Step 3: Configure Job Options
+Step 2: Configure Job Options
 -----------------------------
 
 Fill in the form parameters according to your resource requirements:
@@ -69,13 +47,13 @@ Fill in the form parameters according to your resource requirements:
     :alt: Zurada Desktop Launch Form
     :align: left
 
-    Figure 3: Interactive session submission form.
+    Figure 2: Interactive session submission form.
 
 .. raw:: html
 
     <div style="clear: both;"></div>
 
-Step 4: Connect to the Running Session
+Step 3: Connect to the Running Session
 --------------------------------------
 
 1. After clicking **Launch**, you will be redirected to the **Interactive Sessions** card view.
@@ -88,13 +66,13 @@ Step 4: Connect to the Running Session
     :alt: Zurada Desktop session card
     :align: left
 
-    Figure 4: Example Zurada Desktop session card in Interactive Sessions.
+    Figure 3: Example Zurada Desktop session card in Interactive Sessions.
 
 .. raw:: html
 
     <div style="clear: both;"></div>
 
-Step 5: Terminate the Session
+Step 4: Terminate the Session
 -----------------------------
 
 When you have finished your work, close your interactive session to release compute resources for other users:
@@ -107,7 +85,7 @@ When you have finished your work, close your interactive session to release comp
     :alt: Delete Session Confirmation
     :align: left
 
-    Figure 5: Deleting an active interactive session.
+    Figure 4: Deleting an active interactive session.
 
 .. raw:: html
 

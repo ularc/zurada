@@ -1,38 +1,12 @@
 Code Server / VS Code (Open OnDemand)
 ======================================
 
-Launching Code Server via Open OnDemand
--------------------------------------
+Overview
+--------
 
 This guide explains how to launch Code Server (VS Code in the browser) through the Open OnDemand portal.
 
-.. contents:: Table of Contents
-	:depth: 2
-	:local:
-
-Prerequisites
--------------
-
-* An active HPC Zurada account.
-* A connection to the UofL network or the *UofL Cisco AnyConnect VPN (if off-campus).
-
-Step 1: Access Open OnDemand
-----------------------------
-
-1. Open your browser and navigate to the Open OnDemand portal at `https://web.rc.louisville.edu <https://web.rc.louisville.edu>`_
-
-.. figure:: images/interactive_apps_menu.png
-	:width: 50%
-	:alt: Interactive Apps Dropdown Menu
-	:align: left
-
-	Figure 1: Selecting Code Server from the Interactive Apps menu.
-
-.. raw:: html
-
-	<div style="clear: both;"></div>
-
-Step 2: Start a Code Server Session
+Step 1: Start a Code Server Session
 -----------------------------------
 
 1. Choose **Code Server** (or **VS Code**) from the Interactive Apps list.
@@ -43,13 +17,13 @@ Step 2: Start a Code Server Session
 	:alt: Code Server session card
 	:align: left
 
-	Figure 2: Example Code Server session card in Interactive Sessions.
+	Figure 1: Example Code Server session card in Interactive Sessions.
 
 .. raw:: html
 
 	<div style="clear: both;"></div>
 
-Step 3: Connect to the IDE
+Step 2: Connect to the IDE
 --------------------------
 
 1. When the session status shows **Running**, click the blue **Connect** button on the session card to open the Code Server IDE in a new tab.
@@ -59,7 +33,7 @@ Step 3: Connect to the IDE
 	:alt: Connect button
 	:align: left
 
-	Figure 3: Click the Connect button to open the Code Server IDE in a new tab.
+	Figure 2: Click the Connect button to open the Code Server IDE in a new tab.
 
 .. raw:: html
 

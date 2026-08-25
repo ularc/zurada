@@ -6,21 +6,29 @@ Open OnDemand provides a web-based graphical interface for the Zurada HPC system
 
 1. Prerequisites & Access Requirements
 ======================================
- 
-Before logging into Open OnDemand, ensure you have:
- 
-* An active **Zurada HPC Account**
-* A connection to the campus network or an active **UofL GlobalProtect VPN** (if accessing from off-campus)
- 
-Login Steps
------------
- 
-#. Open your web browser
-#. Navigate to `https://web.rc.louisville.edu <https://web.rc.louisville.edu>`_.
-#. Log in using your **ULink User ID** and **Password**.
- 
-.. warning::
-   If the site fails to load or gives a connection timeout, verify that your UofL VPN connection is active.
+
+Prerequisites
+-------------
+
+* An active HPC Zurada account.
+* A connection to the UofL network or the *UofL Global Protect VPN (if off-campus).
+
+Step 1: Access Open OnDemand
+----------------------------
+
+1. Open your browser and navigate to the Open OnDemand portal at `https://web.rc.louisville.edu <https://web.rc.louisville.edu>`_
+
+
+.. figure:: images/OOD_mainpage.png
+   :width: 50%
+   :alt: Open OnDemand Login Screen
+   :align: left
+
+   Figure 1: Open OnDemand authentication screen.
+
+.. raw:: html
+
+   <div style="clear: both;"></div>
 
  
 2. Dashboard Navigation Overview
@@ -67,7 +75,7 @@ Interactive apps run on dedicated compute nodes allocated to your account by Slu
  
 To use custom Python environments inside **VS Code** or **Jupyter**:
  
-#. Open **Clusters** > **>_ Zurada Shell Access** and create your environment:
+1. Open **Clusters** > **>_ Zurada Shell Access** and create your environment:
  
 .. code-block:: bash
  
@@ -76,7 +84,7 @@ To use custom Python environments inside **VS Code** or **Jupyter**:
    conda activate my_env
    python -m ipykernel install --user --name my_env --display-name "Python (my_env)"
  
-#. When launching **Jupyter** or **VS Code** in Open OnDemand, your new environment kernel `"Python (my_env)"` will appear automatically in the environment selector dropdown.
+2. When launching **Jupyter** or **VS Code** in Open OnDemand, your new environment kernel `"Python (my_env)"` will appear automatically in the environment selector dropdown.
 
 5. Slurm Job Management
 =======================
@@ -86,9 +94,9 @@ Job Composer (Batch Scripts)
  
 If you do not need a GUI desktop and want to run non-interactive batch scripts:
  
-#. Navigate to **Jobs** > **Job Composer**.
-#. Click **New Job** > **From Specified Template** or **From Default Template**.
-#. Edit your Slurm batch script directly in the built-in editor:
+1. Navigate to **Jobs** > **Job Composer**.
+2. Click **New Job** > **From Specified Template** or **From Default Template**.
+3. Edit your Slurm batch script directly in the built-in editor:
  
 .. code-block:: bash
  
@@ -109,9 +117,9 @@ If you do not need a GUI desktop and want to run non-interactive batch scripts:
 Active Jobs (Queue Monitor)
 ---------------------------
  
-#. Go to **Jobs** > **Active Jobs**.
-#. View all queued, running, or held jobs across the cluster.
-#. Filter by User (``$USER``) to monitor your personal jobs or inspect job IDs, start times, and allocated nodes.
+1. Go to **Jobs** > **Active Jobs**.
+2. View all queued, running, or held jobs across the cluster.
+3. Filter by User (``$USER``) to monitor your personal jobs or inspect job IDs, start times, and allocated nodes.
  
 6. File Management & Terminal Access
 ====================================
@@ -126,8 +134,8 @@ Browser File Explorer
 In-Browser SSH Terminal
 -----------------------
  
-#. Navigate to **Clusters** > **>_ Zurada Shell Access**.
-#. An SSH shell session opens directly on the Zurada login node. You will need to perform a DUO push verification
+1. Navigate to **Clusters** > **>_ Zurada Shell Access**.
+2. An SSH shell session opens directly on the Zurada login node. You will need to perform a DUO push verification
  
 .. code-block:: bash
  

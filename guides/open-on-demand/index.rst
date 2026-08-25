@@ -71,7 +71,7 @@ To use custom Python environments inside **VS Code** or **Jupyter**:
  
 .. code-block:: bash
  
-   module load conda
+   module load miniforge3
    conda create -n my_env python=3.10 ipykernel -y
    conda activate my_env
    python -m ipykernel install --user --name my_env --display-name "Python (my_env)"
@@ -119,7 +119,7 @@ Active Jobs (Queue Monitor)
 Browser File Explorer
 ---------------------
  
-* Navigate to **Files** > **Home Directory** or **Scratch Directory**.
+* Navigate to **Files** > **Home Directory** or **Work Directory**.
 * Drag and drop files from your computer to upload.
 * Select text scripts or configuration files and click **Edit** to open the built-in web code editor.
  
@@ -135,18 +135,22 @@ In-Browser SSH Terminal
    squeue -u $USER
  
    # Check scratch storage usage
-   df -h /scratch/$USER
+   df -h /work/$USER
  
 7. Troubleshooting & FAQs
 =========================
+
+**Q. When I click Connect I see Failed to connect to something like cpusm75:33382**
+  * *Cause:* Your node is not quite setup for the interactive application
+  * *Fix:* Do not restart the session, wait for about 30s to a minute and try pressing connect again.
  
 **Q: My session stays in the "Queued" state for a long time.**
-  * *Cause:* Requested CPU, memory, or walltime limits exceed current free node capacity.
+  * *Cause:* Requested CPU or walltime limits exceed current free node capacity.
   * *Fix:* Go to **My Interactive Sessions**, click **Delete**, and resubmit with fewer cores, less RAM, or shorter walltime.
  
 **Q: App crashed or disconnected automatically.**
-  * *Cause:* Job exceeded maximum allocated RAM (Out Of Memory) or hit the requested **Walltime** limit.
-  * *Fix:* Re-launch the session with increased memory or longer runtime.
+  * *Cause:* Job exceeded the requested **Walltime** limit.
+  * *Fix:* Re-launch the session with longer runtime.
  
 **Q: "Bad Gateway" or "404 Not Found" error upon launch.**
   * *Cause:* The compute node instance died unexpectedly or did not start the web service in time.

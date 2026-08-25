@@ -72,7 +72,7 @@ To use custom Python environments inside **VS Code** or **Jupyter**:
 .. code-block:: bash
  
    module load miniforge3
-   conda create -n my_env python=3.10 ipykernel -y
+   conda create --prefix /work/$USER/test-env my_env python=3.10 ipykernel -y
    conda activate my_env
    python -m ipykernel install --user --name my_env --display-name "Python (my_env)"
  

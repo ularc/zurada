@@ -98,6 +98,17 @@ If you do not need a GUI desktop and want to run non-interactive batch scripts:
 2. Click **New Job** > **From Specified Template** or **From Default Template**.
 3. Edit your Slurm batch script directly in the built-in editor:
  
+ .. figure:: images/jobcomposer.png
+   :width: 50%
+   :alt: Job Composer Editor
+   :align: left
+
+   Figure 1: Job Composer Editor.
+
+.. raw:: html
+
+   <div style="clear: both;"></div>
+
 .. code-block:: bash
  
    #!/bin/bash
@@ -120,7 +131,18 @@ Active Jobs (Queue Monitor)
 1. Go to **Jobs** > **Active Jobs**.
 2. View all queued, running, or held jobs across the cluster.
 3. Filter by User (``$USER``) to monitor your personal jobs or inspect job IDs, start times, and allocated nodes.
- 
+
+.. figure:: images/ViewActiveJobs.png
+   :width: 50%
+   :alt: View Active Jobs
+   :align: left
+
+   Figure 1: View Active Jobs.
+
+.. raw:: html
+
+   <div style="clear: both;"></div>
+
 6. File Management & Terminal Access
 ====================================
  

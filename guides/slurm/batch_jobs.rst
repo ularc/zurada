@@ -26,8 +26,9 @@ When submitting a job to Slurm, the shell script must adhere to the following re
 
 1. The first line of the script should specify the shell to be used.
    This is accomplished by including a shebang (``#!``) followed by ``/bin/env``, a space,
-   and the name of the desired shell. For example, for a bash script: ``#!/bin/env bash``.
-   Alternatively, the path to the shell can be used directly: ``#!/bin/bash``.
+   and the name of the desired shell. For example, for a bash script: ``#!/bin/env bash -l``.
+   Alternatively, the path to the shell can be used directly: ``#!/bin/bash -l``. The ``-l``
+   ensures that the systems bash environment variables are loaded into your session.
 
 2. The script should define a set of parameters in the form of comments
    (lines preceded by the ``#`` symbol). These parameters are utilized by Slurm
@@ -36,7 +37,7 @@ When submitting a job to Slurm, the shell script must adhere to the following re
 
    .. code-block:: bash
    		
-      #!/bin/env bash
+      #!/bin/env bash -l
       #SBATCH --job-name=some_job_name
       #SBATCH --time=01:00
 

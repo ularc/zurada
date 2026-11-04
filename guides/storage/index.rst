@@ -47,7 +47,6 @@ Work
 - **Data retention policy:** Files that are not accessed in the last 30 days are candidate for deletion. The 30-day clock on file access resets every time a file is used. The purge process is semi-automated as of now and will be fully automated in the near future.
 - **Capacity**: There is NO per user quota in /work.
 
-
 Home
 ^^^^^
 - **Location in filesystem:** ``/home/$USER``.

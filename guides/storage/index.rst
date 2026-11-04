@@ -42,9 +42,9 @@ Work
 - **Shortcut Variable**: ``$WORK``
 - **Shared across all nodes**: Accessible from any compute node in the system.
 - **Large capacity**: Designed to store big files, datasets and, in general, input/output files used/produced by a job.
-- **Slower access**: Due to its shared nature, read/write operations are generally slower than scratch storage.
+- **Slower access**: Due to its shared nature, read/write operations can be slower than scratch storage.
 - **Parallel I/O**: Multiple parts of large files can be accessed simultaneously (e.g. MPI-IO).
-- **Data retention policy:** Files with a file access attribute not within 30 days are candidate for deletion. Purge script is run manually by Research Computing administrators
+- **Data retention policy:** Files that are not accessed in the last 30 days are candidate for deletion. The 30-day clock on file access resets every time a file is used. The purge process is semi-automated as of now and will be fully automated in the near future.
 
 Home
 ^^^^^
@@ -53,37 +53,27 @@ Home
 - **Shared across all nodes**: Accessible from any compute node in the system.
 - **Limited capacity**: Hard quota limit of 25GB per user. If you try to write more than 25G, an error will be displayed
   and any subsequent write operations will be denied.
-- **Slower access**: Due to its shared nature, read/write operations are generally slower than local scratch storage.
+- **Slower access**: Due to its shared nature, read/write operations can be slower than the local scratch storage.
 - **Data retention policy:** Data is kept and backed up for 7 days.
 
 .. note::
 
-   Shortcut variables in bash are set upon entry to a Zurada node, so you may utilize them while inside the system (scripts, navigation, etc). If you are using a command (ex. ``scp``, or ``rsync``) from your laptop/desktop utilization of the shortcut variables will not work.
+   Shortcut variables in bash are set upon entry to a Zurada node, so you may utilize them while inside the system (scripts, navigation, etc). If you are using a command (ex. ``scp``, or ``rsync``) from your laptop/desktop, the shortcut variables will not work.
 
 Recommended Workflow
 ====================
 
 A common and efficient workflow for running jobs on the system is:
 
-1. **Prepare Input Data**: Copy necessary input files from your ``home`` or ``work`` storage to the node's local scratch storage at the start of your job.
-2. **Run the Application**: Configure your application to read from and write to the local scratch storage during execution.
-   This takes advantage of its high-speed performance.
-3. **Save Results**: Once the job completes, copy the output files back to your work directory for longer term retention, or to home directory if you want them backed up.
+1. **Prepare Input Data**: Copy necessary input files from your ``home`` or ``work`` storage to the node's local ``scratch`` storage at the start of your job for maximum possible performance. You can skip copying the data to /scratch and do the file read/write directly from /work or /home as well. Due to the shared nature of the /work and /home filesystems, the file read/write performance can be impacted due to other users' activities.
+2. **Run the Application**: Configure your application to read from and write to the local scratch storage during execution if you choose to copy the data to /scratch. Otherwise, read or write data directly to /work or /home.
+3. **Save Results**: If you choose to use /scratch, once the job completes, copy the output files back to your /work directory or to the /home directory. For long-term data retention, you are welcome to request an account on Rosalind storage system and transfer the files there.
 
-See Section :ref:`Copying data between home and scratch <storage_copy_data>` for more information on how to implement
-this worflow.
 
-.. note::
-
-   Always ensure that your input and output data will fit within the available space on ``scratch`` storage.
-   If your files exceed this capacity, you may need to adjust your workflow accordingly.
-
-.. _storage_copy_data:
-
-Copying Data Between Home and Scratch
+Copying Data Between Scratch and Home  / Work
 -------------------------------------
 
-To efficiently transfer data between your shared ``home`` storage and node-local ``scratch`` storage, you can use ``pdsh``—a parallel remote shell client that executes commands across multiple nodes simultaneously.
+To efficiently transfer data between your shared ``home`` or ``work`` storage and node-local ``scratch`` storage, you can use ``pdsh``—a parallel remote shell client that executes commands across multiple nodes simultaneously.
 
 The general template for the ``pdsh`` command includes three key components:
 
@@ -122,7 +112,7 @@ command above would:
    :width: 900
    :alt: Logical Storage Architecture
 
-Copy results from scratch to home
+Copy results from scratch to /home or /work
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. warning::

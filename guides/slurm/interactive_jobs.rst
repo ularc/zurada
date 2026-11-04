@@ -58,7 +58,7 @@ Users typically use the following template:
 
 .. code-block:: bash
 
-    srun --partition=<partition> --nodes=<nodes> --ntasks-per-node=<cpus> --time=<walltime> --pty /bin/bash -i
+    srun --partition=<partition> --nodes=<nodes> --ntasks-per-node=<cpus> --time=<walltime> --pty /bin/bash -l -i
 
 Here, ``<nodes>`` specifies the number of nodes, 
 ``<cpus>`` denotes processors per node, and ``<walltime>`` sets the maximum duration for the session.
@@ -88,8 +88,8 @@ Interactive Job Example
     #    c) Run on a single node (--nodes=1)
     #    d) Allocate 4 cores for this job on the node (--ntasks-per-node=4)
     #    e) Instead of hanging and waiting for resources to be available, exit immediately (-i)
-    #    f) Specify the task (a shell in this case) to execute (--pty /bin/bash)
-    srun --partition=cpu384g --time=5:00:00 --mem=10G --ntasks-per-node=4 --nodes=1 --pty /bin/bash -i
+    #    f) Specify the task (a shell in this case) to execute (--pty /bin/bash -l)
+    srun --partition=cpu384g --time=5:00:00 --mem=10G --ntasks-per-node=4 --nodes=1 --pty /bin/bash -l -i
 
 .. note::
     The ``-i`` option for ``srun`` is optional. It prevents your terminal from hanging

@@ -4,4 +4,8 @@ _build/*
 # Ignore the vscode directory 
 .vscode
 
+<<<<<<< HEAD
 venv
+=======
+venv
+>>>>>>> develop

@@ -13,8 +13,8 @@ When working on any compute node within the system, there are
 two types of storage accessible to a node: local storage and shared storage. The former is only accessible by
 a particular node, while the latter is accessible by all nodes.
 
-On every node, the path ``/mnt/local/scratch/$USER`` points to local storage. That means if you have two nodes *N1* and *N2*,
-anything stored at ``/mnt/local/scratch/$USER`` in *N1* won't be accessible by *N2* and vice-versa. In contrast, the
+On every node, the path ``/mnt/local/scratch/$USER/$SLURM_JOB_ID`` points to local storage. That means if you have two nodes *N1* and *N2*,
+anything stored at ``/mnt/local/scratch/$USER/$SLURM_JOB_ID`` in *N1* won't be accessible by *N2* and vice-versa. In contrast, the
 paths ``/work/$USER`` and ``/home/$USER`` point to a location in shared storage and are thus accessible by both *N1* and *N2*.
 
 The described storage architecture is depicted in the diagram below:
@@ -27,7 +27,7 @@ Filesystem locations users should understand
 
 Scratch
 ^^^^^^^
-- **Location on compute nodes:** ``/mnt/local/scratch/$USER``.
+- **Location on compute nodes:** ``/mnt/local/scratch/$USER/$SLURM_JOB_ID``.
 - **Shortcut Variable**: ``$SCRATCH``
 - **Local to each compute node**: This storage is temporary, and local to a compute node. It is available to a user only 
   when a node is assigned for running jobs
@@ -44,7 +44,7 @@ Work
 - **Large capacity**: Designed to store big files, datasets and, in general, input/output files used/produced by a job.
 - **Slower access**: Due to its shared nature, read/write operations are generally slower than scratch storage.
 - **Parallel I/O**: Multiple parts of large files can be accessed simultaneously (e.g. MPI-IO).
-- **Data retention policy:** Files not accessed within 30 days are candidate for deletion.
+- **Data retention policy:** Files with a file access attribute not within 30 days are candidate for deletion. Purge script is run manually by Research Computing administrators
 
 Home
 ^^^^^
@@ -65,7 +65,7 @@ Recommended Workflow
 
 A common and efficient workflow for running jobs on the system is:
 
-1. **Prepare Input Data**: Copy necessary input files from your home or work storage to the node's local scratch storage at the start of your job.
+1. **Prepare Input Data**: Copy necessary input files from your ``home`` or ``work`` storage to the node's local scratch storage at the start of your job.
 2. **Run the Application**: Configure your application to read from and write to the local scratch storage during execution.
    This takes advantage of its high-speed performance.
 3. **Save Results**: Once the job completes, copy the output files back to your work directory for longer term retention, or to home directory if you want them backed up.
@@ -104,14 +104,19 @@ Copy input data from home to scratch on all nodes
 
 .. code-block:: bash
 
-   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /home/$USER/input /mnt/local/scratch/$USER/"
+   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /home/$USER/input /mnt/local/scratch/$USER/$SLURM_JOB_ID/"
+
+   # OR
+
+   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r $HOME/input $SCRATCH/"
+
 
 For example, assume you submitted a batch job requesting 3 nodes and slurm allocated ``cpusm[01-03]`` such
 that ``cpusm01`` is chosen as the node where the batch script is to be executed from. Then, the ``pdsh``
 command above would:
 
 #. Create 3 (parallel) ssh sessions from ``cpusm01`` to itself, ``cpusm02`` and ``cpusm03``.
-#. Within each session, instruct the node to copy the folder ``/home/$USER/input`` to ``/mnt/local/scratch/$USER/``
+#. Within each session, instruct the node to copy the folder ``/home/$USER/input`` to ``/mnt/local/scratch/$USER/$SLURM_JOB_ID/``
 
 .. image:: images/pdsh_home_to_scratch.png
    :width: 900
@@ -127,27 +132,35 @@ Copy results from scratch to home
 .. code-block:: bash
 
    # Copy results from scratch to home, appending hostname to avoid overwrites
-   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /mnt/local/scratch/$USER/results /home/$USER/results_\`hostname\`"
+   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /mnt/local/scratch/$USER/$SLURM_JOB_ID/results /home/$USER/results_\`hostname\`"
 
    # Alternatively, move results from scratch to home
-   pdsh -R ssh -w $SLURM_JOB_NODELIST "mv /mnt/local/scratch/$USER/results /home/$USER/results_\`hostname\`"
+   pdsh -R ssh -w $SLURM_JOB_NODELIST "mv /mnt/local/scratch/$USER/$SLURM_JOB_ID/results /home/$USER/results_\`hostname\`"
+
+   # OR
+
+   # Copy results from scratch to home, appending hostname to avoid overwrites
+   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r $SCRATCH/results $HOME/results_\`hostname\`"
+
+   # Alternatively, move results from scratch to home
+   pdsh -R ssh -w $SLURM_JOB_NODELIST "mv $SCRATCH/results $HOME/results_\`hostname\`"
 
 For example, assume you submitted a batch job requesting 3 nodes and slurm allocated ``cpusm[01-03]`` such
 that ``cpusm01`` is chosen as the node where the batch script is to be executed from. Then, the ``pdsh``
 commands above would:
 
 #. Create 3 (parallel) ssh sessions from ``cpusm01`` to itself, ``cpusm02`` and ``cpusm03``.
-#. Within each session, instruct the node to copy (or move if using ``mv``) the folder ``/mnt/local/scratch/$USER/results``
+#. Within each session, instruct the node to copy (or move if using ``mv``) the folder ``/mnt/local/scratch/$USER/$SLURM_JOB_ID/results``
    to ``/home/$USER/``, appending ``_`` followed by the node's hostname to the copy. i.e., 
    
    .. code-block:: bash
 
       # cpusm01 executes:
-      cp -r /mnt/local/scratch/$USER/results /home/$USER/results_cpusm01
+      cp -r /mnt/local/scratch/$USER/$SLURM_JOB_ID/results /home/$USER/results_cpusm01
       # cpusm02 executes:
-      cp -r /mnt/local/scratch/$USER/results /home/$USER/results_cpusm02
+      cp -r /mnt/local/scratch/$USER/$SLURM_JOB_ID/results /home/$USER/results_cpusm02
       # cpusm03 executes:
-      cp -r /mnt/local/scratch/$USER/results /home/$USER/results_cpusm03
+      cp -r /mnt/local/scratch/$USER/$SLURM_JOB_ID/results /home/$USER/results_cpusm03
 
 .. image:: images/pdsh_scratch_to_home.png
    :width: 900
@@ -170,13 +183,13 @@ Here's how this workflow fits into a typical Slurm batch script:
    #SBATCH ...
 
    # Copy input to scratch
-   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /home/$USER/input /mnt/local/scratch/$USER/"
+   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /home/$USER/input /mnt/local/scratch/$USER/$SLURM_JOB_ID/"
 
    # Run your application
    # ...
 
    # Copy results back to home
-   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /mnt/local/scratch/$USER/results /home/$USER/results_\`hostname\`"
+   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /mnt/local/scratch/$USER/$SLURM_JOB_ID/results /home/$USER/results_\`hostname\`"
 
 For aggregated results (e.g., via MPI reduction):
 
@@ -186,10 +199,10 @@ For aggregated results (e.g., via MPI reduction):
    #SBATCH ...
 
    # Copy input to scratch
-   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /home/$USER/input /mnt/local/scratch/$USER/"
+   pdsh -R ssh -w $SLURM_JOB_NODELIST "cp -r /home/$USER/input /mnt/local/scratch/$USER/$SLURM_JOB_ID/"
 
    # Run your application
    # ...
 
    # Copy final results from scratch to home
-   cp -r /mnt/local/scratch/$USER/results /home/$USER/
+   cp -r /mnt/local/scratch/$USER/$SLURM_JOB_ID/results /home/$USER/

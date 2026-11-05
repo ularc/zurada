@@ -11,7 +11,7 @@ Prerequisites
 -------------
 
 * An active HPC Zurada account.
-* A connection to the UofL network or the *UofL Global Protect VPN (if off-campus).
+* A connection to the UofL network or the *UofL Global Protect VPN (if off-campus)*.
 
 Step 1: Access Open OnDemand
 ----------------------------

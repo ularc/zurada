@@ -4,8 +4,6 @@ _build/*
 # Ignore the vscode directory 
 .vscode
 
-<<<<<<< HEAD
+# Ignore python virtual environments
+.venv
 venv
-=======
-venv
->>>>>>> develop

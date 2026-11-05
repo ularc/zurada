@@ -15,6 +15,7 @@ Approved activities
 - **SFTP**
 - **SCP**
 - **RSYNC**
+- **RCLONE**
 
 Datatransfer Node Information:
 ==============================
@@ -77,6 +78,70 @@ Here are some examples for the current Zurada resources
                 ControlPath ~/.ssh/cm-%r@%h:%p
                 ControlPersist 10m
 
-Begin the Multiplexed session
------------------------------
+The Multiplexed session
+-----------------------
 
+In order to begin your multiplexed SSH session you must first authenticate
+
+.. code-block::
+
+    ssh $SHORT_NAME
+
+You will then log in as you normally would with your password and multi-factor request. You can now disconnect from that session as long
+as you are within the time period set with the ``ControlPersist`` option in our ``~/.ssh/config`` file you can begin your multiplexed
+file transfer as long as whatever application uses the same OpenSSH client. The application to automatically do parallel transfers is the
+``rclone`` utility.
+
+.. note::
+
+    Important Note: If any users are seen to be abusing this functionality, or performing insecure/harmful practices the account of those users
+    will be disabled 
+
+Rclone parallel transfer
+------------------------
+
+In order to use ``rclone`` to perform file transfers you must configure your destination in the ``~/.config/rclone/rclone.conf`` file
+Here is an example:
+
+.. code-block::
+
+    [$RESOURCE_NAME]
+    type = sftp
+    host = $SHORT_NAME
+    ssh = ssh -F ~/.ssh/config $SHORT_NAME
+    shell_type = unix
+
+Here are some examples for the current Zurada resources:
+
+.. tabs::
+
+    .. tab:: Login Node
+        
+        .. code-block::
+        
+            [zurada_sftp]
+            type = sftp
+            host = zurada
+            ssh = ssh -F ~/.ssh/config zurada
+            shell_type = unix
+    
+    .. tab:: Datatransfer Node
+        
+        .. code-block::
+        
+            [dt_sftp]
+            type = sftp
+            host = dt
+            ssh = ssh -F ~/.ssh/config dt
+            shell_type = unix
+
+You can then do the following to begin your transfer
+
+.. code-block::
+    
+    rclone copy $SOURCE $RESOURCE_NAME:$DESTINATION_PATH
+
+.. note::
+
+    Important Note: Login nodes and the datatransfer node are shared resources. Please be mindful of the resources you are utilizing to complete the
+    transfer, use the `Rclone Documentation <https://rclone.org/docs/>`_ to learn more about the utility. 

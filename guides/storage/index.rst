@@ -71,8 +71,8 @@ A common and efficient workflow for running jobs on the system is:
 3. **Save Results**: If you choose to use /scratch, once the job completes, copy the output files back to your /work directory or to the /home directory. For long-term data retention, you are welcome to request an account on Rosalind storage system and transfer the files there.
 
 
-Copying Data Between Scratch and Home  / Work
--------------------------------------
+Copying Data Between Scratch and Home / Work
+--------------------------------------------
 
 To efficiently transfer data between your shared ``home`` or ``work`` storage and node-local ``scratch`` storage, you can use ``pdsh``—a parallel remote shell client that executes commands across multiple nodes simultaneously.
 
@@ -114,7 +114,7 @@ command above would:
    :alt: Logical Storage Architecture
 
 Copy results from scratch to /home or /work
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. warning::
    When copying results back to ``home``, ensure unique filenames or directories to prevent nodes from overwriting each other's output.

@@ -46,6 +46,8 @@ To setup your environment for multiplexing, you will need to setup your ``~/.ssh
         HostName $HOSTNAME_OR_IP_ADDRESS
         User $USERNAME
         Port 22
+        PubkeyAuthentication no
+	    IdentitiesOnly yes
         ControlMaster auto
         ControlPath ~/.ssh/cm-%r@%h:%p
         ControlPersist 10m
@@ -62,6 +64,8 @@ Here are some examples for the current Zurada resources
                 HostName zurada.rc.louisville.edu
                 User $USERNAME
                 Port 22
+                PubkeyAuthentication no
+	            IdentitiesOnly yes
                 ControlMaster auto
                 ControlPath ~/.ssh/cm-%r@%h:%p
                 ControlPersist 10m
@@ -74,6 +78,8 @@ Here are some examples for the current Zurada resources
                 HostName dt.rc.louisville.edu
                 User $USERNAME
                 Port 22
+                PubkeyAuthentication no
+	            IdentitiesOnly yes
                 ControlMaster auto
                 ControlPath ~/.ssh/cm-%r@%h:%p
                 ControlPersist 10m
@@ -107,9 +113,11 @@ Here is an example:
 
     [$RESOURCE_NAME]
     type = sftp
-    host = $SHORT_NAME
-    ssh = ssh -F ~/.ssh/config $SHORT_NAME
+    ssh = ssh -q -T $SHORT_NAME
     shell_type = unix
+    known_hosts_file = ~/.ssh/known_hosts
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
 
 Here are some examples for the current Zurada resources:
 
@@ -121,9 +129,12 @@ Here are some examples for the current Zurada resources:
         
             [zurada_sftp]
             type = sftp
-            host = zurada
-            ssh = ssh -F ~/.ssh/config zurada
+            ssh = ssh -q -T zurada
             shell_type = unix
+            known_hosts_file = ~/.ssh/known_hosts
+            md5sum_command = md5sum
+            sha1sum_command = sha1sum
+
     
     .. tab:: Datatransfer Node
         
@@ -131,9 +142,11 @@ Here are some examples for the current Zurada resources:
         
             [dt_sftp]
             type = sftp
-            host = dt
-            ssh = ssh -F ~/.ssh/config dt
+            ssh = ssh -q -T dt
             shell_type = unix
+            known_hosts_file = ~/.ssh/known_hosts
+            md5sum_command = md5sum
+            sha1sum_command = sha1sum
 
 You can then do the following to begin your transfer
 

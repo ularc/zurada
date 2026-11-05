@@ -23,6 +23,14 @@ Datatransfer Node Information:
 **Hostname:** dt.rc.louisville.edu
 **Port:** 22
 
+Methods for Transferring Multiple Files From a Single Session Without Encountering Multiple Requests for Multi-Factor Authentication
+================================================================================================================================
+- Bundling all files into a single zip or tar file for transferring from the local system to Zurada can be useful as it will require authentication only once per copy of zip or tar file.
+
+- Using the file management feature of the Open OnDemand (OOD) portal on Zurada (web.rc.louisville.edu) will let you drag and drop files into your desired directories without requiring additional authentication steps once you are logged into the portal. Here is additional information on using OOD: https://ularc.github.io/zurada/guides/open-on-demand/index.html .
+
+- SSH Multiplexing: On Linux-based systems, SSH Multiplexing can allow you to open multiple SSH sessions over a single, existing TCP connection, such that, the authentication with Duo is required only once per session. Native Windows SSH does not support SSH multiplexing. The next section described steps for SSH Multiplexing in detail.
+
 SSH Multiplexing
 ================
 

@@ -24,7 +24,8 @@ Datatransfer Node Information:
 **Port:** 22
 
 Methods for Transferring Multiple Files From a Single Session Without Encountering Multiple Requests for Multi-Factor Authentication
-================================================================================================================================
+====================================================================================================================================
+
 - Bundling all files into a single zip or tar file for transferring from the local system to Zurada can be useful as it will require authentication only once per copy of zip or tar file.
 
 - Using the file management feature of the Open OnDemand (OOD) portal on Zurada (web.rc.louisville.edu) will let you drag and drop files into your desired directories without requiring additional authentication steps once you are logged into the portal. Here is additional information on using OOD: https://ularc.github.io/zurada/guides/open-on-demand/index.html .
@@ -55,7 +56,7 @@ To setup your environment for multiplexing, you will need to setup your ``~/.ssh
         User $USERNAME
         Port 22
         PubkeyAuthentication no
-	    IdentitiesOnly yes
+        IdentitiesOnly yes
         ControlMaster auto
         ControlPath ~/.ssh/cm-%r@%h:%p
         ControlPersist 10m
@@ -73,7 +74,7 @@ Here are some examples for the current Zurada resources
                 User $USERNAME
                 Port 22
                 PubkeyAuthentication no
-	            IdentitiesOnly yes
+                IdentitiesOnly yes
                 ControlMaster auto
                 ControlPath ~/.ssh/cm-%r@%h:%p
                 ControlPersist 10m
@@ -87,7 +88,7 @@ Here are some examples for the current Zurada resources
                 User $USERNAME
                 Port 22
                 PubkeyAuthentication no
-	            IdentitiesOnly yes
+                IdentitiesOnly yes
                 ControlMaster auto
                 ControlPath ~/.ssh/cm-%r@%h:%p
                 ControlPersist 10m
